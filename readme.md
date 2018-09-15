@@ -1,5 +1,5 @@
 # CMS Project
 
-## Bugs
+## TODO
 
-- Can't make make_url() work with javascript or header redirects;
+## BUGS

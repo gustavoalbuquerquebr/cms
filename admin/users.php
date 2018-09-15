@@ -1,48 +1,17 @@
 <?php
 
-// verify if the user is logged
-session_start();
-if(!isset($_SESSION["auth"])) {
-  header("Location: login.php");
-}
+require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+require_once make_url("includes/functions/admin/users.php");
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/functions/init.php";
+!is_logged() && redirect_to_login();
 
-if(!empty($_POST)) {
-  $id = $_POST["id"];
+!empty($_POST) && delete_user_db();
 
-  // open database connection
-  $db_connection = new_db_connection();
-
-  // delete comment
-  $query = "DELETE FROM users where id = \"$id\"";
-  $result = mysqli_query($db_connection, $query);
-
-  // closing database connection
-  mysqli_close($db_connection);
-
-  exit();
-}
-
-// head variables
-$page_title = "Manage users";
-$stylesheet = "end";
-
-// open database connection
-$db_connection = new_db_connection();
-
-// fetch comments
-$query = "SELECT * FROM users ORDER BY id";
-$result = mysqli_query($db_connection, $query);
-$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-// closing
-mysqli_free_result($result);
-mysqli_close($db_connection);
+$users = fetch_users_db();
 
 ?>
 
-<?php require make_url("includes/templates/header.php"); ?>
+<?php includes_header("Manage users", "end"); ?>
 
   <h1>Manage users</h1>
 
@@ -68,29 +37,9 @@ mysqli_close($db_connection);
   </table>
 
   <script>
-    let tbody = document.querySelector("tbody");
-
-    tbody.addEventListener("click", function(e) {
-      if(e.target.classList.contains("delete")) {
-        let row = e.target.parentElement;
-        let id = e.target.dataset.id;
-
-        let data = new FormData();
-
-        data.append("id", id);
-
-        let xhr = new XMLHttpRequest();
-
-        xhr.open("POST", "<?php echo $_SERVER["PHP_SELF"]?>", true);
-
-        xhr.onload = function() {
-          row.parentElement.removeChild(row);
-        }
-
-        xhr.send(data);
-
-      }
-    })
+    let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";
   </script>
 
-<?php require make_url("includes/templates/footer.php"); ?>
+  <script src="<?php echo make_url("assets/js/admin/users.js", true); ?>"></script>
+
+<?php includes_footer(); ?>
