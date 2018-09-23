@@ -1,5 +1,1 @@
 # CMS Project
-
-## TODO
-
-## BUGS

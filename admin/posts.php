@@ -37,7 +37,6 @@ $posts = fetch_posts_db();
   </table>
 
   <script>
-    // PHP variables
     let self = "<?php echo $_SERVER["PHP_SELF"]?>";
   </script>
 

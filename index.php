@@ -32,7 +32,7 @@ $posts = fetch_posts_db($posts_per_page, $query_offset);
     <?php foreach($posts as $post): ?>
       <h1><?php echo $post["title"]; ?></h1>
       <h6><?php echo $post["date"]; ?></h6>
-      <p><?php echo $post["body"]; ?></p>
+      <p><?php echo generate_blogexcerpt_html($post["body"]); ?></p>
       <a href="<?php echo generate_postlink_html($post["id"]); ?>">Read More &raquo;</a>
       <hr>
     <?php endforeach; ?>

@@ -18,7 +18,7 @@ $comments = fetch_comments_db($current_post);
   <main>
     <h1><?php echo $post["title"] ?></h1>
     <h6><?php echo $post["date"] ?></h6>
-    <p><?php echo $post["body"] ?></p>
+    <p><?php echo convert_lb2ptag_ui($post["body"]); ?></p>
   </main>
 
   <form id="form" method="post">

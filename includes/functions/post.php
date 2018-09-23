@@ -48,4 +48,8 @@ function fetch_comments_db($current_post) {
   return $comments;
 }
 
+function convert_lb2ptag_ui($post) {
+  return str_replace(["\n", "\r", "\r\n"], "</p><p>", $post);
+}
+
 ?>
