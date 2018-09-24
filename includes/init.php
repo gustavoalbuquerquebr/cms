@@ -1,5 +1,9 @@
 <?php
 
+// in case of output buffering isn't enabled by default
+// ob_end_flush() it's called automatically at the end of the script
+ob_start();
+
 // PROJECT CONFIG
 define("PROJECT_NAME", "CMS");
 define("PROJECT_FOLDER_NAME", "cms");

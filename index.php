@@ -19,23 +19,36 @@ $query_offset = $current_page * $posts_per_page - $posts_per_page;
 // fetch posts for current page
 $posts = fetch_posts_db($posts_per_page, $query_offset);
 
+
 ?>
 
 <?php includes_header("Homepage", "front"); ?>
 
-  <nav>
-    <a href="<?php echo generate_btnprev_ui($current_page); ?>"  class="<?php echo disable_btnprevious_ui($current_page); ?>">Previous</a>
-    <a href="<?php echo generate_btnnext_ui($current_page); ?>" class="<?php echo disable_btnnext_ui($current_page, $pages_total); ?>">Next</a>
-  </nav>
+  <div class="container">
+    <div class="row">
+    
+      <main class="col-md-8">
 
-  <main>
-    <?php foreach($posts as $post): ?>
-      <h1><?php echo $post["title"]; ?></h1>
-      <h6><?php echo $post["date"]; ?></h6>
-      <p><?php echo generate_blogexcerpt_html($post["body"]); ?></p>
-      <a href="<?php echo generate_postlink_html($post["id"]); ?>">Read More &raquo;</a>
-      <hr>
-    <?php endforeach; ?>
-  </main>
+        <?php foreach($posts as $post): ?>
+          <article class="mb-5">
+            <h1><?php echo $post["title"]; ?></h1>
+            <h6 class="small"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
+            <p><?php echo generate_blogexcerpt_html($post["body"]); ?></p>
+            <p class=""><a href="<?php echo generate_postlink_html($post["id"]); ?>">Read More &raquo;</a></p>
+            <hr>
+          </article>
+        <?php endforeach; ?>
+
+        <nav class="mb-5 text-center">
+          <a href="<?php echo generate_btnprev_ui($current_page); ?>"  class="btn btn-sm <?php echo disable_btnprevious_ui($current_page); ?>">&laquo; Previous</a>
+          <a href="<?php echo generate_btnnext_ui($current_page); ?>" class="btn btn-sm <?php echo disable_btnnext_ui($current_page, $pages_total); ?>">Next &raquo;</a>
+        </nav>
+        
+      </main>
+
+      <?php require_once make_url("includes/templates/aside.php"); ?>
+
+    </div>
+  </div>
 
 <?php includes_footer(); ?>

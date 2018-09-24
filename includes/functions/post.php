@@ -18,17 +18,37 @@ function insert_comment_db() {
   exit();
 }
 
+// function fetch_post_db($current_post) {
+
+//   $db_connection = new_db_connection();
+
+//   $query = "SELECT * FROM posts WHERE id = \"$current_post\"";
+
+//   $result = mysqli_query($db_connection, $query);
+//   $post = mysqli_fetch_assoc($result);
+
+//   mysqli_free_result($result);
+//   mysqli_close($db_connection);
+
+//   return $post;
+// }
+
 function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT * FROM posts WHERE id = \"$current_post\"";
+  $query = "SELECT posts.id, posts.date, posts.title, posts.body, users.username as author
+            FROM posts
+            INNER JOIN users
+            ON posts.author = users.id
+            WHERE posts.id = \"$current_post\"";
 
   $result = mysqli_query($db_connection, $query);
   $post = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
 
   mysqli_free_result($result);
   mysqli_close($db_connection);
+
 
   return $post;
 }
@@ -48,7 +68,7 @@ function fetch_comments_db($current_post) {
   return $comments;
 }
 
-function convert_lb2ptag_ui($post) {
+function convert_nl2ptag_ui($post) {
   return str_replace(["\n", "\r", "\r\n"], "</p><p>", $post);
 }
 

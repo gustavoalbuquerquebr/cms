@@ -15,20 +15,20 @@ $comments = fetch_comments_db($current_post);
 
 <?php includes_header($post["title"], "front"); ?>
 
+  <div class="container mb-5">
   <main>
     <h1><?php echo $post["title"] ?></h1>
-    <h6><?php echo $post["date"] ?></h6>
-    <p><?php echo convert_lb2ptag_ui($post["body"]); ?></p>
+    <h6 class="small"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
+    <p><?php echo convert_nl2ptag_ui($post["body"]); ?></p>
   </main>
 
-  <form id="form" method="post">
-    <input type="text" name="user">
-    <textarea name="comment" cols="30" rows="10"></textarea>
-    <input type="submit" id="submit">
-  </form>
-
-  <section id="comments">
-    <h2>Comments</h2>
+  <!-- <section id="comments">
+    <h3>Comments</h3>
+    <form id="form" method="post">
+      <input type="text" name="user">
+      <textarea name="comment" cols="30" rows="10"></textarea>
+      <input type="submit" id="submit">
+    </form>
     <div class="output">
       <?php if(!empty($comments)): ?>
         <?php foreach($comments as $comment): ?>
@@ -39,7 +39,10 @@ $comments = fetch_comments_db($current_post);
         <p id="noComments"><?php echo "no comments" ?></p>
       <?php endif; ?>
     </div>
-  </section>
+  </section> -->
+
+  </div>
+
 
   <script>
     let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";

@@ -20,8 +20,11 @@ function fetch_posts_db($posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT * FROM posts
-            ORDER BY id DESC
+  $query = "SELECT posts.id, posts.date, posts.title, posts.body, users.username as author
+            FROM posts
+            INNER JOIN users
+            ON posts.author = users.id
+            ORDER BY posts.id DESC
             LIMIT $posts_per_page
             OFFSET $query_offset";
 
@@ -44,11 +47,11 @@ function generate_btnprev_ui($current_page) {
 }
 
 function disable_btnnext_ui($current_page, $pages_total) {
-  return $current_page == $pages_total ? "disabled" : "";
+  return $current_page == $pages_total ? "disabled" : "btn-primary";
 }
 
 function disable_btnprevious_ui($current_page) {
-  return $current_page == 1 ? "disabled" : "";
+  return $current_page == 1 ? "disabled" : "btn-primary";
 }
 
 function generate_postlink_html($id) {
