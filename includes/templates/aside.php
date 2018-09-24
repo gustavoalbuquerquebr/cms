@@ -1,4 +1,4 @@
-<aside class="col-md-4 mb-5">
+<aside class="col-md-4">
   <div class="about ml-auto border p-3">  
     <figure>
       <img class="rounded-circle d-block mx-auto" src="https://picsum.photos/100/100/?random" width=100 height=100>

@@ -24,10 +24,10 @@ $posts = fetch_posts_db($posts_per_page, $query_offset);
 
 <?php includes_header("Homepage", "front"); ?>
 
-  <div class="container">
+  <main class="container mb-5">
     <div class="row">
     
-      <main class="col-md-8">
+      <section class="col-md-8">
 
         <?php foreach($posts as $post): ?>
           <article class="mb-5">
@@ -39,16 +39,16 @@ $posts = fetch_posts_db($posts_per_page, $query_offset);
           </article>
         <?php endforeach; ?>
 
-        <nav class="mb-5 text-center">
+        <nav class="text-center mb-5 mb-md-0">
           <a href="<?php echo generate_btnprev_ui($current_page); ?>"  class="btn btn-sm <?php echo disable_btnprevious_ui($current_page); ?>">&laquo; Previous</a>
           <a href="<?php echo generate_btnnext_ui($current_page); ?>" class="btn btn-sm <?php echo disable_btnnext_ui($current_page, $pages_total); ?>">Next &raquo;</a>
         </nav>
         
-      </main>
+      </section>
 
       <?php require_once make_url("includes/templates/aside.php"); ?>
 
     </div>
-  </div>
+  </main>
 
 <?php includes_footer(); ?>

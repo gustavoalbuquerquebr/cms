@@ -4,13 +4,28 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  /* stick footer to the bottom */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  /* stick footer to the bottom */
+  flex-grow: 1;
+}
+
+footer {
+  height: 60px;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5 {
   font-family: "Open Sans", sans-serif;
-  /* font-weight: 700; */
 }
 
 h1 {
@@ -21,17 +36,20 @@ hr {
   border-top-color: #ccc;
 }
 
-footer {
-  height: 50px;
-  font-size: 0.9rem;
-}
-
 aside .about {
   width: 90%;
 }
 
+.wrapper {
+  width: 50%;
+}
+
 @media (max-width: 768px) {
   aside .about {
+    width: 100%;
+  }
+
+  .wrapper {
     width: 100%;
   }
 }

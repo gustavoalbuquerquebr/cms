@@ -19,15 +19,17 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 </head>
 <body>
 
-  <nav class="mb-5 navbar navbar-dark bg-dark navbar-expand-md">
-    <div class="container">
-      <a href="<?php echo make_url(" ", true); ?>" class="navbar-brand"><?php echo PROJECT_NAME; ?></a>
+  <header class="mb-5">  
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+      <div class="container">
+        <a href="<?php echo make_url(" ", true); ?>" class="navbar-brand"><?php echo PROJECT_NAME; ?></a>
 
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
 
-      <ul id="navbar" class="navbar-nav collapse navbar-collapse justify-content-end small">
-        <li class="nav-item"><a href="<?php echo make_url(" ", true); ?>" class="nav-link active">Home</a></li>
-        <li class="nav-item"><a href="<?php echo make_url("contact.php", true); ?>" class="nav-link">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+        <ul id="navbar" class="navbar-nav collapse navbar-collapse justify-content-end small">
+          <li class="nav-item"><a href="<?php echo make_url(" ", true); ?>" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="<?php echo make_url("contact.php", true); ?>" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>

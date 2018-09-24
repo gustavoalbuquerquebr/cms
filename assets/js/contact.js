@@ -7,12 +7,24 @@ let emailInput = document.querySelector("#email");
 let messageInput = document.querySelector("#message");
 let submit = document.querySelector("#submit");
 let messageOutput = document.querySelector("#messageOutput");
+let messageOutputSpinner = document.querySelector("#messageOutput img");
+let messageOutputAlert = document.querySelector("#messageOutput div");
+let messageOutputAlertClose = document.querySelector(
+  "#messageOutput div button",
+);
+let messageOutputAlertText = document.querySelector("#messageOutput div span");
 
 // form submit on this very page
 submit.addEventListener("click", function(e) {
   // display spinner.gif
-  messageOutput.innerHTML =
-    "<img src=\"" + loading + "\"width='50' height='50'>";
+  // margin between form and messageOutput
+  form.classList.add("mb-5");
+  // make sure that the alert is hidden while spinner is showing
+  messageOutputAlert.classList.add("d-none");
+  // d-block is needed to centered the image with mx-auto
+  messageOutputSpinner.classList.replace("d-none", "d-block");
+  // remove is-invalid class of email input
+  emailInput.classList.remove("is-invalid");
 
   e.preventDefault();
 
@@ -23,22 +35,31 @@ submit.addEventListener("click", function(e) {
   xhr.open("POST", self, true);
 
   xhr.onload = function() {
-    // output message
     let message;
+    let error;
+
     switch (this.responseText) {
-    case "invalid_email":
-      message = "Invalid email!";
-      break;
-    case "request_error":
-      message = "Something went wrong!";
-      break;
-    case "success":
-      message = "Message sent!";
-      break;
+      case "invalid_email":
+        error = 1;
+        message = "Invalid email! Try again.";
+        break;
+      case "request_error":
+        error = 2;
+        message = "Something went wrong! Send a email to contact@cms.com.";
+        break;
+      case "success":
+        error = 0;
+        message = "Message sent!";
+        break;
     }
 
     // replace spinner.gif with output message
-    messageOutput.innerHTML = "<p>" + message + "</p>";
+    emailInput.classList.add(error === 1 && "is-invalid");
+    messageOutputAlertText.textContent = message;
+    messageOutputAlert.classList.remove("alert-danger", "alert-success");
+    messageOutputAlert.classList.add(error ? "alert-danger" : "alert-success");
+    messageOutputSpinner.classList.replace("d-block", "d-none");
+    messageOutputAlert.classList.remove("d-none");
 
     // if successful, form inputs will be cleared
     if (this.responseText === "success") {
@@ -49,4 +70,9 @@ submit.addEventListener("click", function(e) {
   };
 
   xhr.send(data);
+});
+
+// remove mb-5 from form when there is no alert displaying
+messageOutputAlertClose.addEventListener("click", function() {
+  form.classList.remove("mb-5");
 });
