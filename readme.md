@@ -2,10 +2,15 @@
 
 ### TODO
 
-- Installation process
-- Post images
 - Previous post & next post navigation at post page
+- Installation process
+- Modal confirm post/user/comment delete
+- Create post/user/comment
+- Edit comment/user
+- Enable javascript form validation
+- Post images
 - Contact send email
+- HTML/text editor
 
 ---
 
@@ -30,3 +35,5 @@
     </footer>
   </body>
 ```
+
+- Function naming convention: `action_what_where`, example: `delete_post_db`;

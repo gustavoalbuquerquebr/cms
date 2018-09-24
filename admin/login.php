@@ -7,12 +7,33 @@ require_once make_url("includes/functions/admin/login.php");
 
 ?>
 
-<?php includes_header("Login", "end"); ?>
+<?php includes_header("Login", "back"); ?>
 
-  <form method="post">
-    <input type="text" name="user">
-    <input type="password" name="pass">
-    <input type="submit" name="submit">
-  </form>
+  <main class="container mb-5">
+
+    <div class="wrapper-w50 wrapper-md-w100 mx-auto">
+
+      <form method="post" class="mb-3">
+        <div class="form-group">
+          <input type="text" name="user" placeholder="Username" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="password" name="pass" placeholder="Password" class="form-control">
+        </div>
+        <input type="submit" name="submit" value="Log In" class="btn btn-primary">
+      </form>
+
+      <?php if(isset($error)): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <?php if($error === 1) echo "User not found!"; ?>
+          <?php if($error === 2) echo "Wrong password!"; ?>
+          <button class="close" type="button" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+      <?php endif; ?>
+
+    </div>
+
+  </main>
+
 
 <?php includes_footer(); ?>

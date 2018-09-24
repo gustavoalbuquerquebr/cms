@@ -13,14 +13,20 @@ $post = fetch_post_db($id);
 
 ?>
 
-<?php includes_header("Edit post", "end") ?>
+<?php includes_header("Edit post", "back") ?>
 
-  <form method="post" action="post_edit.php">
-    <input type="number" name="id" value="<?php echo $post["id"]; ?>" style="display:none;">
-    <input name="title" type="text" value="<?php echo $post["title"]; ?>">
-    <textarea name="post" cols="30" rows="10"><?php echo $post["body"]; ?></textarea>
-    <input type="submit" id="submit">
-  </form>
+  <main class="container mb-5">
+    <form method="post" action="post_edit.php">
+      <input type="number" name="id" value="<?php echo $post["id"]; ?>" class="d-none">
+      <div class="form-group">
+        <input name="title" type="text" value="<?php echo $post["title"]; ?>" class="form-control">
+      </div>
+      <div class="form-group">
+        <textarea name="post" cols="30" rows="10" class="form-control"><?php echo $post["body"]; ?></textarea>
+      </div>
+      <input type="submit" id="submit" value="Save" class="btn btn-primary">
+    </form>
+  </main>
 
 
 <?php includes_footer(); ?>

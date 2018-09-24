@@ -27,8 +27,17 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
 
         <ul id="navbar" class="navbar-nav collapse navbar-collapse justify-content-end small">
-          <li class="nav-item"><a href="<?php echo make_url(" ", true); ?>" class="nav-link active">Home</a></li>
-          <li class="nav-item"><a href="<?php echo make_url("contact.php", true); ?>" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="<?php echo make_url(" ", true); ?>" class="nav-link <?php verify_currentpage_url("home"); ?>">Home</a></li>
+          <li class="nav-item"><a href="<?php echo make_url("contact.php", true); ?>" class="nav-link <?php verify_currentpage_url("contact"); ?>">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a href="<?php echo make_url("admin/index.php", true); ?>" class="nav-link dropdown-toggle <?php verify_currentpage_url("admin"); ?>" href="#" role="button" data-toggle="dropdown">Admin</a>
+            <div class="dropdown-menu">
+              <a href="<?php echo make_url("admin/", true); ?>" class="dropdown-item font-weight-bold">Dashboard</a>
+              <a href="<?php echo make_url("admin/posts.php", true); ?>" class="dropdown-item pl-5">Posts</a>
+              <a href="<?php echo make_url("admin/comments.php", true); ?>" class="dropdown-item pl-5">Comments</a>
+              <a href="<?php echo make_url("admin/users.php", true); ?>" class="dropdown-item pl-5">Users</a>
+            </div>
+          </li>
         </ul>
       </div>
     </nav>

@@ -18,7 +18,7 @@ $comments = fetch_comments_db($current_post);
   <main class="container mb-5">
     <section>
       <h1><?php echo $post["title"] ?></h1>
-      <h6 class="small"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
+      <h6 class="small mb-4"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
       <p><?php echo convert_nl2ptag_ui($post["body"]); ?></p>
     </section>
 

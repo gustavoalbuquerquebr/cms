@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 *,
 ::before,
 ::after {
@@ -29,27 +31,63 @@ h5 {
 }
 
 h1 {
+  /* default: 2.25rem */
   font-size: 2rem;
+}
+
+h2 {
+  /* default: 2rem */
+  font-size: 1.6rem;
+}
+
+h3 {
+  /* default: 1.75rem */
+  font-size: 1.4rem;
+}
+
+h4 {
+  /* default: 1.50rem */
+  font-size: 1.2rem;
+}
+
+h5 {
+  /* default: 1.25rem */
+  font-size: 1rem;
+}
+
+h6 {
+  /* default: 1rem */
+  font-size: 0.8rem;
 }
 
 hr {
   border-top-color: #ccc;
 }
 
-aside .about {
-  width: 90%;
-}
-
-.wrapper {
+.wrapper-w50 {
   width: 50%;
 }
 
 @media (max-width: 768px) {
-  aside .about {
+  .wrapper-md-w100 {
     width: 100%;
   }
+}
 
-  .wrapper {
+/* FRONT */
+
+aside > section {
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  aside > section {
     width: 100%;
   }
+}
+
+/* BACK */
+
+.delete {
+  cursor: pointer;
 }

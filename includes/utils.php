@@ -58,4 +58,16 @@ function redirect_to_login() {
     header("Location: " . $url);
 }
 
+
+// NAVBAR MENU
+
+function verify_currentpage_url($menu_item) {
+
+  if($_SERVER["PHP_SELF"] === "/cms/index.php") $current_page = "home";
+  if($_SERVER["PHP_SELF"] === "/cms/contact.php") $current_page = "contact";
+  if(strpos($_SERVER["PHP_SELF"], "/cms/admin/") === 0) $current_page = "admin";
+
+  if($menu_item === "$current_page") echo "active";
+}
+
 ?>

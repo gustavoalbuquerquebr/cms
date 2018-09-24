@@ -11,9 +11,9 @@ require_once make_url("includes/functions/contact.php");
 
   <main class="container mb-5">
 
-    <div class="wrapper mx-auto">
+    <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
-      <h1 class="mb-3">Contact</h1>
+      <h1 class="mb-4">Contact</h1>
   
       <form method="post" id="contact">
         <div class="form-group">

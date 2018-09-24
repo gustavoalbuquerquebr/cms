@@ -6,12 +6,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 
 ?>
 
-<?php includes_header("Dashboard", "end") ?>
+<?php includes_header("Dashboard", "back") ?>
 
-  <ul>
-    <li><a href="posts.php">Create/update post</a></li>
-    <li><a href="comments.php">Comments</a></li>
-    <li><a href="users.php">Users</a></li>
-  </ul>
+  <main class="container mb-5">
+    <h1 class="mb-4">Dashboard</h1>
+    <ul>
+      <li><a href="posts.php">Create/update post</a></li>
+      <li><a href="comments.php">Comments</a></li>
+      <li><a href="users.php">Users</a></li>
+    </ul>
+  </main>
+
 
 <?php includes_footer(); ?>

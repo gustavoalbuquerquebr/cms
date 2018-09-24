@@ -17,11 +17,11 @@ function verify_auth_db() {
   
   if(empty($user)) {
     
-    echo "user not found!";
+    $GLOBALS["error"] = 1;
     
   } elseif(!password_verify($pass, $user["password"])) {
     
-    echo "wrong password!";
+    $GLOBALS["error"] = 2;
     
   } else {
     session_start();
