@@ -69,6 +69,10 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 //   $query = "INSERT INTO users (username, `password`) VALUES (\"user{$i}\", \"pass{$i}\")";
 //   mysqli_query($db_connection, $query);
 // }
+for($i = 50; $i < 60; $i++) {
+  $query = "INSERT INTO users (username, `password`) VALUES (\"user{$i}\", \"pass{$i}\")";
+  mysqli_query($db_connection, $query);
+}
 // my user
 // $pass = password_hash("123", PASSWORD_DEFAULT);
 // $query = "INSERT INTO users (username, `password`) VALUES (\"gustavo\", \"$pass\")";

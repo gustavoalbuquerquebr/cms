@@ -13,6 +13,26 @@ $users = fetch_users_db();
 
 <?php includes_header("Manage users", "back"); ?>
 
+  <div id="deleteModal" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this post?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger confirmDelete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main class="container mb-5">
     <h1 class="mb-4">Manage users</h1>
 

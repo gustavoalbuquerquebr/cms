@@ -2,15 +2,16 @@
 
 ### TODO
 
-- Previous post & next post navigation at post page
-- Installation process
-- Modal confirm post/user/comment delete
 - Create post/user/comment
 - Edit comment/user
+- Author page
+- Category page
 - Enable javascript form validation
+- Installation process
 - Post images
 - Contact send email
 - HTML/text editor
+- Advanced navigation ("prev 1 2 3 next" instead of "prev next")
 
 ---
 

@@ -3,8 +3,7 @@
 // UI variables
 let form = document.querySelector("#form");
 let submit = document.querySelector("#submit");
-let commentsOutput = document.querySelector("#comments .output");
-let noComments = document.querySelector("#noComments");
+let comments = document.querySelector("#comments");
 
 // submit comment button
 submit.addEventListener("click", function(e) {
@@ -19,18 +18,14 @@ submit.addEventListener("click", function(e) {
   xhr.open("POST", self, true);
 
   xhr.onload = function() {
-    if (commentsOutput.contains(noComments)) {
-      commentsOutput.innerHTML = "";
-    }
-
     let newComment =
-      "<h6>" +
+      "<div class='comment mb-4 border-left border-primary pl-2'><h6><strong>" +
       data.get("user") +
-      " - now </h6> <p>" +
+      "</strong> - just now </h6> <p>" +
       data.get("comment") +
-      "</p>";
+      "</p></div>";
 
-    commentsOutput.insertAdjacentHTML("afterbegin", newComment);
+    comments.insertAdjacentHTML("afterbegin", newComment);
   };
 
   xhr.send(data);

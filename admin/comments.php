@@ -13,6 +13,26 @@ $comments = fetch_comments_db();
 
 <?php includes_header("Manage comments", "back"); ?>
 
+  <div id="deleteModal" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this post?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger confirmDelete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main class="container mb-5">
     <h1 class="mb-4">Manage comments</h1>
 
@@ -31,7 +51,7 @@ $comments = fetch_comments_db();
           <tr>
             <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete">&times;</span></td>
             <td><?php echo $comment["id"] ?></td>
-            <td><?php echo $comment["post"] ?></td>
+            <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo $comment["post"]; ?></a></td>
             <td><?php echo $comment["author"] ?></td>
             <td><?php echo $comment["body"] ?></td>
           </tr>
