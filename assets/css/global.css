@@ -103,7 +103,7 @@ aside > section {
 
 .create-page-link-blue::before {
   content: "";
-  background: url(../images/create.svg);
+  background: url(../images/create_blue.svg);
   background-repeat: no-repeat;
   padding-right: 1rem;
   margin-right: 1rem;
@@ -111,7 +111,7 @@ aside > section {
 
 .create-page-link-white::before {
   content: "";
-  background: url(../images/create2.svg);
+  background: url(../images/create_white.svg);
   background-repeat: no-repeat;
   padding-right: 1rem;
   margin-right: 1rem;

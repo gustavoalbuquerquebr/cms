@@ -28,15 +28,6 @@ function new_db_connection() {
 }
 
 
-// STYLESHEETS
-
-function custom_stylesheet() {
-  if(isset($GLOBALS["stylesheet"])) {
-    return "<link rel=\"stylesheet\" href=\"" . make_url("assets/css/", true) . $GLOBALS["stylesheet"] . ".css" . "\">";
-  }
-}
-
-
 // URL
 
 // $_SERVER['DOCUMENT_ROOT'] returns the document root directory
@@ -63,25 +54,13 @@ function make_url($path, $client_side = false) {
 // SESSION
 
 function is_logged() {
-  session_start();
-  return isset($_SESSION["auth"]);
+  !isset($_SESSION) && session_start();
+  return isset($_SESSION["session_user"]);
 }
 
 function redirect_to_login() {
     $url = make_url("admin/login.php", true);
     header("Location: " . $url);
-}
-
-
-// NAVBAR
-
-function verify_currentpage_url($menu_item) {
-
-  if($_SERVER["PHP_SELF"] === "/cms/index.php") $current_page = "home";
-  if($_SERVER["PHP_SELF"] === "/cms/contact.php") $current_page = "contact";
-  if(strpos($_SERVER["PHP_SELF"], "/cms/admin/") === 0) $current_page = "admin";
-
-  if($menu_item === "$current_page") echo "active";
 }
 
 ?>

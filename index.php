@@ -4,7 +4,6 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/index.php");
 
 // navigation variables
-// POSTS_PER_PAGE = 5;
 $current_page = $_GET["page"] ?? 1;
 
 // how many posts there are in the database

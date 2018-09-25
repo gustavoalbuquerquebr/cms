@@ -2,7 +2,6 @@
 
 ### TODO
 
-- Posts per page at index constant
 - display name of logged user and logout
 - Preview button on create post page
 - Edit comment/user
@@ -24,6 +23,7 @@
 - Contact send email
 - HTML/text editor
 - Advanced navigation ("prev 1 2 3 next" instead of "prev next")
+- Search
 
 ---
 
