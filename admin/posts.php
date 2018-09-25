@@ -43,6 +43,7 @@ $posts = fetch_posts_db();
             <th></th>
             <th>ID</th>
             <th>Date</th>
+            <th>Author</th>
             <th>Title</th>
           </thead>
           <tbody>
@@ -52,6 +53,7 @@ $posts = fetch_posts_db();
                 <td class="edit"><a href="<?php echo generate_link_html($post["id"]); ?>">Edit</a></td>
                 <td><?php echo $post["id"]; ?></td>
                 <td><?php echo $post["date"]; ?></td>
+                <td><a href="<?php echo make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?php echo $post["authorname"]; ?></a></td>
                 <td><a href="<?php echo make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?php echo $post["title"]; ?></a></td>
               </tr>
             <?php endforeach; ?>

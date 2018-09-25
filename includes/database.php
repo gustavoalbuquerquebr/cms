@@ -65,39 +65,36 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // mysqli_query($db_connection, $contact);
 
 // USERS
-// for($i = 0; $i < 10; $i++) {
-//   $query = "INSERT INTO users (username, `password`) VALUES (\"user{$i}\", \"pass{$i}\")";
+// for($i = 0; $i < 20; $i++) {
+//   $pw = password_hash("pass{$i}", PASSWORD_DEFAULT);
+//   $query = "INSERT INTO users (id, username, `password`) VALUES ($i, \"user{$i}\", \"$pw\")";
 //   mysqli_query($db_connection, $query);
 // }
-for($i = 50; $i < 60; $i++) {
-  $query = "INSERT INTO users (username, `password`) VALUES (\"user{$i}\", \"pass{$i}\")";
-  mysqli_query($db_connection, $query);
-}
 // my user
 // $pass = password_hash("123", PASSWORD_DEFAULT);
 // $query = "INSERT INTO users (username, `password`) VALUES (\"gustavo\", \"$pass\")";
 // mysqli_query($db_connection, $query);
 
 // CATEGORIES
-// $subjects = ["one", "two", "three", "four", "five"];
+// $subjects = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
 // foreach($subjects as $sub) {
 //   $query = "INSERT INTO categories (name) VALUES (\"$sub\")";
 //   mysqli_query($db_connection, $query);
 // }
 
 // POSTS
-// for($i = 1; $i < 20; $i++) {
+// for($i = 1; $i < 30; $i++) {
 //   $author = mt_rand(1, 10);
 //   $category = mt_rand(1, 5);
-//   $query = "INSERT INTO posts (author, category, title, body) 
-//   VALUES (\"$author\", \"$category\", \"This is title $i\", \"$lorem\")";
+//   $query = "INSERT INTO posts (id, author, category, title, body) 
+//   VALUES ($i, \"$author\", \"$category\", \"This is title $i\", \"$lorem\")";
 //   mysqli_query($db_connection, $query);
 // }
 
 // COMMENTS
-// for($i = 1; $i < 20; $i++) {
-//   $post = mt_rand(1, 19);
-//   $query = "INSERT INTO comments (author, post, body) VALUES (\"author\", \"$post\", \"$lorem2\")";
+// for($i = 1; $i < 50; $i++) {
+//   $post = mt_rand(1, 29);
+//   $query = "INSERT INTO comments (id, author, post, body) VALUES ($i, \"author\", \"$post\", \"$lorem2\")";
 //   mysqli_query($db_connection, $query);
 // }
 

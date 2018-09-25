@@ -7,6 +7,8 @@
 - Edit comment/user
 - Author page
 - Category page
+- Archive pages (posts by date)
+- Manage pages navigation
 - Enable javascript form validation
 - Animate row on delete
 - Installation process

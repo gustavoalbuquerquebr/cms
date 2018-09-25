@@ -80,7 +80,9 @@ function fetch_comments_db($current_post) {
   
   $db_connection = new_db_connection();
 
-  $query = "SELECT * FROM comments WHERE post = \"$current_post\" ORDER BY `date` DESC";
+  $query = "SELECT * FROM comments
+            WHERE post = \"$current_post\"
+            ORDER BY `date` DESC";
 
   $result = mysqli_query($db_connection, $query);
   $comments = mysqli_fetch_all($result, MYSQLI_ASSOC);

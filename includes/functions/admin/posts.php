@@ -23,7 +23,10 @@ function fetch_posts_db() {
   $db_connection = new_db_connection();
 
   // fetch posts
-  $query = "SELECT id, `date`, title FROM posts ORDER BY id DESC";
+  $query = "SELECT posts.id, posts.date, posts.title, posts.author AS authorid, users.username AS authorname
+            FROM posts
+            INNER JOIN users ON posts.author = users.id
+            ORDER BY id DESC";
   $result = mysqli_query($db_connection, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

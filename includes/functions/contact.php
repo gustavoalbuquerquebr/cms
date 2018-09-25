@@ -15,7 +15,8 @@ function insert_contact_db() {
     
     $db_connection = new_db_connection();
 
-    $query = "INSERT INTO contact (`name`, email, `message`) VALUES (\"$name\", \"$email\", \"$message\")";
+    $query = "INSERT INTO contact (`name`, email, `message`)
+              VALUES (\"$name\", \"$email\", \"$message\")";
     $result = mysqli_query($db_connection, $query);
 
     mysqli_close($db_connection);

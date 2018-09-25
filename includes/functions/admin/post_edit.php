@@ -13,7 +13,9 @@ function update_post_db() {
   $post = mysqli_real_escape_string($db_connection, $_POST["post"]);
 
   // fetch posts
-  $query = "UPDATE posts SET title = \"$title\", body = \"$post\" WHERE id = $id";
+  $query = "UPDATE posts
+            SET title = \"$title\", body = \"$post\"
+            WHERE id = $id";
   $result = mysqli_query($db_connection, $query);
 
   // closing

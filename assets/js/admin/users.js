@@ -22,10 +22,15 @@ modal.addEventListener("click", function(e) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", self, true);
     xhr.onload = function() {
+      $("#deleteModal").modal("hide");
+
       if (this.responseText) {
-        console.log(id);
-        row.parentElement.removeChild(row);
-        $("#deleteModal").modal("hide");
+        row.style.transition = "all 1s";
+        row.style.opacity = 0;
+
+        setTimeout(function() {
+          row.parentElement.removeChild(row);
+        }, 1000);
       } else {
         console.log("cannot delete users that have published posts");
       }
