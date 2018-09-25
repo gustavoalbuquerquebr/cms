@@ -4,20 +4,20 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/index.php");
 
 // navigation variables
-$posts_per_page = 5;
+// POSTS_PER_PAGE = 5;
 $current_page = $_GET["page"] ?? 1;
 
 // how many posts there are in the database
 $posts_total = count_posts_db();
 
 // how many navigation pages are needed
-$pages_total = ceil($posts_total / $posts_per_page);
+$pages_total = ceil($posts_total / POSTS_PER_PAGE);
 
 // query offset
-$query_offset = $current_page * $posts_per_page - $posts_per_page;
+$query_offset = $current_page * POSTS_PER_PAGE - POSTS_PER_PAGE;
 
 // fetch posts for current page
-$posts = fetch_posts_db($posts_per_page, $query_offset);
+$posts = fetch_posts_db(POSTS_PER_PAGE, $query_offset);
 
 ?>
 

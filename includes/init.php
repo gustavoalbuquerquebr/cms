@@ -7,7 +7,11 @@ ob_start();
 // PROJECT CONFIG
 define("PROJECT_NAME", "CMS");
 define("PROJECT_FOLDER_NAME", "cms");
-// approximate length of blog post excerpt in the index page
+
+// how many posts are shown at homepage for each navigation page
+define("POSTS_PER_PAGE", 8);
+
+// approximate length of blog post excerpt at the homepage
 define("CHAR_PER_EXCERPT", 400);
 
 // UTILITIES
