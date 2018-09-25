@@ -48,7 +48,7 @@ $posts = fetch_posts_db();
           <tbody>
             <?php foreach($posts as $post): ?>
               <tr>
-                <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete">&times;</span></td>
+                <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete"></span></td>
                 <td class="edit"><a href="<?php echo generate_link_html($post["id"]); ?>">Edit</a></td>
                 <td><?php echo $post["id"]; ?></td>
                 <td><?php echo $post["date"]; ?></td>

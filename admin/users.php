@@ -49,7 +49,7 @@ $users = fetch_users_db();
         <tbody>
           <?php foreach($users as $user): ?>
             <tr>
-              <td class="text-danger" data-id=<?php echo $user["id"] ?>><span class="delete">&times;</span></td>
+              <td class="text-danger" data-id=<?php echo $user["id"] ?>><span class="delete"></span></td>
               <td><?php echo $user["id"] ?></td>
               <td><?php echo $user["username"] ?></td>
               <td><?php echo $user["password"] ?></td>

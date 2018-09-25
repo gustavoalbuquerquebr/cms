@@ -3,10 +3,12 @@
 ### TODO
 
 - Create post/user/comment
+- Preview button on create post page
 - Edit comment/user
 - Author page
 - Category page
 - Enable javascript form validation
+- Animate row on delete
 - Installation process
 - Post images
 - Contact send email

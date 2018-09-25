@@ -49,7 +49,7 @@ $comments = fetch_comments_db();
       <tbody>
         <?php foreach($comments as $comment): ?>
           <tr>
-            <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete">&times;</span></td>
+            <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete"></span></td>
             <td><?php echo $comment["id"] ?></td>
             <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo $comment["post"]; ?></a></td>
             <td><?php echo $comment["author"] ?></td>

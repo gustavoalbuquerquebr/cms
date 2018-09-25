@@ -90,4 +90,29 @@ aside > section {
 
 .delete {
   cursor: pointer;
+  display: inline-block;
+}
+
+.delete::before {
+  content: "";
+  background: url(../images/delete.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.create-page-link::before {
+  content: "";
+  background: url(../images/create.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.manage-page-link::before {
+  content: "";
+  background: url(../images/manage.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
 }
