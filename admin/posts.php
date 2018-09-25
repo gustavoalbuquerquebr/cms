@@ -11,7 +11,7 @@ $posts = fetch_posts_db();
 
 ?>
 
-<?php includes_header("Manage posts", "back"); ?>
+<?php includes_header("Manage posts"); ?>
 
   <div id="deleteModal" class="modal" role="dialog">
     <div class="modal-dialog" role="document">
@@ -35,6 +35,8 @@ $posts = fetch_posts_db();
 
   <main class="container mb-5">
     <h1 class="mb-4">Manage posts</h1>
+
+    <a href="<?php echo make_url("admin/post_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
 
     <div class="table-responsive">
         <table class="table table-hover" style="width:100%; text-align:center;">

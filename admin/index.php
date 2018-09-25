@@ -6,7 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 
 ?>
 
-<?php includes_header("Dashboard", "back") ?>
+<?php includes_header("Dashboard") ?>
 
   <main class="container mb-5">
     <h1 class="mb-4">Dashboard</h1>
@@ -15,7 +15,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
         <a class="list-group-item bg-dark text-white font-weight-bold">Posts</a>
         <a href="<?php echo make_url("admin/posts.php", true); ?>" class="list-group-item manage-page-link">Manage</a>
-        <a href="<?php echo make_url("admin/post_create.php", true); ?>" class="list-group-item create-page-link">Create</a>
+        <a href="<?php echo make_url("admin/post_create.php", true); ?>" class="list-group-item create-page-link-blue">Create</a>
       </ul>
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
         <a class="list-group-item bg-dark text-white font-weight-bold">Comments</a>
@@ -24,7 +24,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
         <a class="list-group-item bg-dark text-white font-weight-bold">Users</a>
         <a href="<?php echo make_url("admin/users.php", true); ?>" class="list-group-item manage-page-link">Manage</a>
-        <a href="<?php echo make_url("admin/users_create.php", true); ?>" class="list-group-item create-page-link">Create</a>
+        <a href="<?php echo make_url("admin/user_create.php", true); ?>" class="list-group-item create-page-link-blue">Create</a>
       </ul>
     </div>
 

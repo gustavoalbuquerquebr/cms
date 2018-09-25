@@ -19,10 +19,9 @@ $query_offset = $current_page * $posts_per_page - $posts_per_page;
 // fetch posts for current page
 $posts = fetch_posts_db($posts_per_page, $query_offset);
 
-
 ?>
 
-<?php includes_header("Homepage", "front"); ?>
+<?php includes_header("Homepage"); ?>
 
   <main class="container mb-5">
     <div class="row">

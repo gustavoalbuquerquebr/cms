@@ -13,10 +13,12 @@ $post = fetch_post_db($id);
 
 ?>
 
-<?php includes_header("Edit post", "back") ?>
+<?php includes_header("Edit post") ?>
 
   <main class="container mb-5">
-    <form method="post" action="post_edit.php">
+  <h1 class="mb-4">Post edit</h1>
+
+    <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
       <input type="number" name="id" value="<?php echo $post["id"]; ?>" class="d-none">
       <div class="form-group">
         <input name="title" type="text" value="<?php echo $post["title"]; ?>" class="form-control">

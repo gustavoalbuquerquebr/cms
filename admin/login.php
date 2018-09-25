@@ -7,7 +7,7 @@ require_once make_url("includes/functions/admin/login.php");
 
 ?>
 
-<?php includes_header("Login", "back"); ?>
+<?php includes_header("Login"); ?>
 
   <main class="container mb-5">
 

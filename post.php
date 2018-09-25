@@ -25,7 +25,7 @@ $comments = fetch_comments_db($current_post);
 
 ?>
 
-<?php includes_header($post["title"], "front"); ?>
+<?php includes_header($post["title"]); ?>
 
   <main class="container mb-5">
     <section class="mb-5">

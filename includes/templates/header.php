@@ -15,7 +15,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="<?php echo make_url("assets/css/global.css", true); ?>">
-  <?php echo "<link rel=\"stylesheet\" href=\"" . make_url("assets/css/", true) . $stylesheet . ".css" . "\">" ?>
+  <?php echo custom_stylesheet(); ?>
 </head>
 <body>
 

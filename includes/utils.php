@@ -2,7 +2,12 @@
 
 // INCLUDES
 
-function includes_header($page_title, $stylesheet) {
+function includes_header($page_title, $stylesheet = "") {
+
+  if(!empty($stylesheet)) {
+    $GLOBALS["stylesheet"] = $stylesheet;
+  }
+
   require make_url("includes/templates/header.php");
 }
 
@@ -20,6 +25,15 @@ define("DB_NAME", "cms");
 
 function new_db_connection() {
   return mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+}
+
+
+// STYLESHEETS
+
+function custom_stylesheet() {
+  if(isset($GLOBALS["stylesheet"])) {
+    return "<link rel=\"stylesheet\" href=\"" . make_url("assets/css/", true) . $GLOBALS["stylesheet"] . ".css" . "\">";
+  }
 }
 
 
@@ -59,7 +73,7 @@ function redirect_to_login() {
 }
 
 
-// NAVBAR MENU
+// NAVBAR
 
 function verify_currentpage_url($menu_item) {
 

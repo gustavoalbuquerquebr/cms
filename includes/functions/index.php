@@ -59,13 +59,17 @@ function generate_postlink_html($id) {
 }
 
 function generate_blogexcerpt_html($post) {
-  // get position of the first whitespace after CHAR_PER_EXCERPT
-  $excerpt_length = strpos($post, " ", CHAR_PER_EXCERPT);
-  // trim rigth before the the $excerpt_length
-  $excerpt =  substr($post, 0, $excerpt_length);
-  // if there is non-alphanumeric character(s) at the end, they will be removed
-  // either way, append ellipsis
-  return preg_replace("/\W{0,}$/", "...", $excerpt);
+  if(strlen($post) > CHAR_PER_EXCERPT) {
+    // get position of the first whitespace after CHAR_PER_EXCERPT
+    $excerpt_length = strpos($post, " ", CHAR_PER_EXCERPT);
+    // trim rigth before the the $excerpt_length
+    $excerpt =  substr($post, 0, $excerpt_length);
+    // if there is non-alphanumeric character(s) at the end, they will be removed
+    // either way, append ellipsis
+    return preg_replace("/\W{0,}$/", "...", $excerpt);
+  } else {
+    return $post;
+  }
 }
 
 

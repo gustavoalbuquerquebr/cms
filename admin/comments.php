@@ -11,7 +11,7 @@ $comments = fetch_comments_db();
 
 ?>
 
-<?php includes_header("Manage comments", "back"); ?>
+<?php includes_header("Manage comments"); ?>
 
   <div id="deleteModal" class="modal" role="dialog">
     <div class="modal-dialog" role="document">

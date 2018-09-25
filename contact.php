@@ -7,7 +7,7 @@ require_once make_url("includes/functions/contact.php");
 
 ?>
 
-<?php includes_header("Contact", "front") ?>
+<?php includes_header("Contact") ?>
 
   <main class="container mb-5">
 
