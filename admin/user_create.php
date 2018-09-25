@@ -32,6 +32,14 @@ if(!empty($_POST)) {
 
   <main class="container mb-5">
 
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/users.php", true); ?>">Users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create users</li>
+      </ol>
+    </nav>
+
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
       <?php if(isset($db_insertion_error)): ?>
@@ -40,6 +48,7 @@ if(!empty($_POST)) {
           <button type="button" data-dismiss="alert" class="close">&times;</button>
         </div>
       <?php endif; ?>
+
 
       <h1 class="mb-4">Create user</h1>
 

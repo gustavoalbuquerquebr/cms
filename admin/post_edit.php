@@ -16,7 +16,18 @@ $post = fetch_post_db($id);
 <?php includes_header("Edit post") ?>
 
   <main class="container mb-5">
-  <h1 class="mb-4">Post edit</h1>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo make_url("admin/posts.php", true); ?>">Posts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Edit post</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">Edit post</h1>
+
+    <a href="<?php echo make_url("post.php?id=", true) . $id; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
 
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
       <input type="number" name="id" value="<?php echo $post["id"]; ?>" class="d-none">

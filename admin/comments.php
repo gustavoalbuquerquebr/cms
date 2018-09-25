@@ -34,6 +34,14 @@ $comments = fetch_comments_db();
   </div>
 
   <main class="container mb-5">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Comments</li>
+      </ol>
+    </nav>
+
     <h1 class="mb-4">Manage comments</h1>
 
     <table class="table table-hover" style="width:100%; text-align:center;">

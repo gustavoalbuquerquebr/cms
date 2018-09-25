@@ -2,22 +2,18 @@
 
 ### TODO
 
-- display name of logged user and logout
-- Preview button on create post page
 - Edit comment/user
 - Author page
 - Manage categories page
-- Category page
 - Don't accept duplicate categorie names
-- Create/edit/delete aside sections
+- Category page
+- Pages page
 - Add email column user
 - DB errors alerts
 - Archive pages (posts by date)
 - Manage pages navigation and bulk delete
-- Pages page
 - Generate lorem ipsum posts/comments/users
 - Enable javascript form validation
-- Animate row on delete
 - Installation process
 - Post images
 - Contact send email

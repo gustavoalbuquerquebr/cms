@@ -15,7 +15,7 @@ function update_post_db() {
 
   mysqli_close($db_connection);
 
-  $url = make_url("post.php?id=", true) . $id;
+  $url = make_url("admin/post_edit.php?id=", true) . $id;
   header("Location: $url");
 
   exit();

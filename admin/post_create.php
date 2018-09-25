@@ -22,6 +22,14 @@ $categories = fetch_categories_db();
 
   <main class="container mb-5">
 
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/posts.php", true); ?>">Posts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create post</li>
+      </ol>
+    </nav>
+
     <?php if(isset($db_insertion_error)): ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         There was a error. Try again!

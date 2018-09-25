@@ -34,6 +34,14 @@ $posts = fetch_posts_db();
   </div>
 
   <main class="container mb-5">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Posts</li>
+      </ol>
+    </nav>
+
     <h1 class="mb-4">Manage posts</h1>
 
     <a href="<?php echo make_url("admin/post_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
