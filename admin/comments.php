@@ -47,21 +47,21 @@ $comments = fetch_comments_db();
     <table class="table table-hover" style="width:100%; text-align:center;">
       <thead class="thead-dark">
         <tr>
-          <th></th>
           <th>ID</th>
           <th>Post</th>
           <th>User</th>
           <th>Comment</th>
+          <th>(delete)</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach($comments as $comment): ?>
           <tr>
-            <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete"></span></td>
             <td><?php echo $comment["id"] ?></td>
             <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo $comment["post"]; ?></a></td>
             <td><?php echo $comment["author"] ?></td>
             <td><?php echo $comment["body"] ?></td>
+            <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete-link"></span></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

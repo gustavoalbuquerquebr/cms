@@ -9,6 +9,10 @@ require_once make_url("includes/functions/admin/users.php");
 
 $users = fetch_users_db();
 
+function generate_editlink_html($user) {
+  return make_url("admin/user.php", true) . "?id=" . $user["id"] . "&username=" . $user["username"];
+}
+
 ?>
 
 <?php includes_header("Manage users"); ?>
@@ -44,25 +48,27 @@ $users = fetch_users_db();
 
     <h1 class="mb-4">Manage users</h1>
 
-    <a href="<?php echo make_url("admin/user_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
+    <a href="<?php echo make_url("admin/user.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
 
     <div class="table-responsive">
       <table class="table table-hover" style="width:100%; text-align:center;">
         <thead class="thead-dark">
           <tr>
-            <th></th>
             <th>ID</th>
             <th>Username</th>
             <th>Password</th>
+            <th>(edit)</th>
+            <th>(delete)</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach($users as $user): ?>
             <tr>
-              <td class="text-danger" data-id=<?php echo $user["id"] ?>><span class="delete"></span></td>
               <td><?php echo $user["id"] ?></td>
               <td><?php echo $user["username"] ?></td>
               <td><?php echo $user["password"] ?></td>
+              <td><a href="<?php echo generate_editlink_html($user); ?>" class="edit-link"></a></td>
+              <td class="text-danger" data-id=<?php echo $user["id"] ?>><span class="delete-link"></span></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

@@ -7,7 +7,7 @@ let row;
 let id;
 
 tbody.addEventListener("click", function(e) {
-  if (e.target.classList.contains("delete")) {
+  if (e.target.classList.contains("delete-link")) {
     $("#deleteModal").modal("show");
     row = e.target.parentElement.parentElement;
     id = e.target.parentElement.dataset.id;

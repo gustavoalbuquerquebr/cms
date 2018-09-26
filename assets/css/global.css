@@ -76,6 +76,10 @@ hr {
 
 /* FRONT */
 
+#pw-toggler {
+  cursor: pointer;
+}
+
 aside > section {
   width: 90%;
 }
@@ -88,14 +92,27 @@ aside > section {
 
 /* BACK */
 
-.delete {
+.delete-link {
   cursor: pointer;
   display: inline-block;
 }
 
-.delete::before {
+.delete-link::before {
   content: "";
   background: url(../images/delete.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.edit-link {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.edit-link::before {
+  content: "";
+  background: url(../images/edit.svg);
   background-repeat: no-repeat;
   padding-right: 1rem;
   margin-right: 1rem;

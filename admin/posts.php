@@ -49,22 +49,22 @@ $posts = fetch_posts_db();
     <div class="table-responsive">
         <table class="table table-hover" style="width:100%; text-align:center;">
           <thead class="thead-dark">
-            <th></th>
-            <th></th>
             <th>ID</th>
             <th>Date</th>
             <th>Author</th>
             <th>Title</th>
+            <th>(edit)</th>
+            <th>(delete)</th>
           </thead>
           <tbody>
             <?php foreach($posts as $post): ?>
               <tr>
-                <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete"></span></td>
-                <td class="edit"><a href="<?php echo generate_link_html($post["id"]); ?>">Edit</a></td>
                 <td><?php echo $post["id"]; ?></td>
                 <td><?php echo $post["date"]; ?></td>
                 <td><a href="<?php echo make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?php echo $post["authorname"]; ?></a></td>
                 <td><a href="<?php echo make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?php echo $post["title"]; ?></a></td>
+                <td><a href="<?php echo generate_link_html($post["id"]); ?>"  class="edit-link"></a></td>
+                <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete-link"></span></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

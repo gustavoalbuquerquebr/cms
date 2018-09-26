@@ -2,18 +2,23 @@
 
 ### TODO
 
-- Edit comment/user
 - Author page
+- Edit comment/user
 - Manage categories page
 - Don't accept duplicate categorie names
 - Category page
 - Pages page
+- Replace all php code inside html with functions
+- Superglobal or pass argument
 - Add email column user
 - DB errors alerts
 - Archive pages (posts by date)
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users
+- Move validation functions to utils.php
 - Enable javascript form validation
+- 404 page
+- Font Awesome
 - Installation process
 - Post images
 - Contact send email
