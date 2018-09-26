@@ -10,7 +10,7 @@ require_once make_url("includes/functions/admin/users.php");
 $users = fetch_users_db();
 
 function generate_editlink_html($user) {
-  return make_url("admin/user.php", true) . "?id=" . $user["id"] . "&username=" . $user["username"];
+  return make_url("admin/user_edit.php", true) . "?id=" . $user["id"] . "&username=" . $user["username"];
 }
 
 ?>
@@ -48,7 +48,7 @@ function generate_editlink_html($user) {
 
     <h1 class="mb-4">Manage users</h1>
 
-    <a href="<?php echo make_url("admin/user.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
+    <a href="<?php echo make_url("admin/user_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
 
     <div class="table-responsive">
       <table class="table table-hover" style="width:100%; text-align:center;">

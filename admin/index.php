@@ -24,7 +24,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
         <a class="list-group-item bg-dark text-white font-weight-bold">Users</a>
         <a href="<?php echo make_url("admin/users.php", true); ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
-        <a href="<?php echo make_url("admin/user.php", true); ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
+        <a href="<?php echo make_url("admin/user_create.php", true); ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
       </ul>
     </div>
 

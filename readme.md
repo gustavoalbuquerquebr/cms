@@ -2,14 +2,14 @@
 
 ### TODO
 
+- Edit comment
 - Author page
-- Edit comment/user
 - Manage categories page
 - Don't accept duplicate categorie names
 - Category page
 - Pages page
 - Replace all php code inside html with functions
-- Superglobal or pass argument
+- Use superglobal or pass argument in functions
 - Add email column user
 - DB errors alerts
 - Archive pages (posts by date)
