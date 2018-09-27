@@ -11,6 +11,7 @@ $posts = fetch_posts_db();
 
 ?>
 
+
 <?php includes_header("Manage posts"); ?>
 
   <div id="deleteModal" class="modal" role="dialog">
@@ -37,14 +38,14 @@ $posts = fetch_posts_db();
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Posts</li>
       </ol>
     </nav>
 
     <h1 class="mb-4">Manage posts</h1>
 
-    <a href="<?php echo make_url("admin/post_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
+    <a href="<?= make_url("admin/post_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
 
     <div class="table-responsive">
         <table class="table table-hover" style="width:100%; text-align:center;">
@@ -57,14 +58,14 @@ $posts = fetch_posts_db();
             <th>(delete)</th>
           </thead>
           <tbody>
-            <?php foreach($posts as $post): ?>
+            <?php foreach ($posts as $post): ?>
               <tr>
-                <td><?php echo $post["id"]; ?></td>
-                <td><?php echo $post["date"]; ?></td>
-                <td><a href="<?php echo make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?php echo htmlspecialchars($post["authorname"]); ?></a></td>
-                <td><a href="<?php echo make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?php echo htmlspecialchars($post["title"]); ?></a></td>
-                <td><a href="<?php echo generate_link_html($post["id"]); ?>"  class="edit-link"></a></td>
-                <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete-link"></span></td>
+                <td><?= $post["id"]; ?></td>
+                <td><?= $post["date"]; ?></td>
+                <td><a href="<?= make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?= h($post["authorname"]); ?></a></td>
+                <td><a href="<?= make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?= h($post["title"]); ?></a></td>
+                <td><a href="<?= generate_link_html($post["id"]); ?>"  class="edit-link"></a></td>
+                <td class="text-danger" data-id="<?= $post["id"]; ?>"><span class="delete-link"></span></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -73,9 +74,9 @@ $posts = fetch_posts_db();
   </main>
 
   <script>
-    let self = "<?php echo $_SERVER["PHP_SELF"]?>";
+    let self = "<?= $_SERVER["PHP_SELF"]?>";
   </script>
 
-  <script src="<?php echo make_url("assets/js/admin/posts.js", true); ?>"></script>
+  <script src="<?= make_url("assets/js/admin/posts.js", true); ?>"></script>
 
 <?php includes_footer(); ?>

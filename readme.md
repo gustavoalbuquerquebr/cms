@@ -2,11 +2,8 @@
 
 ### TODO
 
-- Replace all php code inside html with functions
-- Replace double quotes by single quotes in database queries
-- Use superglobal or pass argument in functions
-- htmlspecialchars() & urlencode()
 - Author page
+- Handle db errors
 - Manage categories page
 - Don't accept duplicate categorie names
 - Category page
@@ -16,7 +13,6 @@
 - Archive pages (posts by date)
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users
-- Move validation functions to utils.php
 - Enable javascript form validation
 - Post draft
 - Approve comments
@@ -69,5 +65,5 @@
 
 - Function naming convention: `action_what_where`, example: `delete_post_db`;
 - Use mysqli_real_escape_string() before all database insertions and updates;
-- Use htmlspecialchars() to render database data at HTML;
-  - Use urlencode() to make sure paremeters don't break urls;
+- Use h() to render user input at HTML;
+- Use urlencode() to make sure paremeters don't break urls;

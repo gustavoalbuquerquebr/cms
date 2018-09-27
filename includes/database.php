@@ -66,7 +66,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // mysqli_query($db_connection, $contact);
 
 // USERS
-// for($i = 0; $i < 20; $i++) {
+// for ($i = 0; $i < 20; $i++) {
 //   $pw = password_hash("pass{$i}", PASSWORD_DEFAULT);
 //   $query = "INSERT INTO users (id, username, `password`) VALUES ($i, \"user{$i}\", \"$pw\")";
 //   mysqli_query($db_connection, $query);
@@ -78,13 +78,13 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 
 // CATEGORIES
 // $subjects = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-// foreach($subjects as $sub) {
+// foreach ($subjects as $sub) {
 //   $query = "INSERT INTO categories (name) VALUES (\"$sub\")";
 //   mysqli_query($db_connection, $query);
 // }
 
 // POSTS
-// for($i = 1; $i < 30; $i++) {
+// for ($i = 1; $i < 30; $i++) {
 //   $author = mt_rand(1, 10);
 //   $category = mt_rand(1, 5);
 //   $query = "INSERT INTO posts (id, author, category, title, body) 
@@ -93,7 +93,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // }
 
 // COMMENTS
-// for($i = 1; $i < 50; $i++) {
+// for ($i = 1; $i < 50; $i++) {
 //   $post = mt_rand(1, 29);
 //   $query = "INSERT INTO comments (id, author, post, body) VALUES ($i, \"author\", \"$post\", \"$lorem2\")";
 //   mysqli_query($db_connection, $query);
@@ -101,5 +101,3 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 
 // close connection
 mysqli_close($db_connection);
-
-?>

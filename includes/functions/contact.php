@@ -6,12 +6,10 @@ function insert_contact_db() {
   sleep(2);
 
   
-  if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-    // if email is valid
+  if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     
     $db_connection = new_db_connection();
 
-    // put form data into variables
     $name = mysqli_real_escape_string($db_connection, $_POST["name"]);
     $email = mysqli_real_escape_string($db_connection, $_POST["email"]);
     $message = mysqli_real_escape_string($db_connection, $_POST["message"]);
@@ -22,14 +20,13 @@ function insert_contact_db() {
 
     mysqli_close($db_connection);
 
-    // check if query was successful
+    // echo to javascript/ajax as this.responseText
     echo $result ? "success" : "request_error";
   } else {
-    // if email is invalid
+    // echo to javascript/ajax as this.responseText
     echo "invalid_email";
   }
 
-  exit();
+  // return true, the short-circuit at contact page will continue and execute exit command
+  return true;
 }
-
-?>

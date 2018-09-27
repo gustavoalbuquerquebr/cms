@@ -5,6 +5,8 @@ require_once make_url("includes/functions/post.php");
 
 !empty($_POST) && insert_comment_db();
 
+empty($_GET) && redirect_url_homepage() && exit;
+
 $current_post = $_GET["id"];
 
 $post = fetch_post_db($current_post);
@@ -25,24 +27,25 @@ $comments = fetch_comments_db($current_post);
 
 ?>
 
+
 <?php includes_header($post["title"]); ?>
 
   <main class="container mb-5">
     <section class="mb-5">
-      <h1><?php echo htmlspecialchars($post["title"]); ?></h1>
-      <h6 class="small mb-4"><strong><?php echo htmlspecialchars($post["author"]); ?></strong> - <?php echo htmlspecialchars($post["date"]); ?></h6>
-      <p><?php echo convert_nl2ptag_ui(htmlspecialchars($post["body"])); ?></p>
+      <h1><?= h($post["title"]); ?></h1>
+      <h6 class="small mb-4"><strong><?= h($post["author"]); ?></strong> - <?= $post["date"]; ?></h6>
+      <p><?= convert_nl2ptag_ui(h($post["body"])); ?></p>
     </section>
 
     <nav class="text-center mb-5">
-      <a href="<?php echo $prev_post; ?>" class="btn btn-sm <?php echo $prevbtn_class; ?>">&laquo; Previous</a>
-      <a href="<?php echo $next_post; ?>" class="btn btn-sm <?php echo $nextbtn_class; ?>">Next &raquo;</a>
+      <a href="<?= $prev_post; ?>" class="btn btn-sm <?= $prevbtn_class; ?>">&laquo; Previous</a>
+      <a href="<?= $next_post; ?>" class="btn btn-sm <?= $nextbtn_class; ?>">Next &raquo;</a>
     </nav>
 
     <section id="commentsSection">
-      <h2 class="mb-4"><span class="font-weight-bold" id="comments_counter"><?php echo count($comments); ?></span> comments</h2>
+      <h2 class="mb-4"><span class="font-weight-bold" id="comments_counter"><?= count($comments); ?></span> comments</h2>
 
-      <form id="form" method="post" class="<?php if(!empty($comments)) echo "mb-5"; ?>">
+      <form id="form" method="post" class="<?php if (!empty($comments)) { echo "mb-5"; }; ?>">
         <div class="form-group">
           <input type="text" name="user" class="form-control" placeholder="Name">
         </div>
@@ -53,10 +56,10 @@ $comments = fetch_comments_db($current_post);
       </form>
 
       <div id="comments">
-          <?php foreach($comments as $comment): ?>
+          <?php foreach ($comments as $comment): ?>
             <div class="comment mb-4 border-left border-primary pl-2">
-              <h6><strong><?php echo htmlspecialchars($comment["author"]); ?></strong> - <?php echo htmlspecialchars($comment["date"]) ?></h6>
-              <p><?php echo htmlspecialchars($comment["body"]); ?></p>
+              <h6><strong><?= h($comment["author"]); ?></strong><span class="text-muted"><?php if($comment["moderated"]) echo " (moderated)"; ?></span> - <?= $comment["date"] ?></h6>
+              <p><?= h($comment["body"]); ?></p>
             </div>
           <?php endforeach; ?>
       </div>
@@ -64,12 +67,11 @@ $comments = fetch_comments_db($current_post);
 
   </main>
 
-
   <script>
-    let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";
-    let current_post = <?php echo $current_post; ?>;
+    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let current_post = <?= $current_post; ?>;
   </script>
 
-  <script src="<?php echo make_url("assets/js/post.js", true); ?>"></script>
+  <script src="<?= make_url("assets/js/post.js", true); ?>"></script>
 
 <?php includes_footer(); ?>

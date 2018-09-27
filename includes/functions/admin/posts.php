@@ -1,7 +1,7 @@
 <?php
 
 function delete_post_db() {
-  if($_POST["action"] === "delete") {
+  if ($_POST["action"] === "delete") {
     $id = $_POST["id"];
 
     // open database connection
@@ -40,5 +40,3 @@ function fetch_posts_db() {
 function generate_link_html($id) {
   echo "post_edit.php?id=" . $id;
 }
-
-?>

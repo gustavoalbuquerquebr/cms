@@ -18,6 +18,13 @@ function insert_comment_db() {
   exit();
 }
 
+
+function redirect_url_homepage() {
+  $url = make_url("", true);
+  header("Location: $url");
+}
+
+
 function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();
@@ -37,6 +44,7 @@ function fetch_post_db($current_post) {
   return $post;
 }
 
+
 function fetch_postsid_db() {
   $db_connection = new_db_connection();
 
@@ -46,7 +54,7 @@ function fetch_postsid_db() {
 
   $posts_id = [];
 
-  while($row = mysqli_fetch_row($result)) {
+  while ($row = mysqli_fetch_row($result)) {
     $posts_id[] = $row[0];
   }
   
@@ -56,25 +64,30 @@ function fetch_postsid_db() {
   return $posts_id;
 }
 
+
 function getid_prevpost_db($posts_id, $current_position) {
-  if($current_position !== 0) {
+  if ($current_position !== 0) {
     return $posts_id[$current_position - 1];
   }
 }
 
+
 function getid_nextpost_db($posts_id, $current_position) {
-  if($current_position !== count($posts_id) - 1) {
+  if ($current_position !== count($posts_id) - 1) {
     return $posts_id[$current_position + 1];
   }
 }
+
 
 function disable_prevpost_ui($current_position) {
   return $current_position === 0 ? "disabled" : "btn-primary";
 }
 
+
 function disable_nextpost_ui($posts_id, $current_position) {
   return $current_position === count($posts_id) - 1 ? "disabled" : "btn-primary";
 }
+
 
 function fetch_comments_db($current_post) {
   
@@ -93,8 +106,7 @@ function fetch_comments_db($current_post) {
   return $comments;
 }
 
+
 function convert_nl2ptag_ui($post) {
   return str_replace(["\n", "\r", "\r\n"], "</p><p>", $post);
 }
-
-?>

@@ -25,7 +25,7 @@ function update_comment_db() {
 
   $query = "UPDATE comments SET body = \"$body\", moderated = 1 WHERE id = \"$id\"";
 
-  if(mysqli_query($db_connection, $query)) {
+  if (mysqli_query($db_connection, $query)) {
     mysqli_close($db_connection);
     return "success";
   } else {
@@ -34,4 +34,19 @@ function update_comment_db() {
 
 }
 
-?>
+
+function redirect_url_postpage() {
+  $url = make_url("post.php?id=", true) . $_POST["post_id"];
+  header("Location: $url");
+}
+
+
+function generate_postlink_html($post) {
+  return make_url("post.php?id=", true) . $post;
+}
+
+
+function redirect_url_dashboard() {
+  $url = make_url("admin", true);
+  header("Location: $url");
+}

@@ -18,11 +18,12 @@ function fetch_categories_db() {
   return $categories;
 }
 
+
 function insert_post_db() {
   
   $db_connection = new_db_connection();
 
-  session_start();
+  empty($_SESSION) && session_start();
 
   $user = mysqli_real_escape_string($db_connection, $_SESSION["session_user"]);
   $category = mysqli_real_escape_string($db_connection, $_POST["category"]);
@@ -30,7 +31,7 @@ function insert_post_db() {
   $body = mysqli_real_escape_string($db_connection, $_POST["body"]);
 
   // post title and body cannot be blank
-  if($title === "" || $body === "") {
+  if ($title === "" || $body === "") {
     return false;
   }
 
@@ -46,4 +47,8 @@ function insert_post_db() {
   return $new_post_id;
 }
 
-?>
+
+function redirect_url_newpostpage($new_post_id) {
+    $url = make_url("post.php?id=", true) . $new_post_id;
+    header("Location: $url");
+}

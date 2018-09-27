@@ -8,17 +8,13 @@ let messageInput = document.querySelector("#message");
 let submit = document.querySelector("#submit");
 let messageOutput = document.querySelector("#messageOutput");
 let messageOutputSpinner = document.querySelector("#messageOutput img");
-let messageOutputAlert = document.querySelector("#messageOutput div");
-let messageOutputAlertClose = document.querySelector(
-  "#messageOutput div button",
-);
-let messageOutputAlertText = document.querySelector("#messageOutput div span");
+let messageOutputAlert = document.querySelector(".alert");
+let messageOutputAlertClose = document.querySelector(".alert button");
+let messageOutputAlertText = document.querySelector(".alert span");
 
 // form submit on this very page
 submit.addEventListener("click", function(e) {
   // display spinner.gif
-  // margin between form and messageOutput
-  form.classList.add("mb-5");
   // make sure that the alert is hidden while spinner is showing
   messageOutputAlert.classList.add("d-none");
   // d-block is needed to centered the image with mx-auto
@@ -39,18 +35,18 @@ submit.addEventListener("click", function(e) {
     let error;
 
     switch (this.responseText) {
-      case "invalid_email":
-        error = 1;
-        message = "Invalid email! Try again.";
-        break;
-      case "request_error":
-        error = 2;
-        message = "Something went wrong! Send a email to " + emailContact + ".";
-        break;
-      case "success":
-        error = 0;
-        message = "Message sent!";
-        break;
+    case "invalid_email":
+      error = 1;
+      message = "Invalid email! Try again.";
+      break;
+    case "request_error":
+      error = 2;
+      message = "Something went wrong! Send a email to " + emailContact + ".";
+      break;
+    case "success":
+      error = 0;
+      message = "Message sent!";
+      break;
     }
 
     // replace spinner.gif with output message
@@ -70,9 +66,4 @@ submit.addEventListener("click", function(e) {
   };
 
   xhr.send(data);
-});
-
-// remove mb-5 from form when there is no alert displaying
-messageOutputAlertClose.addEventListener("click", function() {
-  form.classList.remove("mb-5");
 });

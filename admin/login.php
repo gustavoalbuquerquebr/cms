@@ -7,6 +7,7 @@ require_once make_url("includes/functions/admin/login.php");
 
 ?>
 
+
 <?php includes_header("Login"); ?>
 
   <main class="container mb-5">
@@ -14,6 +15,14 @@ require_once make_url("includes/functions/admin/login.php");
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
       <h1 class="mb-4">Login</h1>
+
+      <?php if (isset($error)): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <?php if ($error === 1) echo "User not found!"; ?>
+          <?php if ($error === 2) echo "Wrong password!"; ?>
+          <button class="close" type="button" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+      <?php endif; ?>
 
       <form method="post" class="mb-3">
         <div class="form-group">
@@ -24,14 +33,6 @@ require_once make_url("includes/functions/admin/login.php");
         </div>
         <input type="submit" name="submit" value="Log In" class="btn btn-primary">
       </form>
-
-      <?php if(isset($error)): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?php if($error === 1) echo "User not found!"; ?>
-          <?php if($error === 2) echo "Wrong password!"; ?>
-          <button class="close" type="button" data-dismiss="alert"><span>&times;</span></button>
-        </div>
-      <?php endif; ?>
 
     </div>
 

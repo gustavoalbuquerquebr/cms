@@ -1,18 +1,24 @@
 <?php
 
+// ALIASES
+
+function h($html) {
+  return htmlspecialchars($html);
+}
+
+function u($url_parameter) {
+  return htmlspecialchars($url_parameter);
+}
+
+
 // INCLUDES
 
-function includes_header($page_title, $stylesheet = "") {
-
-  if(!empty($stylesheet)) {
-    $GLOBALS["stylesheet"] = $stylesheet;
-  }
-
-  require make_url("includes/templates/header.php");
+function includes_header($page_title = "", $stylesheet = "") {
+  require_once make_url("includes/templates/header.php");
 }
 
 function includes_footer() {
-  require make_url("includes/templates/footer.php");
+  require_once make_url("includes/templates/footer.php");
 }
 
 
@@ -38,12 +44,15 @@ function new_db_connection() {
 define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/cms");
 
 function make_url($path, $client_side = false) {
+  
+  $path = trim($path);
+
   // avoid duplicate slashes
-  if($path[0] === "/") {
+  if ($path !== "" && $path[0] === "/") {
     $path = substr($path, 1);
   }
 
-  if($client_side) {
+  if ($client_side) {
     return "/" . PROJECT_FOLDER_NAME . "/" . $path;
   } else {
     return ROOT . "/" . $path;
@@ -62,5 +71,3 @@ function redirect_to_login() {
     $url = make_url("admin/login.php", true);
     header("Location: " . $url);
 }
-
-?>

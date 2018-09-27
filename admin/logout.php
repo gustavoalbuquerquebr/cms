@@ -8,5 +8,3 @@ session_destroy();
 $url = make_url("", true);
 
 header("Location: $url");
-
-?>

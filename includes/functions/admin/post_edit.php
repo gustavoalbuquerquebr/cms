@@ -34,4 +34,8 @@ function fetch_post_db($id) {
   return $post;
 }
 
-?>
+
+function redirect_url_dashboard() {
+  $url = make_url("admin", true);
+  header("Location: $url");
+}

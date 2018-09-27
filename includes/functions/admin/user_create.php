@@ -19,8 +19,8 @@ function fetch_users_db() {
 function check_duplicateusername_db($username, $id) {
   $users = fetch_users_db();
 
-  foreach($users as $user) {
-    if($user["username"] === $username) return true;
+  foreach ($users as $user) {
+    if ($user["username"] === $username) return true;
   }
   
   return false;
@@ -36,17 +36,17 @@ function insert_user_db() {
   $password_hashed = password_hash($password, PASSWORD_DEFAULT);
   
   // username and password validation
-  if(strlen($username) < 8 || strlen($username) > 25 || strlen($password) < 8 || strlen($password) > 25) return ["error", 1];
+  if (strlen($username) < 8 || strlen($username) > 25 || strlen($password) < 8 || strlen($password) > 25) return ["error", 1];
   
   // cannot insert if username already exists
-  if(check_duplicateusername_db($username, $id ?? "")) return ["error", 2];
+  if (check_duplicateusername_db($username, $id ?? "")) return ["error", 2];
 
   $query = "INSERT INTO users (username, `password`)
             VALUES (\"$username\", \"$password_hashed\")";
 
   $result = mysqli_query($db_connection, $query);
 
-  if($result === false) return ["error", 3];
+  if ($result === false) return ["error", 3];
 
   $new_post_id = mysqli_insert_id($db_connection);
 
@@ -63,7 +63,7 @@ function redirect_url_newuserpage($user_id) {
 
 
 function generate_errormessage_variable($db_insertion_error) {
-  switch($db_insertion_error){
+  switch ($db_insertion_error){
     case 1: return "Username and password must have between 8 and 25 characters.";
     break;
     case 2: return "Username already exists.";
@@ -72,5 +72,3 @@ function generate_errormessage_variable($db_insertion_error) {
     break;
   }
 }
-
-?>

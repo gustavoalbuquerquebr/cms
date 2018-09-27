@@ -11,6 +11,7 @@ $comments = fetch_comments_db();
 
 ?>
 
+
 <?php includes_header("Manage comments"); ?>
 
   <div id="deleteModal" class="modal" role="dialog">
@@ -37,7 +38,7 @@ $comments = fetch_comments_db();
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Comments</li>
       </ol>
     </nav>
@@ -56,14 +57,14 @@ $comments = fetch_comments_db();
         </tr>
       </thead>
       <tbody>
-        <?php foreach($comments as $comment): ?>
+        <?php foreach ($comments as $comment): ?>
           <tr>
-            <td><?php echo $comment["id"] ?></td>
-            <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo htmlspecialchars($comment["post"]); ?></a></td>
-            <td><?php echo htmlspecialchars($comment["author"]); ?></td>
-            <td><?php echo htmlspecialchars($comment["body"]); ?></td>
-            <td data-id=<?php echo $comment["id"] ?>><a href="<?php echo make_url("admin/comment_edit.php?id=", true). $comment["id"]; ?>" class="edit-link"></a></td>
-            <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete-link"></span></td>
+            <td><?= $comment["id"] ?></td>
+            <td><a href="<?= make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?= $comment["post"]; ?></a></td>
+            <td><?= h($comment["author"]); ?></td>
+            <td><?= h($comment["body"]); ?></td>
+            <td data-id=<?= $comment["id"] ?>><a href="<?= make_url("admin/comment_edit.php?id=", true). $comment["id"]; ?>" class="edit-link"></a></td>
+            <td class="text-danger" data-id=<?= $comment["id"] ?>><span class="delete-link"></span></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -71,9 +72,9 @@ $comments = fetch_comments_db();
   </main>
 
   <script>
-    let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";
+    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
   </script>
 
-  <script src="<?php echo make_url("assets/js/admin/comments.js", true); ?>"></script>
+  <script src="<?= make_url("assets/js/admin/comments.js", true); ?>"></script>
 
 <?php includes_footer(); ?>

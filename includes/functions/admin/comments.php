@@ -21,7 +21,7 @@ function fetch_comments_db() {
   $db_connection = new_db_connection();
 
   // fetch comments
-  $query = "SELECT * FROM comments ORDER BY id";
+  $query = "SELECT * FROM comments ORDER BY id DESC";
   $result = mysqli_query($db_connection, $query);
   $comments = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -31,5 +31,3 @@ function fetch_comments_db() {
 
   return $comments;
 }
-
-?>

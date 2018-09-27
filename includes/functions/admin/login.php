@@ -16,11 +16,11 @@ function verify_auth_db() {
   mysqli_free_result($result);
   mysqli_close($db_connection);
   
-  if(empty($user)) {
+  if (empty($user)) {
     
     $GLOBALS["error"] = 1;
     
-  } elseif(!password_verify($pass, $user["password"])) {
+  } elseif (!password_verify($pass, $user["password"])) {
     
     $GLOBALS["error"] = 2;
     
@@ -30,5 +30,3 @@ function verify_auth_db() {
     header("Location: index.php");
   }
 }
-
-?>

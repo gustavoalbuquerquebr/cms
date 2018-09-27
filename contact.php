@@ -3,9 +3,10 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/contact.php");
 
-!empty($_POST) && insert_contact_db();
+!empty($_POST) && insert_contact_db() && exit;
 
 ?>
+
 
 <?php includes_header("Contact") ?>
 
@@ -14,6 +15,15 @@ require_once make_url("includes/functions/contact.php");
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
       <h1 class="mb-4">Contact</h1>
+
+      <div id="messageOutput" class="mb-4">
+        <img src="<?= make_url("assets/images/spinner.gif", true); ?>" width="50" height="50" class="d-none mx-auto">
+      </div>
+
+      <div class="alert alert-dismissible show fade d-none" role="alert">
+        <span></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
   
       <form method="post" id="contact">
         <div class="form-group">
@@ -29,23 +39,15 @@ require_once make_url("includes/functions/contact.php");
         <input type="submit" id="submit" class="btn btn-primary">
       </form>
       
-      <div id="messageOutput">
-        <img src="<?php echo make_url("assets/images/spinner.gif", true); ?>" width="50" height="50" class="d-none mx-auto">
-        <div class="alert alert-dismissible show fade d-none" role="alert">
-          <span></span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-      </div>
-
     </div>
 
   </main>
 
   <script>
-    let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";
-    let emailContact = "<?php echo PROJECT_EMAIL; ?>";
+    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let emailContact = "<?= PROJECT_EMAIL; ?>";
   </script>
 
-  <script src="<?php echo make_url("assets/js/contact.js", true); ?>"></script>
+  <script src="<?= make_url("assets/js/contact.js", true); ?>"></script>
 
 <?php includes_footer(); ?>

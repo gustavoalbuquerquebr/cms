@@ -6,7 +6,7 @@ require_once make_url("includes/functions/admin/user_create.php");
 !is_logged() && redirect_to_login();
 
 // handle the submit of the form in this page
-if(!empty($_POST)) {
+if (!empty($_POST)) {
 
   $result = insert_user_db();
     
@@ -20,30 +20,31 @@ if(!empty($_POST)) {
 
 ?>
 
+
 <?php includes_header("User create"); ?>
 
   <main class="container mb-5">
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/", true); ?>">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="<?php echo make_url("admin/users.php", true); ?>">Users</a></li>
+        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= make_url("admin/users.php", true); ?>">Users</a></li>
         <li class="breadcrumb-item active" aria-current="page">Create user</li>
       </ol>
     </nav>
 
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
-      <?php if(isset($db_insertion_error)): ?>
+      <h1 class="mb-4">User create</h1>
+
+      <?php if (isset($db_insertion_error)): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?php echo $error_message; ?> Try again!
+          <?= $error_message; ?> Try again!
           <button type="button" data-dismiss="alert" class="close">&times;</button>
         </div>
       <?php endif; ?>
 
-      <h1 class="mb-4">User create</h1>
-
-      <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+      <form action="<?= $_SERVER["PHP_SELF"]; ?>" method="post">
         <div class="form-group">
           <input type="text" name="username" placeholder="username" class="form-control">
         </div>
@@ -51,7 +52,7 @@ if(!empty($_POST)) {
           <div class="input-group">
             <input id="password-input" type="password" name="password" placeholder="password" class="form-control">
             <div class="input-group-append">
-              <div class="input-group-text"><img id="pw-toggler" src="<?php echo make_url("assets/images/eye.svg", true); ?>" width=16></div>
+              <div class="input-group-text"><img id="pw-toggler" src="<?= make_url("assets/images/eye.svg", true); ?>" width=16></div>
             </div>
           </div>
         </div>
@@ -63,10 +64,10 @@ if(!empty($_POST)) {
   </main>
 
   <script>
-    let eye = "<?php echo make_url("assets/images/eye.svg", true); ?>";
-    let eyeSlash = "<?php echo make_url("assets/images/eye-slash.svg", true); ?>";
+    let eye = "<?= make_url("assets/images/eye.svg", true); ?>";
+    let eyeSlash = "<?= make_url("assets/images/eye-slash.svg", true); ?>";
   </script>
 
-  <script src="<?php echo make_url("assets/js/admin/user_create.js", true); ?>"></script>
+  <script src="<?= make_url("assets/js/admin/user_create.js", true); ?>"></script>
 
 <?php includes_footer(); ?>

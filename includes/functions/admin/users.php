@@ -32,4 +32,7 @@ function fetch_users_db() {
   return $users;
 }
 
-?>
+
+function generate_editlink_html($user) {
+  return make_url("admin/user_edit.php", true) . "?id=" . $user["id"] . "&username=" . $user["username"];
+}
