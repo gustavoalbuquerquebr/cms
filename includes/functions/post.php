@@ -1,12 +1,12 @@
 <?php
 
 function insert_comment_db() {
-
-  $post = $_POST["current_post"];
-  $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
-  $comment = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_SPECIAL_CHARS);
-
+  
   $db_connection = new_db_connection();
+
+  $post = mysqli_real_escape_string($db_connection, $_POST["current_post"]);
+  $user = mysqli_real_escape_string($db_connection, $_POST["user"]);
+  $comment = mysqli_real_escape_string($db_connection, $_POST["comment"]);
 
   $query = "INSERT INTO comments (post, author, body) VALUES (\"$post\", \"$user\", \"$comment\")";
   $result = mysqli_query($db_connection, $query);

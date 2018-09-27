@@ -55,7 +55,7 @@ function disable_btnprevious_ui($current_page) {
 }
 
 function generate_postlink_html($id) {
-  return "post.php?id=" . $id;
+  return make_url("post.php?id=", true) . urlencode($id);
 }
 
 function generate_blogexcerpt_html($post) {

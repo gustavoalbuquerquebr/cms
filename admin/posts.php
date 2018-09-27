@@ -61,8 +61,8 @@ $posts = fetch_posts_db();
               <tr>
                 <td><?php echo $post["id"]; ?></td>
                 <td><?php echo $post["date"]; ?></td>
-                <td><a href="<?php echo make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?php echo $post["authorname"]; ?></a></td>
-                <td><a href="<?php echo make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?php echo $post["title"]; ?></a></td>
+                <td><a href="<?php echo make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?php echo htmlspecialchars($post["authorname"]); ?></a></td>
+                <td><a href="<?php echo make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?php echo htmlspecialchars($post["title"]); ?></a></td>
                 <td><a href="<?php echo generate_link_html($post["id"]); ?>"  class="edit-link"></a></td>
                 <td class="text-danger" data-id="<?php echo $post["id"]; ?>"><span class="delete-link"></span></td>
               </tr>

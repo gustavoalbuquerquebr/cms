@@ -29,9 +29,9 @@ $comments = fetch_comments_db($current_post);
 
   <main class="container mb-5">
     <section class="mb-5">
-      <h1><?php echo $post["title"] ?></h1>
-      <h6 class="small mb-4"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
-      <p><?php echo convert_nl2ptag_ui($post["body"]); ?></p>
+      <h1><?php echo htmlspecialchars($post["title"]); ?></h1>
+      <h6 class="small mb-4"><strong><?php echo htmlspecialchars($post["author"]); ?></strong> - <?php echo htmlspecialchars($post["date"]); ?></h6>
+      <p><?php echo convert_nl2ptag_ui(htmlspecialchars($post["body"])); ?></p>
     </section>
 
     <nav class="text-center mb-5">
@@ -40,7 +40,7 @@ $comments = fetch_comments_db($current_post);
     </nav>
 
     <section id="commentsSection">
-      <h2 class="mb-4"><?php echo count($comments); ?> comments</h2>
+      <h2 class="mb-4"><span class="font-weight-bold" id="comments_counter"><?php echo count($comments); ?></span> comments</h2>
 
       <form id="form" method="post" class="<?php if(!empty($comments)) echo "mb-5"; ?>">
         <div class="form-group">
@@ -55,8 +55,8 @@ $comments = fetch_comments_db($current_post);
       <div id="comments">
           <?php foreach($comments as $comment): ?>
             <div class="comment mb-4 border-left border-primary pl-2">
-              <h6><strong><?php echo $comment["author"]; ?></strong> - <?php echo $comment["date"] ?></h6>
-              <p><?php echo $comment["body"] ?></p>
+              <h6><strong><?php echo htmlspecialchars($comment["author"]); ?></strong> - <?php echo htmlspecialchars($comment["date"]) ?></h6>
+              <p><?php echo htmlspecialchars($comment["body"]); ?></p>
             </div>
           <?php endforeach; ?>
       </div>

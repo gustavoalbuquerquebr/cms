@@ -29,9 +29,9 @@ $posts = fetch_posts_db(POSTS_PER_PAGE, $query_offset);
 
         <?php foreach($posts as $post): ?>
           <article class="mb-5">
-            <h1><?php echo $post["title"]; ?></h1>
-            <h6 class="small"><strong><?php echo $post["author"]; ?></strong> - <?php echo $post["date"]; ?></h6>
-            <p><?php echo generate_blogexcerpt_html($post["body"]); ?></p>
+            <h1><?php echo htmlspecialchars($post["title"]); ?></h1>
+            <h6 class="small"><strong><?php echo htmlspecialchars($post["author"]); ?></strong> - <?php echo htmlspecialchars($post["date"]); ?></h6>
+            <p><?php echo htmlspecialchars(generate_blogexcerpt_html($post["body"])); ?></p>
             <p class=""><a href="<?php echo generate_postlink_html($post["id"]); ?>">Read More &raquo;</a></p>
             <hr>
           </article>

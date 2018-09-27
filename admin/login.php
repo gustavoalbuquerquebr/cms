@@ -13,6 +13,8 @@ require_once make_url("includes/functions/admin/login.php");
 
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
 
+      <h1 class="mb-4">Login</h1>
+
       <form method="post" class="mb-3">
         <div class="form-group">
           <input type="text" name="user" placeholder="Username" class="form-control">

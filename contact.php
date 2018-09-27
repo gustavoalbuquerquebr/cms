@@ -43,6 +43,7 @@ require_once make_url("includes/functions/contact.php");
 
   <script>
     let self = "<?php echo $_SERVER["PHP_SELF"]; ?>";
+    let emailContact = "<?php echo PROJECT_EMAIL; ?>";
   </script>
 
   <script src="<?php echo make_url("assets/js/contact.js", true); ?>"></script>

@@ -7,6 +7,7 @@ ob_start();
 // PROJECT CONFIG
 define("PROJECT_NAME", "CMS");
 define("PROJECT_FOLDER_NAME", "cms");
+define("PROJECT_EMAIL", "cms@email.com");
 
 // how many posts are shown at homepage for each navigation page
 define("POSTS_PER_PAGE", 8);

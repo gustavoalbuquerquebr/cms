@@ -51,6 +51,7 @@ $comments = fetch_comments_db();
           <th>Post</th>
           <th>User</th>
           <th>Comment</th>
+          <th>(edit)</th>
           <th>(delete)</th>
         </tr>
       </thead>
@@ -58,9 +59,10 @@ $comments = fetch_comments_db();
         <?php foreach($comments as $comment): ?>
           <tr>
             <td><?php echo $comment["id"] ?></td>
-            <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo $comment["post"]; ?></a></td>
-            <td><?php echo $comment["author"] ?></td>
-            <td><?php echo $comment["body"] ?></td>
+            <td><a href="<?php echo make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?php echo htmlspecialchars($comment["post"]); ?></a></td>
+            <td><?php echo htmlspecialchars($comment["author"]); ?></td>
+            <td><?php echo htmlspecialchars($comment["body"]); ?></td>
+            <td data-id=<?php echo $comment["id"] ?>><a href="<?php echo make_url("admin/comment_edit.php?id=", true). $comment["id"]; ?>" class="edit-link"></a></td>
             <td class="text-danger" data-id=<?php echo $comment["id"] ?>><span class="delete-link"></span></td>
           </tr>
         <?php endforeach; ?>

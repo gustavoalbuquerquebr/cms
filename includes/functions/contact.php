@@ -5,15 +5,16 @@ function insert_contact_db() {
   // emulate slow server to show spinner.gif
   sleep(2);
 
-  // put form data into variables
-  $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
-  $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-  $message = filter_input(INPUT_POST, "message", FILTER_SANITIZE_SPECIAL_CHARS);
-
-  if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  
+  if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     // if email is valid
     
     $db_connection = new_db_connection();
+
+    // put form data into variables
+    $name = mysqli_real_escape_string($db_connection, $_POST["name"]);
+    $email = mysqli_real_escape_string($db_connection, $_POST["email"]);
+    $message = mysqli_real_escape_string($db_connection, $_POST["message"]);
 
     $query = "INSERT INTO contact (`name`, email, `message`)
               VALUES (\"$name\", \"$email\", \"$message\")";

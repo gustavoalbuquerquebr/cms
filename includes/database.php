@@ -30,6 +30,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 //   author VARCHAR(25) NOT NULL,
 //   post INT NOT NULL,
 //   body TEXT NOT NULL,
+//   moderated BOOLEAN DEFAULT 0
 //   FOREIGN KEY(post) REFERENCES posts(id) ON DELETE CASCADE
 // )";
 

@@ -30,16 +30,16 @@ $post = fetch_post_db($id);
     <a href="<?php echo make_url("post.php?id=", true) . $id; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
 
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-      <input type="number" name="id" value="<?php echo $post["id"]; ?>" class="d-none">
+      <input type="number" name="id" value="<?php echo htmlspecialchars($post["id"]); ?>" class="d-none">
       <div class="form-group">
-        <input name="title" type="text" value="<?php echo $post["title"]; ?>" class="form-control">
+        <input name="title" type="text" value="<?php echo htmlspecialchars($post["title"]); ?>" class="form-control">
       </div>
       <div class="form-group">
         <textarea name="post" cols="30" rows="10" class="form-control"><?php echo $post["body"]; ?></textarea>
       </div>
       <input type="submit" id="submit" value="Save" class="btn btn-primary">
     </form>
+    
   </main>
-
 
 <?php includes_footer(); ?>

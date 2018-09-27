@@ -45,7 +45,7 @@ submit.addEventListener("click", function(e) {
         break;
       case "request_error":
         error = 2;
-        message = "Something went wrong! Send a email to contact@cms.com.";
+        message = "Something went wrong! Send a email to " + emailContact + ".";
         break;
       case "success":
         error = 0;
