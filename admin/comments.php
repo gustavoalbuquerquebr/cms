@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/comments.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
 
 !empty($_POST) && delete_comment_db();
 

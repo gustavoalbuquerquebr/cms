@@ -83,3 +83,19 @@ function generate_blogexcerpt_html($post) {
     return $post;
   }
 }
+
+
+function verify_user_db($author) {
+  $db_connection = new_db_connection();
+
+  $query = "SELECT id FROM users WHERE id = \"$author\"";
+
+  $result = mysqli_query($db_connection, $query);
+
+  $user_exist = mysqli_num_rows($result);
+
+  mysqli_free_result($result);
+  mysqli_close($db_connection);
+
+  return $user_exist;
+}

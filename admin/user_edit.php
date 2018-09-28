@@ -3,7 +3,9 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/user_edit.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
+
+empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
 // handle requests sent by edit links at "manage users" page
 if (!empty($_GET)) {
@@ -26,8 +28,6 @@ if (!empty($_POST)) {
   $user_id = $_POST["id"];
   $user_username = $_POST["username"];
 }
-
-empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
 ?>
 

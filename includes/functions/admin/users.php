@@ -21,7 +21,7 @@ function fetch_users_db() {
   $db_connection = new_db_connection();
 
   // fetch comments
-  $query = "SELECT * FROM users ORDER BY id";
+  $query = "SELECT * FROM users ORDER BY id DESC";
   $result = mysqli_query($db_connection, $query);
   $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

@@ -2,7 +2,6 @@
 
 ### TODO
 
-- Author page
 - Handle db errors
 - Manage categories page
 - Don't accept duplicate categorie names
@@ -23,6 +22,7 @@
 - HTML/text editor
 - Advanced navigation ("prev 1 2 3 next" instead of "prev next")
 - Search
+- Stats
 
 ---
 

@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/user_create.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
 
 // handle the submit of the form in this page
 if (!empty($_POST)) {
@@ -46,11 +46,11 @@ if (!empty($_POST)) {
 
       <form action="<?= $_SERVER["PHP_SELF"]; ?>" method="post">
         <div class="form-group">
-          <input type="text" name="username" placeholder="username" class="form-control">
+          <input type="text" name="username" placeholder="username" class="form-control" value="<?= $_POST["username"] ?? ""; ?>">
         </div>
         <div class="form-group">
           <div class="input-group">
-            <input id="password-input" type="password" name="password" placeholder="password" class="form-control">
+            <input id="password-input" type="password" name="password" placeholder="password" class="form-control" value="<?= $_POST["password"] ?? ""; ?>">
             <div class="input-group-append">
               <div class="input-group-text"><img id="pw-toggler" src="<?= make_url("assets/images/eye.svg", true); ?>" width=16></div>
             </div>

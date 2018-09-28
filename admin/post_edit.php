@@ -3,15 +3,25 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/post_edit.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
 
 empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
-!empty($_POST) && update_post_db();
+if(!empty($_GET)) {
+  $id = $_GET["id"];
+  
+  $post = fetch_post_db($id);
+}
 
-$id = $_GET["id"];
+if (!empty($_POST)){
+  $result = update_post_db();
 
-$post = fetch_post_db($id);
+  if($result[0] === "error") {
+    $db_update_error = $result[1];
+    $error_message = generate_errormessage_html($db_update_error);
+    $post = $_POST;
+  } 
+}
 
 ?>
 
@@ -30,6 +40,13 @@ $post = fetch_post_db($id);
 
   <h1 class="mb-4">Edit post</h1>
 
+    <?php if (isset($db_update_error)): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <?= $error_message; ?> Try again!
+    <button type="button" data-dismiss="alert" class="close">&times;</button>
+    </div>
+    <?php endif; ?>
+
     <a href="<?= make_url("post.php?id=", true) . $id; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
 
     <form method="post" action="<?= $_SERVER["PHP_SELF"]; ?>">
@@ -38,7 +55,7 @@ $post = fetch_post_db($id);
         <input name="title" type="text" value="<?= h($post["title"]); ?>" class="form-control">
       </div>
       <div class="form-group">
-        <textarea name="post" cols="30" rows="10" class="form-control"><?= $post["body"]; ?></textarea>
+        <textarea name="body" cols="30" rows="10" class="form-control"><?= $post["body"]; ?></textarea>
       </div>
       <input type="submit" id="submit" value="Save" class="btn btn-primary">
     </form>

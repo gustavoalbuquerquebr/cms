@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/posts.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
 
 !empty($_POST) && delete_post_db();
 

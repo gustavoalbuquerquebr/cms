@@ -3,17 +3,18 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/post_create.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
 
 // handle post creation
 if (!empty($_POST)) {
-  if ($new_post_id = insert_post_db()) {
-    // if creation successful, redirect to new post
-    redirect_url_newpostpage($new_post_id);
-  } else {
-    // if creation unsuccessful, render page with error alert
-    $db_insertion_error = true;
-  }
+  $result = insert_post_db();
+
+  // if creation successful, redirect to new post
+  $result[0] === "success" && redirect_url_newpostpage($result[1]) && exit;
+    
+  // if creation unsuccessful, render page with error alert
+    $db_insertion_error = $result[1];
+    $error_message = generate_errormessage_variable($db_insertion_error);
 }
 
 $categories = fetch_categories_db();
@@ -37,24 +38,24 @@ $categories = fetch_categories_db();
 
     <?php if (isset($db_insertion_error)): ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        There was a error. Try again!
+        <?= $error_message; ?> Try again!
         <button type="button" data-dismiss="alert" class="close">&times;</button>
       </div>
     <?php endif; ?>
 
     <form action="<?= $_SERVER["PHP_SELF"]; ?>" method="post">
       <div class="form-group">
-        <input type="text" name="title" placeholder="Title" class="form-control">
+        <input type="text" name="title" placeholder="Title" class="form-control" value="<?= $_POST["title"] ?? ""; ?>">
       </div>
       <div class="form-group">
         <select name="category" class="form-control">
           <?php foreach ($categories as $category): ?>
-            <option value="<?= $category["id"]; ?>" <?php if (strtolower($category["name"]) === "uncategorized") echo "selected"; ?>><?= $category["name"]; ?></option>
+            <option value="<?= $category["id"]; ?>" <?= select_option_html($category); ?>> <?= $category["name"]; ?></option>
           <?php endforeach; ?>
         </select>
       </div>
       <div class="form-group">
-        <textarea name="body" cols="30" rows="10" placeholder="Body" class="form-control"></textarea>
+        <textarea name="body" cols="30" rows="10" placeholder="Body" class="form-control"><?= $_POST["body"] ?? ""; ?></textarea>
       </div>
       <input type="submit" value="Create" class="btn btn-primary">
     </form>

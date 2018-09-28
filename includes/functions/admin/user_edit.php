@@ -60,7 +60,7 @@ function update_user_db() {
 
 
 function redirect_url_newuserpage($user_id) {
-  $url = make_url("user.php?id=", true) . $user_id;
+  $url = make_url("author.php?id=", true) . $user_id;
   header("Location: $url");
 }
 

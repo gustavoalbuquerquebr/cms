@@ -10,7 +10,7 @@ define("PROJECT_FOLDER_NAME", "cms");
 define("PROJECT_EMAIL", "cms@email.com");
 
 // how many posts are shown at homepage for each navigation page
-define("POSTS_PER_PAGE", 3);
+define("POSTS_PER_PAGE", 8);
 
 // approximate length of blog post excerpt at the homepage
 define("CHAR_PER_EXCERPT", 400);

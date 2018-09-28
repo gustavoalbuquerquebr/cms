@@ -57,7 +57,7 @@ function insert_user_db() {
 
 
 function redirect_url_newuserpage($user_id) {
-  $url = make_url("user.php?id=", true) . $user_id;
+  $url = make_url("author.php?id=", true) . $user_id;
   header("Location: $url");
 }
 
@@ -68,7 +68,7 @@ function generate_errormessage_variable($db_insertion_error) {
     break;
     case 2: return "Username already exists.";
     break;
-    case 3: return "Database connection failed.";
+    case 3: return "Database error.";
     break;
   }
 }

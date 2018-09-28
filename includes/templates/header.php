@@ -49,7 +49,7 @@ require_once make_url("includes/functions/templates/header.php");
             <li class="nav-item dropdown">
               <a href="<?= make_url("admin/index.php", true); ?>" class="nav-link dropdown-toggle <?= verify_iscurrentpage_url("admin"); ?>" href="#" role="button" data-toggle="dropdown">Admin</a>
               <div class="dropdown-menu">
-                <a href="<?= make_url("user.php?id=", true) . $_SESSION["session_user"]; ?>" class="dropdown-item"><?= fetch_currentusername_db(); ?></a>
+                <a href="<?= make_url("author.php?id=", true) . $_SESSION["session_user"]; ?>" class="dropdown-item"><?= fetch_currentusername_db(); ?></a>
                 <div class="dropdown-divider"></div>
                 <a href="<?= make_url("admin/", true); ?>" class="dropdown-item font-weight-bold">Dashboard</a>
                 <a href="<?= make_url("admin/posts.php", true); ?>" class="dropdown-item pl-5">Posts</a>

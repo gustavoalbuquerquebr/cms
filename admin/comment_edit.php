@@ -3,7 +3,10 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/comment_edit.php");
 
-!is_logged() && redirect_to_login();
+!is_logged() && redirect_to_login() && exit;
+
+// if no comment is send in the request, redirect to dashboard page
+empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
 // handle request from edit links at "manage comments" page
 if (!empty($_GET)) {
@@ -13,16 +16,19 @@ if (!empty($_GET)) {
 
 // handle submition from this page form
 if (!empty($_POST)) {
-  if (update_comment_db() === "success") {
-    redirect_url_postpage() && exit;
+
+  $result = update_comment_db();
+
+  if ($result[0] === "success") {
+    $success_message = "Comment updated!";
+    $comment = $_POST;
+
   } else {
-    // if submission fail, this page will be rendered with error alert
-    $error = true;
+    $db_update_error = $result[1];
+    $error_message = generate_errormessage_variable($db_update_error) . " Try again!";
+    $comment = $_POST;
   }
 }
-
-// if no comment is send in the request, redirect to dashboard page
-empty($_GET) && empty($_POST) && redirect_url_dashboard();
 
 ?>
 
@@ -41,9 +47,9 @@ empty($_GET) && empty($_POST) && redirect_url_dashboard();
 
     <h1 class="mb-4">Edit comment</h1>
 
-    <?php if (isset($error)): ?>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Something went wrong. Try again!
+    <?php if (!empty($_POST)): ?>
+      <div class="alert alert-dismissible fade show <?= ($db_update_error) ? "alert-danger" : "alert-success"; ?>" role="alert">
+        <?= isset($db_update_error) ? $error_message : $success_message; ?>
       <button type="button" data-dismiss="alert" class="close">&times;</button>
       </div>
     <?php endif; ?>
@@ -55,13 +61,21 @@ empty($_GET) && empty($_POST) && redirect_url_dashboard();
         <input name="id" type="text" value="<?= $comment["id"]; ?>" class="form-control">
       </div>
       <div class="form-group d-none">
-        <input name="post_id" type="number" value="<?= $comment["post"]; ?>" class="form-control">
+        <input name="post" type="number" value="<?= $comment["post"]; ?>" class="form-control">
       </div>
+      <!-- two title form-group, one display and the other submit -->
       <div class="form-group">
         <input type="text" value="<?= h($comment["title"]); ?>" class="form-control" disabled>
       </div>
+      <div class="form-group d-none">
+        <input name="title" type="text" value="<?= h($comment["title"]); ?>" class="form-control">
+      </div>
+      <!-- two author form-group, one display and the other submit -->
       <div class="form-group">
         <input type="text" value="<?= h($comment["author"]); ?>" class="form-control" disabled>
+      </div>
+      <div class="form-group d-none">
+        <input name="author" type="text" value="<?= h($comment["author"]); ?>" class="form-control">
       </div>
       <div class="form-group">
         <textarea name="body" cols="30" rows="10" class="form-control"><?= h($comment["body"]); ?></textarea>

@@ -3,9 +3,12 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/author.php");
 
-empty($_GET) && redirect_url_homepage();
+empty($_GET) && redirect_url_homepage() && exit;
 
 $author = $_GET["id"];
+
+// if user doesn't exist, redirect to homepage
+!verify_user_db($author) && redirect_url_homepage() && exit;
 
 // navigation variables
 $current_page = $_GET["page"] ?? 1;
@@ -27,11 +30,17 @@ $posts = fetch_posts_db($author, POSTS_PER_PAGE, $query_offset);
 
 <?php includes_header("Homepage"); ?>
 
+
   <main class="container mb-5">
     <div class="row">
     
       <section class="col-md-8">
 
+      <!-- If there isn't posts output "No post found" -->
+      <?php if (!$posts_total): ?>
+        <h1 class="mb-5">No posts found.</h1>
+      <?php else: ?>
+        <!-- if there is posts, iterate and output them -->
         <?php foreach ($posts as $post): ?>
           <article>
             <h1><?= h($post["title"]); ?></h1>
@@ -40,13 +49,13 @@ $posts = fetch_posts_db($author, POSTS_PER_PAGE, $query_offset);
             <p class=""><a href="<?= generate_postlink_html($post["id"]); ?>">Read More &raquo;</a></p>
           </article>
           <hr class="mb-5">
+          <nav class="text-center mb-5 mb-md-0">
+            <a href="<?= generate_prevlink_ui($author, $current_page); ?>"  class="btn btn-sm <?= disable_previouslink_ui($current_page); ?>">&laquo; Previous</a>
+            <a href="<?= generate_nextlink_ui($author, $current_page); ?>" class="btn btn-sm <?= disable_nextlink_ui($current_page, $pages_total); ?>">Next &raquo;</a>
+          </nav>
         <?php endforeach; ?>
+      <?php endif; ?>
 
-        <nav class="text-center mb-5 mb-md-0">
-          <a href="<?= generate_prevlink_ui($author, $current_page); ?>"  class="btn btn-sm <?= disable_previouslink_ui($current_page); ?>">&laquo; Previous</a>
-          <a href="<?= generate_nextlink_ui($author, $current_page); ?>" class="btn btn-sm <?= disable_nextlink_ui($current_page, $pages_total); ?>">Next &raquo;</a>
-        </nav>
-        
       </section>
 
       <?php require_once make_url("includes/templates/aside.php"); ?>
