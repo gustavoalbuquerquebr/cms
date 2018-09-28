@@ -29,7 +29,7 @@ function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.title, posts.body, users.username as author
+  $query = "SELECT posts.id, posts.date, posts.author, posts.title, posts.body, users.username as username
             FROM posts
             INNER JOIN users
             ON posts.author = users.id
@@ -80,7 +80,7 @@ function getid_nextpost_db($posts_id, $current_position) {
 
 
 function disable_prevpost_ui($current_position) {
-  return $current_position === 0 ? "disabled" : "btn-primary";
+  return ($current_position === 0) ? "disabled" : "btn-primary";
 }
 
 

@@ -41,7 +41,7 @@ function fetch_username_db($session_user) {
 
 
 function generate_pagetitle_html($page_title) {
-  return !empty($page_title) ? PROJECT_NAME . " - $page_title" : PROJECT_NAME;
+  return (!empty($page_title)) ? PROJECT_NAME . " - $page_title" : PROJECT_NAME;
 }
 
 

@@ -1,10 +1,15 @@
 <?php
 
-function count_posts_db() {
+function redirect_url_homepage() {
+  $url = make_url("", true);
+  header("Location: $url");
+}
+
+function count_posts_db($author) {
   
   $db_connection = new_db_connection();
 
-  $query = "SELECT COUNT(id) FROM posts";
+  $query = "SELECT COUNT(id) FROM posts WHERE author = \"$author\"";
 
   $result = mysqli_query($db_connection, $query);
   $posts_total = mysqli_fetch_row($result)[0];
@@ -16,15 +21,16 @@ function count_posts_db() {
 }
 
 
-function fetch_posts_db($posts_per_page, $query_offset) {
+function fetch_posts_db($author, $posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author, posts.title,
-            posts.body, users.username as username
+  $query = "SELECT posts.id, posts.date, posts.title,
+            posts.body, users.username as author
             FROM posts
             INNER JOIN users
             ON posts.author = users.id
+            WHERE posts.author = \"$author\"
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page
             OFFSET $query_offset";
@@ -39,13 +45,13 @@ function fetch_posts_db($posts_per_page, $query_offset) {
 }
 
 
-function generate_nextlink_ui($current_page) {
-  return "$_SERVER[PHP_SELF]?page=" . ($current_page + 1);
+function generate_nextlink_ui($author, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page + 1);
 }
 
 
-function generate_prevlink_ui($current_page) {
-  return "$_SERVER[PHP_SELF]?page=" . ($current_page - 1);
+function generate_prevlink_ui($author, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page - 1);
 }
 
 

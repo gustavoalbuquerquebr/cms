@@ -9,7 +9,6 @@
 - Category page
 - Pages page
 - Add email column user
-- DB errors alerts
 - Archive pages (posts by date)
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users

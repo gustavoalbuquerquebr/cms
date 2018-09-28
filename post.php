@@ -33,7 +33,7 @@ $comments = fetch_comments_db($current_post);
   <main class="container mb-5">
     <section class="mb-5">
       <h1><?= h($post["title"]); ?></h1>
-      <h6 class="small mb-4"><strong><?= h($post["author"]); ?></strong> - <?= $post["date"]; ?></h6>
+      <h6 class="small mb-4"><a href="<?= make_url("author.php?id=", true) . $post["author"]; ?>" class="font-weight-bold"><?= h($post["username"]); ?></a> - <?= $post["date"]; ?></h6>
       <p><?= convert_nl2ptag_ui(h($post["body"])); ?></p>
     </section>
 
