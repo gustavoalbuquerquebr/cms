@@ -64,7 +64,7 @@ function make_url($path, $client_side = false) {
 
 function is_logged() {
   !isset($_SESSION) && session_start();
-  return isset($_SESSION["session_user"]);
+  return isset($_SESSION["logged_user"]);
 }
 
 function redirect_to_login() {

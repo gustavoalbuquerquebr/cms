@@ -72,3 +72,11 @@ function generate_errormessage_variable($db_insertion_error) {
     break;
   }
 }
+
+
+function generate_successmessage_variable($new_user_id, $new_user_name) {
+  $link = make_url("author.php?id=", true) . $new_user_id;
+  $message = "User <a href=\"$link\" class=\"alert-link\">$new_user_name</a> created!";
+
+  return $message;
+}

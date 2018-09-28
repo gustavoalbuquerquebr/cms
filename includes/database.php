@@ -37,7 +37,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // // CATEGORIES
 // $categories = "CREATE TABLE categories(
 //   id INT PRIMARY KEY AUTO_INCREMENT,
-//   name VARCHAR(25) NOT NULL
+//   name VARCHAR(25) NOT NULL DEFAULT 1
 // )";
 
 // // POSTS FOREIGN KEY
@@ -77,9 +77,11 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // mysqli_query($db_connection, $query);
 
 // CATEGORIES
-// $subjects = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-// foreach ($subjects as $sub) {
-//   $query = "INSERT INTO categories (name) VALUES (\"$sub\")";
+// uncategorized with id of 1 is set as default at categories table
+// $subjects = ["uncategorized", one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+// foreach ($subjects as $key => $sub) {
+//   $id = $key + 1;
+//   $query = "INSERT INTO categories (id, name) VALUES (\"$id\", \"$sub\")";
 //   mysqli_query($db_connection, $query);
 // }
 

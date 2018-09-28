@@ -5,6 +5,9 @@ require_once make_url("includes/functions/contact.php");
 
 !empty($_POST) && insert_contact_db() && exit;
 
+// JS output
+$script_link = make_url("assets/js/contact.js", true);
+
 ?>
 
 
@@ -48,6 +51,6 @@ require_once make_url("includes/functions/contact.php");
     let emailContact = "<?= PROJECT_EMAIL; ?>";
   </script>
 
-  <script src="<?= make_url("assets/js/contact.js", true); ?>"></script>
+  <script src="<?= $script_link ?>"></script>
 
 <?php includes_footer(); ?>

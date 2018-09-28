@@ -9,6 +9,12 @@ require_once make_url("includes/functions/admin/posts.php");
 
 $posts = fetch_posts_db();
 
+// HTML/JS output
+$dashboard_link = make_url("admin/", true);
+$create_post_link = make_url("admin/post_create.php", true);
+$self = $_SERVER["PHP_SELF"];
+$script_link = make_url("assets/js/admin/posts.js", true);
+
 ?>
 
 
@@ -38,14 +44,14 @@ $posts = fetch_posts_db();
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= $dashboard_link; ?>">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Posts</li>
       </ol>
     </nav>
 
     <h1 class="mb-4">Manage posts</h1>
 
-    <a href="<?= make_url("admin/post_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
+    <a href="<?= $create_post_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
 
     <div class="table-responsive">
         <table class="table table-hover" style="width:100%; text-align:center;">
@@ -62,21 +68,22 @@ $posts = fetch_posts_db();
               <tr>
                 <td><?= $post["id"]; ?></td>
                 <td><?= $post["date"]; ?></td>
-                <td><a href="<?= make_url("author.php?id=", true) . $post["authorid"]; ?>" target="_blank"><?= h($post["authorname"]); ?></a></td>
-                <td><a href="<?= make_url("post.php?id=", true) . $post["id"]; ?>" target="_blank"><?= h($post["title"]); ?></a></td>
-                <td><a href="<?= generate_link_html($post["id"]); ?>"  class="edit-link"></a></td>
+                <td><a href="<?= generate_authorpage_html($post["author_id"]); ?>" target="_blank"><?= h($post["author_name"]); ?></a></td>
+                <td><a href="<?= generate_postpage_html($post["id"]); ?>" target="_blank"><?= h($post["title"]); ?></a></td>
+                <td><a href="<?= generate_editlink_html($post["id"]); ?>"  class="edit-link"></a></td>
                 <td class="text-danger" data-id="<?= $post["id"]; ?>"><span class="delete-link"></span></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
     </div>
+
   </main>
 
   <script>
-    let self = "<?= $_SERVER["PHP_SELF"]?>";
+    let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= make_url("assets/js/admin/posts.js", true); ?>"></script>
+  <script src="<?= $script_link; ?>"></script>
 
 <?php includes_footer(); ?>

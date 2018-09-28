@@ -9,6 +9,10 @@ require_once make_url("includes/functions/admin/comments.php");
 
 $comments = fetch_comments_db();
 
+// JS output
+$self = $_SERVER["PHP_SELF"];
+$script_link = make_url("assets/js/admin/comments.js", true);
+
 ?>
 
 
@@ -60,10 +64,10 @@ $comments = fetch_comments_db();
         <?php foreach ($comments as $comment): ?>
           <tr>
             <td><?= $comment["id"] ?></td>
-            <td><a href="<?= make_url("post.php?id=", true) . $comment["post"]; ?>" target="_blank"><?= $comment["post"]; ?></a></td>
+            <td><a href="<?= generate_postlink_html($comment["post"]); ?>" target="_blank"><?= $comment["post"]; ?></a></td>
             <td><?= h($comment["author"]); ?></td>
             <td><?= h($comment["body"]); ?></td>
-            <td data-id=<?= $comment["id"] ?>><a href="<?= make_url("admin/comment_edit.php?id=", true). $comment["id"]; ?>" class="edit-link"></a></td>
+            <td data-id=<?= $comment["id"] ?>><a href="<?= generate_editlink_html($comment["id"]); ?>" class="edit-link"></a></td>
             <td class="text-danger" data-id=<?= $comment["id"] ?>><span class="delete-link"></span></td>
           </tr>
         <?php endforeach; ?>
@@ -72,9 +76,9 @@ $comments = fetch_comments_db();
   </main>
 
   <script>
-    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= make_url("assets/js/admin/comments.js", true); ?>"></script>
+  <script src="<?= $script_link ?>"></script>
 
 <?php includes_footer(); ?>

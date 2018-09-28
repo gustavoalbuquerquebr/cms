@@ -26,18 +26,10 @@ function verify_iscurrentpage_url($menu_item) {
 }
 
 
-function fetch_username_db($session_user) {
+// function fetch_username_db($session_user) {
 
-  $db_connection = new_db_connection();
 
-  $query = "SELECT username FROM users WHERE id = '" . $session_user . "'";
-
-  $result = mysqli_query($db_connection, $query);
-
-  $username = mysqli_fetch_assoc($result)["username"];
-
-  return $username;
-}
+// }
 
 
 function generate_pagetitle_html($page_title) {
@@ -50,6 +42,15 @@ function generate_globalcsslink_html() {
 }
 
 
-function fetch_currentusername_db() {
-  return fetch_username_db($_SESSION["session_user"]) ?? "user deleted!";
+function fetch_loggedusername_db() {
+
+  $db_connection = new_db_connection();
+
+  $query = "SELECT username FROM users WHERE id = '" . $_SESSION["logged_user"] . "'";
+
+  $result = mysqli_query($db_connection, $query);
+
+  $username = mysqli_fetch_assoc($result)["username"];
+
+  return $username ?? "user deleted!";
 }

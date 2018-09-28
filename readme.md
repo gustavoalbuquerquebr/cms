@@ -2,13 +2,13 @@
 
 ### TODO
 
-- Handle db errors
 - Manage categories page
 - Don't accept duplicate categorie names
 - Category page
 - Pages page
 - Add email column user
 - Archive pages (posts by date)
+- post/user/author/category pages to show name at url instead of id number
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users
 - Enable javascript form validation
@@ -23,6 +23,7 @@
 - Advanced navigation ("prev 1 2 3 next" instead of "prev next")
 - Search
 - Stats
+- Account levels (admin, author...);
 
 ---
 

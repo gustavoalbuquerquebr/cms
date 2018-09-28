@@ -25,7 +25,7 @@ function insert_post_db() {
 
   empty($_SESSION) && session_start();
 
-  $user = mysqli_real_escape_string($db_connection, $_SESSION["session_user"]);
+  $user = mysqli_real_escape_string($db_connection, $_SESSION["logged_user"]);
   $category = mysqli_real_escape_string($db_connection, $_POST["category"]);
   $title = mysqli_real_escape_string($db_connection, $_POST["title"]);
   $body = mysqli_real_escape_string($db_connection, $_POST["body"]);

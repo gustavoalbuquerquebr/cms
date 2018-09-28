@@ -25,11 +25,15 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.title,
-            posts.body, users.username as author
+  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+            posts.category as category_id, posts.title,
+            posts.body, users.username as author_name,
+            categories.name as category_name
             FROM posts
             INNER JOIN users
             ON posts.author = users.id
+            INNER JOIN categories
+            ON posts.category = categories.id
             WHERE posts.author = \"$author\"
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page
@@ -45,22 +49,22 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
 }
 
 
-function generate_nextlink_ui($author, $current_page) {
+function generate_nextlink_variable($author, $current_page) {
   return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page + 1);
 }
 
 
-function generate_prevlink_ui($author, $current_page) {
+function generate_prevlink_variable($author, $current_page) {
   return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page - 1);
 }
 
 
-function disable_nextlink_ui($current_page, $pages_total) {
+function disable_nextlink_variable($current_page, $pages_total) {
   return ($current_page == $pages_total) ? "disabled" : "btn-primary";
 }
 
 
-function disable_previouslink_ui($current_page) {
+function disable_prevlink_variable($current_page) {
   return ($current_page == 1) ? "disabled" : "btn-primary";
 }
 
@@ -98,4 +102,30 @@ function verify_user_db($author) {
   mysqli_close($db_connection);
 
   return $user_exist;
+}
+
+
+function fetch_authorusername_db($author) {
+  $db_connection = new_db_connection();
+
+  $query = "SELECT username FROM users WHERE id = \"$author\"";
+
+  $result = mysqli_query($db_connection, $query);
+
+  $username = mysqli_fetch_assoc($result)["username"];
+
+  mysqli_free_result($result);
+  mysqli_close($db_connection);
+
+  return $username;
+}
+
+
+function generate_categorylink_html($category_id) {
+  return make_url("category.php?id=" . $category_id, true);
+}
+
+
+function generate_authorlink_html($author) {
+  return make_url("author.php?id=", true) . $author;
 }

@@ -31,3 +31,13 @@ function fetch_comments_db() {
 
   return $comments;
 }
+
+
+function generate_postlink_html($post) {
+  return make_url("post.php?id=", true) . $post;
+}
+
+
+function generate_editlink_html($comment_id) {
+  return make_url("admin/comment_edit.php?id=", true). $comment_id;
+}

@@ -30,6 +30,15 @@ if (!empty($_POST)) {
   }
 }
 
+// HTML output
+$post_link = generate_postlink_html($comment["post"]);
+$self = $_SERVER["PHP_SELF"];
+$id = $comment["id"];
+$post = $comment["post"];
+$title = h($comment["title"]);
+$author = h($comment["author"]);
+$body = h($comment["body"]);
+
 ?>
 
 
@@ -54,31 +63,31 @@ if (!empty($_POST)) {
       </div>
     <?php endif; ?>
 
-    <a href="<?= generate_postlink_html($comment["post"]); ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
+    <a href="<?= $post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
 
-    <form method="post" action="<?= $_SERVER["PHP_SELF"]; ?>">
+    <form method="post" action="<?= $self; ?>">
       <div class="form-group d-none">
-        <input name="id" type="text" value="<?= $comment["id"]; ?>" class="form-control">
+        <input name="id" type="text" value="<?= $id; ?>" class="form-control">
       </div>
       <div class="form-group d-none">
-        <input name="post" type="number" value="<?= $comment["post"]; ?>" class="form-control">
+        <input name="post" type="number" value="<?= $post; ?>" class="form-control">
       </div>
       <!-- two title form-group, one display and the other submit -->
       <div class="form-group">
-        <input type="text" value="<?= h($comment["title"]); ?>" class="form-control" disabled>
+        <input type="text" value="<?= $title; ?>" class="form-control" disabled>
       </div>
       <div class="form-group d-none">
-        <input name="title" type="text" value="<?= h($comment["title"]); ?>" class="form-control">
+        <input name="title" type="text" value="<?= $title; ?>" class="form-control">
       </div>
       <!-- two author form-group, one display and the other submit -->
       <div class="form-group">
-        <input type="text" value="<?= h($comment["author"]); ?>" class="form-control" disabled>
+        <input type="text" value="<?= $author; ?>" class="form-control" disabled>
       </div>
       <div class="form-group d-none">
-        <input name="author" type="text" value="<?= h($comment["author"]); ?>" class="form-control">
+        <input name="author" type="text" value="<?= $author; ?>" class="form-control">
       </div>
       <div class="form-group">
-        <textarea name="body" cols="30" rows="10" class="form-control"><?= h($comment["body"]); ?></textarea>
+        <textarea name="body" cols="30" rows="10" class="form-control"><?= $body; ?></textarea>
       </div>
       <input type="submit" id="submit" value="Save" class="btn btn-primary">
     </form>

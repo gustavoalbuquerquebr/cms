@@ -23,7 +23,8 @@ function fetch_posts_db() {
   $db_connection = new_db_connection();
 
   // fetch posts
-  $query = "SELECT posts.id, posts.date, posts.title, posts.author AS authorid, users.username AS authorname
+  $query = "SELECT posts.id, posts.date, posts.title,
+            posts.author AS author_id, users.username AS author_name
             FROM posts
             INNER JOIN users ON posts.author = users.id
             ORDER BY id DESC";
@@ -37,6 +38,16 @@ function fetch_posts_db() {
   return $posts;
 }
 
-function generate_link_html($id) {
-  echo "post_edit.php?id=" . $id;
+function generate_editlink_html($id) {
+  return "post_edit.php?id=" . $id;
+}
+
+
+function generate_authorpage_html($author_id) {
+  return make_url("author.php?id=", true) . $author_id;
+}
+
+
+function generate_postpage_html($post_id) {
+  return make_url("post.php?id=", true) . $post_id;
 }

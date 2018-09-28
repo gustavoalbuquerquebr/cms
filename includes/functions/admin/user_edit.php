@@ -67,13 +67,15 @@ function redirect_url_newuserpage($user_id) {
 
 function generate_errormessage_variable($db_insertion_error) {
   switch ($db_insertion_error){
-    case 1: return "Username and password must be at least 8 characters long.";
+    case 1: $message = "Username and password must be at least 8 characters long.";
     break;
-    case 2: return "Username already exists.";
+    case 2: $message = "Username already exists.";
     break;
-    case 3: return "Database connection failed.";
+    case 3: $message = "Database connection failed.";
     break;
   }
+
+  return $message . " Try again!";
 }
 
 

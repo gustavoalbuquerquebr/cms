@@ -18,6 +18,12 @@ $query_offset = $current_page * POSTS_PER_PAGE - POSTS_PER_PAGE;
 // fetch posts for current page
 $posts = fetch_posts_db(POSTS_PER_PAGE, $query_offset);
 
+// HTML output
+$prevlink = generate_prevlink_variable($current_page);
+$nextlink = generate_nextlink_variable($current_page);
+$disable_prevlink = disable_prevlink_variable($current_page);
+$disable_nextlink = disable_nextlink_variable($current_page, $pages_total);
+
 ?>
 
 
@@ -36,15 +42,19 @@ $posts = fetch_posts_db(POSTS_PER_PAGE, $query_offset);
           <?php foreach ($posts as $post): ?>
             <article>
               <h1><?= h($post["title"]); ?></h1>
-              <h6 class="small"><a href="<?= make_url("author.php?id=", true) . $post["author"]; ?>" class="font-weight-bold"><?= h($post["username"]); ?></a> - <?= $post["date"]; ?></h6>
+                <h6 class="small">
+                  <a href="<?= generate_categorylink_html($post["category_id"]); ?>" class="badge badge-primary mr-1 category_badge"><?= h($post["category_name"]); ?></a>
+                  <a href="<?= generate_authorlink_html($post["author_id"]); ?>" class="font-weight-bold"><?= h($post["author_name"]); ?></a>
+                  <span> - <?= $post["date"]; ?></span>
+                </h6>
               <p><?= h(generate_blogexcerpt_html($post["body"])); ?></p>
               <p class=""><a href="<?= generate_postlink_html($post["id"]); ?>">Read More &raquo;</a></p>
             </article>
             <hr class="mb-5">
           <?php endforeach; ?>
           <nav class="text-center mb-5 mb-md-0">
-            <a href="<?= generate_prevlink_ui($current_page); ?>"  class="btn btn-sm <?= disable_previouslink_ui($current_page); ?>">&laquo; Previous</a>
-            <a href="<?= generate_nextlink_ui($current_page); ?>" class="btn btn-sm <?= disable_nextlink_ui($current_page, $pages_total); ?>">Next &raquo;</a>
+            <a href="<?= $prevlink; ?>"  class="btn btn-sm <?= $disable_prevlink; ?>">&laquo; Previous</a>
+            <a href="<?= $nextlink; ?>" class="btn btn-sm <?= $disable_nextlink; ?>">Next &raquo;</a>
           </nav>
         <?php endif; ?>
         

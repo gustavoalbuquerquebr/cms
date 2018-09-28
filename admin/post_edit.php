@@ -8,9 +8,7 @@ require_once make_url("includes/functions/admin/post_edit.php");
 empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
 if(!empty($_GET)) {
-  $id = $_GET["id"];
-  
-  $post = fetch_post_db($id);
+  $post = fetch_post_db();
 }
 
 if (!empty($_POST)){
@@ -18,10 +16,17 @@ if (!empty($_POST)){
 
   if($result[0] === "error") {
     $db_update_error = $result[1];
-    $error_message = generate_errormessage_html($db_update_error);
+    $error_message = generate_errormessage_html($db_update_error) . " Try again";
     $post = $_POST;
   } 
 }
+
+// HTML output
+$id = $_GET["id"] ?? $post["id"];
+$view_post_link = make_url("post.php?id=", true) . $id;
+$self = $_SERVER["PHP_SELF"];
+$title = h($post["title"]);
+$body = $post["body"];
 
 ?>
 
@@ -42,20 +47,20 @@ if (!empty($_POST)){
 
     <?php if (isset($db_update_error)): ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <?= $error_message; ?> Try again!
+      <?= $error_message; ?>
     <button type="button" data-dismiss="alert" class="close">&times;</button>
     </div>
     <?php endif; ?>
 
-    <a href="<?= make_url("post.php?id=", true) . $id; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
+    <a href="<?= $view_post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
 
-    <form method="post" action="<?= $_SERVER["PHP_SELF"]; ?>">
-      <input type="number" name="id" value="<?= $post["id"]; ?>" class="d-none">
+    <form method="post" action="<?= $self; ?>">
+      <input type="number" name="id" value="<?= $id; ?>" class="d-none">
       <div class="form-group">
-        <input name="title" type="text" value="<?= h($post["title"]); ?>" class="form-control">
+        <input name="title" type="text" value="<?= $title; ?>" class="form-control">
       </div>
       <div class="form-group">
-        <textarea name="body" cols="30" rows="10" class="form-control"><?= $post["body"]; ?></textarea>
+        <textarea name="body" cols="30" rows="10" class="form-control"><?= $body; ?></textarea>
       </div>
       <input type="submit" id="submit" value="Save" class="btn btn-primary">
     </form>

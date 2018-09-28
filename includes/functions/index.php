@@ -20,11 +20,15 @@ function fetch_posts_db($posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author, posts.title,
-            posts.body, users.username as username
+  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+            posts.category as category_id, posts.title,
+            posts.body, users.username as author_name,
+            categories.name as category_name
             FROM posts
             INNER JOIN users
             ON posts.author = users.id
+            INNER JOIN categories
+            ON posts.category = categories.id
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page
             OFFSET $query_offset";
@@ -39,22 +43,22 @@ function fetch_posts_db($posts_per_page, $query_offset) {
 }
 
 
-function generate_nextlink_ui($current_page) {
+function generate_nextlink_variable($current_page) {
   return "$_SERVER[PHP_SELF]?page=" . ($current_page + 1);
 }
 
 
-function generate_prevlink_ui($current_page) {
+function generate_prevlink_variable($current_page) {
   return "$_SERVER[PHP_SELF]?page=" . ($current_page - 1);
 }
 
 
-function disable_nextlink_ui($current_page, $pages_total) {
+function disable_nextlink_variable($current_page, $pages_total) {
   return ($current_page == $pages_total) ? "disabled" : "btn-primary";
 }
 
 
-function disable_previouslink_ui($current_page) {
+function disable_prevlink_variable($current_page) {
   return ($current_page == 1) ? "disabled" : "btn-primary";
 }
 
@@ -76,4 +80,14 @@ function generate_blogexcerpt_html($post) {
   } else {
     return $post;
   }
+}
+
+
+function generate_categorylink_html($category_id) {
+  return make_url("category.php?id=" . $category_id, true);
+}
+
+
+function generate_authorlink_html($author) {
+  return make_url("author.php?id=", true) . $author;
 }

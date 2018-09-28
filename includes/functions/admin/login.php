@@ -26,7 +26,7 @@ function verify_auth_db() {
     
   } else {
     session_start();
-    $_SESSION["session_user"] = $user["id"];
+    $_SESSION["logged_user"] = $user["id"];
     header("Location: index.php");
   }
 }

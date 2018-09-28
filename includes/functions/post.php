@@ -29,10 +29,15 @@ function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author, posts.title, posts.body, users.username as username
+  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+            posts.category as category_id, posts.title,
+            posts.body, users.username as author_name,
+            categories.name as category_name
             FROM posts
             INNER JOIN users
             ON posts.author = users.id
+            INNER JOIN categories
+            ON posts.category = categories.id
             WHERE posts.id = \"$current_post\"";
 
   $result = mysqli_query($db_connection, $query);
@@ -79,12 +84,12 @@ function getid_nextpost_db($posts_id, $current_position) {
 }
 
 
-function disable_prevpost_ui($current_position) {
+function disable_prevpost_html($current_position) {
   return ($current_position === 0) ? "disabled" : "btn-primary";
 }
 
 
-function disable_nextpost_ui($posts_id, $current_position) {
+function disable_nextpost_html($posts_id, $current_position) {
   return $current_position === count($posts_id) - 1 ? "disabled" : "btn-primary";
 }
 
@@ -107,6 +112,23 @@ function fetch_comments_db($current_post) {
 }
 
 
-function convert_nl2ptag_ui($post) {
+function convert_nl2ptag_html($post) {
   return str_replace(["\n", "\r", "\r\n"], "</p><p>", $post);
+}
+
+
+function generate_categorylink_html($category_id) {
+  return make_url("category.php?id=" . $category_id, true);
+}
+
+
+function generate_authorlink_html($author) {
+  return make_url("author.php?id=", true) . $author;
+}
+
+
+function verify_ifmoderated_db($moderated) {
+  if($moderated) { 
+    return " (moderated)"; 
+  };
 }

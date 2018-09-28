@@ -7,11 +7,6 @@ require_once make_url("includes/functions/admin/user_edit.php");
 
 empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
-// handle requests sent by edit links at "manage users" page
-if (!empty($_GET)) {
-$user_id = $_GET["id"];
-$user_username = $_GET["username"];
-}
 
 // handle the submit of the form in this page
 if (!empty($_POST)) {
@@ -23,11 +18,18 @@ if (!empty($_POST)) {
   
   // if user update wasn't successful, render this page with error warning
   $db_insertion_error = $result[1];
-  $error_message = generate_errormessage_variable($db_insertion_error);
-  // and continue trying to edit the same user
-  $user_id = $_POST["id"];
-  $user_username = $_POST["username"];
 }
+
+// HTML/JS output
+$error_message = isset($db_insertion_error) ? generate_errormessage_variable($db_insertion_error) : "";
+$user_id = $_GET["id"] ?? $_POST["id"];
+$user_username = $_GET["username"] ?? $_POST["username"];
+$dashboard_link = make_url("admin/", true);
+$users_link =  make_url("admin/users.php", true);
+$self = $_SERVER["PHP_SELF"];
+$script_link = make_url("assets/js/admin/user_edit.js", true);
+$eye_icon = make_url("assets/images/eye.svg", true);
+$eye_icon_slash = make_url("assets/images/eye-slash.svg", true);
 
 ?>
 
@@ -38,8 +40,8 @@ if (!empty($_POST)) {
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="<?= make_url("admin/users.php", true); ?>">Users</a></li>
+        <li class="breadcrumb-item"><a href="<?= $dashboard_link; ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= $users_link; ?>">Users</a></li>
         <li class="breadcrumb-item active" aria-current="page">Edit user</li>
       </ol>
     </nav>
@@ -50,12 +52,12 @@ if (!empty($_POST)) {
 
       <?php if (isset($db_insertion_error)): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?= $error_message; ?> Try again!
+          <?= $error_message; ?>
           <button type="button" data-dismiss="alert" class="close">&times;</button>
         </div>
       <?php endif; ?>
 
-      <form action="<?= $_SERVER["PHP_SELF"]; ?>" method="post">
+      <form action="<?= $self; ?>" method="post">
           <div class="form-group d-none">
             <input type="number" name="id" placeholder="id" class="form-control" value="<?= $user_id; ?>">
           </div>
@@ -66,7 +68,7 @@ if (!empty($_POST)) {
           <div class="input-group">
             <input id="password-input" type="password" name="password" placeholder="password" class="form-control">
             <div class="input-group-append">
-              <div class="input-group-text"><img id="pw-toggler" src="<?= make_url("assets/images/eye.svg", true); ?>" width=16></div>
+              <div class="input-group-text"><img id="pw-toggler" src="<?= $eye_icon; ?>" width=16></div>
             </div>
           </div>
             <small class="form-text pl-2">To let the password unchanged, leave the field above blank.</small>
@@ -79,10 +81,10 @@ if (!empty($_POST)) {
   </main>
 
   <script>
-    let eye = "<?= make_url("assets/images/eye.svg", true); ?>";
-    let eyeSlash = "<?= make_url("assets/images/eye-slash.svg", true); ?>";
+    let eye = "<?= $eye_icon; ?>";
+    let eyeSlash = "<?= $eye_iconslash; ?>";
   </script>
 
-  <script src="<?= make_url("assets/js/admin/user_edit.js", true); ?>"></script>
+  <script src="<?= $script_link; ?>"></script>
 
 <?php includes_footer(); ?>

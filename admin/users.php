@@ -9,6 +9,13 @@ require_once make_url("includes/functions/admin/users.php");
 
 $users = fetch_users_db();
 
+
+// HTML output
+$dashboard_link = make_url("admin/", true);
+$create_user_link = make_url("admin/user_create.php", true);
+$self = $_SERVER["PHP_SELF"];
+$script_link = make_url("assets/js/admin/users.js", true);
+
 ?>
 
 
@@ -38,14 +45,14 @@ $users = fetch_users_db();
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= make_url("admin/", true); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<?= $dashboard_link; ?>">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Users</li>
       </ol>
     </nav>
 
     <h1 class="mb-4">Manage users</h1>
 
-    <a href="<?= make_url("admin/user_create.php", true); ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
+    <a href="<?= $create_user_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
 
     <div class="table-responsive">
       <table class="table table-hover" style="width:100%; text-align:center;">
@@ -75,9 +82,9 @@ $users = fetch_users_db();
   </main>
 
   <script>
-    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= make_url("assets/js/admin/users.js", true); ?>"></script>
+  <script src="<?= $script_link; ?>"></script>
 
 <?php includes_footer(); ?>

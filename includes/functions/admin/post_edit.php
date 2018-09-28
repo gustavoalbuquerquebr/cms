@@ -1,6 +1,8 @@
 <?php
 
-function fetch_post_db($id) {
+function fetch_post_db() {
+  $id = $_GET["id"];
+  
   $db_connection = new_db_connection();
 
   $query = "SELECT * FROM posts WHERE id = \"$id\"";

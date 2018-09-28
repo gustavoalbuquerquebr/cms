@@ -15,15 +15,21 @@ $posts_id = fetch_postsid_db();
 
 $current_position = array_search($current_post, $posts_id);
 
-$prev_post = make_url("post.php?id=", true) . getid_prevpost_db($posts_id, $current_position);
-
-$next_post = make_url("post.php?id=", true) . getid_nextpost_db($posts_id, $current_position);
-
-$prevbtn_class = disable_prevpost_ui($current_position);
-
-$nextbtn_class = disable_nextpost_ui($posts_id, $current_position);
-
 $comments = fetch_comments_db($current_post);
+
+// HTML/JS output
+$title = h($post["title"]);
+$category_link = generate_categorylink_html($post["category_id"]);
+$category = h($post["category_name"]);
+$author_link = generate_authorlink_html($post["author_id"]);
+$author =  h($post["author_name"]);
+$date = $post["date"];
+$body = convert_nl2ptag_html(h($post["body"]));
+$prev_post = make_url("post.php?id=", true) . getid_prevpost_db($posts_id, $current_position);
+$prevbtn_class = disable_prevpost_html($current_position);
+$next_post = make_url("post.php?id=", true) . getid_nextpost_db($posts_id, $current_position);
+$nextbtn_class = disable_nextpost_html($posts_id, $current_position);
+$script_link = make_url("assets/js/post.js", true);
 
 ?>
 
@@ -32,9 +38,13 @@ $comments = fetch_comments_db($current_post);
 
   <main class="container mb-5">
     <section class="mb-5">
-      <h1><?= h($post["title"]); ?></h1>
-      <h6 class="small mb-4"><a href="<?= make_url("author.php?id=", true) . $post["author"]; ?>" class="font-weight-bold"><?= h($post["username"]); ?></a> - <?= $post["date"]; ?></h6>
-      <p><?= convert_nl2ptag_ui(h($post["body"])); ?></p>
+      <h1><?= $title; ?></h1>
+      <h6 class="small">
+        <a href="<?= $category_link; ?>" class="badge badge-primary mr-1 category_badge"><?= $category; ?></a>
+        <a href="<?= $author_link; ?>" class="font-weight-bold"><?= $author; ?></a>
+        <span> - <?= $date; ?></span>
+      </h6>
+      <p><?= $body; ?></p>
     </section>
 
     <nav class="text-center mb-5">
@@ -58,7 +68,11 @@ $comments = fetch_comments_db($current_post);
       <div id="comments">
           <?php foreach ($comments as $comment): ?>
             <div class="comment mb-4 border-left border-primary pl-2">
-              <h6><strong><?= h($comment["author"]); ?></strong><span class="text-muted"><?php if($comment["moderated"]) echo " (moderated)"; ?></span> - <?= $comment["date"] ?></h6>
+              <h6>
+                <strong><?= h($comment["author"]); ?></strong>
+                <span class="text-muted"><?= verify_ifmoderated_db($comment["moderated"]); ?></span>
+                - <?= $comment["date"] ?>
+              </h6>
               <p><?= h($comment["body"]); ?></p>
             </div>
           <?php endforeach; ?>
@@ -72,6 +86,6 @@ $comments = fetch_comments_db($current_post);
     let current_post = <?= $current_post; ?>;
   </script>
 
-  <script src="<?= make_url("assets/js/post.js", true); ?>"></script>
+  <script src="<?= $script_link; ?>"></script>
 
 <?php includes_footer(); ?>
