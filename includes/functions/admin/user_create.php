@@ -36,29 +36,29 @@ function insert_user_db() {
   $password_hashed = password_hash($password, PASSWORD_DEFAULT);
   
   // username and password validation
-  if (strlen($username) < 8 || strlen($username) > 25 || strlen($password) < 8 || strlen($password) > 25) return ["error", 1];
+  if (strlen($username) < 8 || strlen($username) > 25 || strlen($password) < 8 || strlen($password) > 25) {
+    return ["error", 1];
+  }
   
   // cannot insert if username already exists
-  if (check_duplicateusername_db($username, $id ?? "")) return ["error", 2];
+  if (check_duplicateusername_db($username, $id ?? "")) {
+    return ["error", 2];
+  }
 
   $query = "INSERT INTO users (username, `password`)
             VALUES (\"$username\", \"$password_hashed\")";
 
   $result = mysqli_query($db_connection, $query);
 
-  if ($result === false) return ["error", 3];
+  if ($result === false) {
+    return ["error", 3];
+  }
 
   $new_post_id = mysqli_insert_id($db_connection);
 
   mysqli_close($db_connection);
 
   return ["success", $new_post_id];
-}   
-
-
-function redirect_url_newuserpage($user_id) {
-  $url = make_url("author.php?id=", true) . $user_id;
-  header("Location: $url");
 }
 
 

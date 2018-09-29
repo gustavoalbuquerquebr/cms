@@ -2,8 +2,6 @@
 
 ### TODO
 
-- Manage categories page
-- Don't accept duplicate categorie names
 - Pages page
 - Session limit time
 - Add email column user

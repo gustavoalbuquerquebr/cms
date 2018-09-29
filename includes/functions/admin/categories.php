@@ -1,0 +1,38 @@
+<?php
+
+function delete_category_db() {
+  $id = $_POST["id"];
+
+  // open database connection
+  $db_connection = new_db_connection();
+
+  // delete comment
+  $query = "DELETE FROM categories where id = \"$id\"";
+  $result = mysqli_query($db_connection, $query);
+
+  // closing database connection
+  mysqli_close($db_connection);
+
+  exit($result);
+}
+
+function fetch_categories_db() {
+  // open database connection
+  $db_connection = new_db_connection();
+
+  // fetch comments
+  $query = "SELECT * FROM categories ORDER BY id DESC";
+  $result = mysqli_query($db_connection, $query);
+  $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+  // closing
+  mysqli_free_result($result);
+  mysqli_close($db_connection);
+
+  return $categories;
+}
+
+
+function generate_editlink_html($category) {
+  return make_url("admin/category_edit.php", true) . "?id=" . $category["id"] . "&name=" . $category["name"];
+}
