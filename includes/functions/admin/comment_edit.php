@@ -4,7 +4,7 @@ function fetch_comment_db($id) {
   $db_connection = new_db_connection();
 
   $query = "SELECT comments.id, comments.author, comments.date, comments.post, comments.body, posts.title FROM comments
-            LEFT JOIN posts ON comments.post = posts.id WHERE comments.id = \"$id\"";
+            JOIN posts ON comments.post = posts.id WHERE comments.id = \"$id\"";
 
   $result = mysqli_query($db_connection, $query);
 

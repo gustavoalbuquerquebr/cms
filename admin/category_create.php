@@ -10,7 +10,7 @@ if (!empty($_POST)) {
 
   $result = insert_category_db();
 
-  if($result[0] === "success") {
+  if ($result[0] === "success") {
     $new_category_id = $result[1];
     $new_category_name = $_POST["name"];
     $success_message = generate_successmessage_variable($new_category_id, $new_category_name);

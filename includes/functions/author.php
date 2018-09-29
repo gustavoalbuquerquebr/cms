@@ -30,9 +30,9 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
             posts.body, users.username as author_name,
             categories.name as category_name
             FROM posts
-            INNER JOIN users
+            JOIN users
             ON posts.author = users.id
-            INNER JOIN categories
+            JOIN categories
             ON posts.category = categories.id
             WHERE posts.author = \"$author\"
             ORDER BY posts.id DESC

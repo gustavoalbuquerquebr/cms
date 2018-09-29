@@ -34,9 +34,9 @@ function fetch_post_db($current_post) {
             posts.body, users.username as author_name,
             categories.name as category_name
             FROM posts
-            INNER JOIN users
+            JOIN users
             ON posts.author = users.id
-            INNER JOIN categories
+            JOIN categories
             ON posts.category = categories.id
             WHERE posts.id = \"$current_post\"";
 
@@ -128,7 +128,7 @@ function generate_authorlink_variable($author) {
 
 
 function verify_ifmoderated_db($moderated) {
-  if($moderated) { 
+  if ($moderated) { 
     return " (moderated)"; 
   };
 }

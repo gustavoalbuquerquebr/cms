@@ -33,6 +33,32 @@ function fetch_categories_db() {
 }
 
 
+function count_postsbycategory_db() {
+  $db_connection = new_db_connection();
+
+  $query = "SELECT category, COUNT(id) as total
+            FROM posts GROUP BY category";
+
+  $result = mysqli_query($db_connection, $query);
+
+  $total_posts_by_category = [];
+
+  while($row = mysqli_fetch_assoc($result)) {
+    $total_posts_by_category[$row["category"]] = $row["total"];
+  }
+
+  mysqli_free_result($result);
+  mysqli_close($db_connection);
+
+  return $total_posts_by_category;
+}
+
+
 function generate_editlink_html($category) {
   return make_url("admin/category_edit.php", true) . "?id=" . $category["id"] . "&name=" . $category["name"];
+}
+
+
+function generate_categorylink_html($id) {
+  return make_url("category.php?id=", true) . $id;
 }

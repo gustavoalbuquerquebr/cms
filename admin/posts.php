@@ -70,8 +70,8 @@ $script_link = make_url("assets/js/admin/posts.js", true);
               <tr>
                 <td><?= $post["id"]; ?></td>
                 <td><?= $post["date"]; ?></td>
-                <td><a href="<?= generate_authorpage_html($post["author_id"]); ?>" target="_blank"><?= h($post["author_name"]); ?></a></td>
-                <td><a href="<?= generate_postpage_html($post["id"]); ?>" target="_blank"><?= h($post["title"]); ?></a></td>
+                <td><a href="<?= generate_authorpage_html($post["author_id"]); ?>"><?= h($post["author_name"]); ?></a></td>
+                <td><a href="<?= generate_postpage_html($post["id"]); ?>"><?= h($post["title"]); ?></a></td>
                 <td><a href="<?= generate_editlink_html($post["id"]); ?>"  class="edit-link"></a></td>
                 <td class="text-danger" data-id="<?= $post["id"]; ?>"><span class="delete-link"></span></td>
               </tr>

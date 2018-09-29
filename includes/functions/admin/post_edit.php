@@ -23,7 +23,7 @@ function update_post_db() {
   $title = mysqli_real_escape_string($db_connection, $_POST["title"]);
   $body = mysqli_real_escape_string($db_connection, $_POST["body"]);
 
-  if(strlen($title) === 0 || strlen($body) === 0) {
+  if (strlen($title) === 0 || strlen($body) === 0) {
     return ["error", 1];
   }
 
@@ -33,7 +33,7 @@ function update_post_db() {
 
   $result = mysqli_query($db_connection, $query);
 
-  if(!$result) {
+  if (!$result) {
     return ["error", 2];
   }
 

@@ -25,9 +25,9 @@ function fetch_posts_db($posts_per_page, $query_offset) {
             posts.body, users.username as author_name,
             categories.name as category_name
             FROM posts
-            INNER JOIN users
+            JOIN users
             ON posts.author = users.id
-            INNER JOIN categories
+            JOIN categories
             ON posts.category = categories.id
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page

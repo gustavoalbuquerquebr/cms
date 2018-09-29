@@ -26,7 +26,7 @@ function fetch_posts_db() {
   $query = "SELECT posts.id, posts.date, posts.title,
             posts.author AS author_id, users.username AS author_name
             FROM posts
-            INNER JOIN users ON posts.author = users.id
+            JOIN users ON posts.author = users.id
             ORDER BY id DESC";
   $result = mysqli_query($db_connection, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);

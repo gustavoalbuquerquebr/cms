@@ -10,7 +10,7 @@ if (!empty($_POST)) {
 
   $result = insert_user_db();
 
-  if($result[0] === "success") {
+  if ($result[0] === "success") {
     $new_user_id = $result[1];
     $new_user_name = $_POST["username"];
     $success_message = generate_successmessage_variable($new_user_id, $new_user_name);

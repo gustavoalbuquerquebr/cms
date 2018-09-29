@@ -10,7 +10,7 @@ empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 if (!empty($_POST)){
   $result = update_post_db();
 
-  if($result[0] === "success") {
+  if ($result[0] === "success") {
     $success_message = "<strong>Success:</strong> Post was updated.";
 
   }  else {

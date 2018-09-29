@@ -15,6 +15,7 @@ $dashboard_link = make_url("admin/", true);
 $create_user_link = make_url("admin/user_create.php", true);
 $self = $_SERVER["PHP_SELF"];
 $script_link = make_url("assets/js/admin/users.js", true);
+$total_posts_by_user = count_postsbyuser_db();
 
 ?>
 
@@ -63,6 +64,7 @@ $script_link = make_url("assets/js/admin/users.js", true);
             <th>ID</th>
             <th>Username</th>
             <th>Password</th>
+            <th>Posts Total</th>
             <th>(edit)</th>
             <th>(delete)</th>
           </tr>
@@ -71,8 +73,10 @@ $script_link = make_url("assets/js/admin/users.js", true);
           <?php foreach ($users as $user): ?>
             <tr>
               <td><?= $user["id"] ?></td>
-              <td><?= $user["username"] ?></td>
+              <!-- <td><?= $user["username"] ?></td> -->
+              <td><a href="<?= generate_authorlink_html($user["id"]); ?>"><?= $user["username"]; ?></a></td>
               <td><?= $user["password"] ?></td>
+              <td><?= $total_posts_by_user[$user["id"]] ?? 0 ?></td>
               <td><a href="<?= generate_editlink_html($user); ?>" class="edit-link"></a></td>
               <td class="text-danger" data-id=<?= $user["id"] ?>><span class="delete-link"></span></td>
             </tr>

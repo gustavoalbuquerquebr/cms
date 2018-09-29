@@ -52,6 +52,12 @@ $script_link = make_url("assets/js/admin/comments.js", true);
     <section id="alert"></section>
 
     <table class="table table-hover" style="width:100%; text-align:center;">
+
+      <colgroup>
+        <col span=3>
+        <col style="width: 600px;">
+      </colgroup>
+
       <thead class="thead-dark">
         <tr>
           <th>ID</th>
@@ -66,7 +72,7 @@ $script_link = make_url("assets/js/admin/comments.js", true);
         <?php foreach ($comments as $comment): ?>
           <tr>
             <td><?= $comment["id"] ?></td>
-            <td><a href="<?= generate_postlink_html($comment["post"]); ?>" target="_blank"><?= $comment["post"]; ?></a></td>
+            <td><a href="<?= generate_postlink_html($comment["post"]); ?>"><?= $comment["post_title"]; ?></a></td>
             <td><?= h($comment["author"]); ?></td>
             <td><?= h($comment["body"]); ?></td>
             <td data-id=<?= $comment["id"] ?>><a href="<?= generate_editlink_html($comment["id"]); ?>" class="edit-link"></a></td>

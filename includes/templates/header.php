@@ -11,6 +11,7 @@ $author_page_link = is_logged() ? make_url("author.php?id=", true) . $_SESSION["
 $manage_posts_link = make_url("admin/posts.php", true);
 $manage_comments_link = make_url("admin/comments.php", true);
 $manage_users_link = make_url("admin/users.php", true);
+$manage_categories_link = make_url("admin/categories.php", true);
 $logout_link = make_url("admin/logout.php?redirect=homepage", true);
 $login_link = make_url("admin/login.php", true);
 
@@ -67,6 +68,7 @@ $login_link = make_url("admin/login.php", true);
                 <a href="<?= $manage_posts_link; ?>" class="dropdown-item pl-5">Posts</a>
                 <a href="<?= $manage_comments_link; ?>" class="dropdown-item pl-5">Comments</a>
                 <a href="<?= $manage_users_link; ?>" class="dropdown-item pl-5">Users</a>
+                <a href="<?= $manage_categories_link; ?>" class="dropdown-item pl-5">Categories</a>
                 <div class="dropdown-divider"></div>
                 <a href="<?= $logout_link; ?>" class="dropdown-item">Logout</a>
               </div>

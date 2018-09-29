@@ -15,6 +15,7 @@ $dashboard_link = make_url("admin/", true);
 $create_category_link = make_url("admin/category_create.php", true);
 $self = $_SERVER["PHP_SELF"];
 $script_link = make_url("assets/js/admin/categories.js", true);
+$total_posts_by_category = count_postsbycategory_db();
 
 ?>
 
@@ -62,6 +63,7 @@ $script_link = make_url("assets/js/admin/categories.js", true);
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Posts Total</th>
             <th>(edit)</th>
             <th>(delete)</th>
           </tr>
@@ -70,7 +72,9 @@ $script_link = make_url("assets/js/admin/categories.js", true);
           <?php foreach ($categories as $category): ?>
             <tr>
               <td><?= $category["id"] ?></td>
-              <td><?= $category["name"] ?></td>
+              <!-- <td><?= $category["name"] ?></td> -->
+              <td><a href="<?= generate_categorylink_html($category["id"]); ?>" ><?= $category["name"]; ?></a></td>
+              <td><?= $total_posts_by_category[$category["id"]] ?? 0 ?></td>
               <td><a href="<?= generate_editlink_html($category); ?>" class="edit-link"></a></td>
               <td class="text-danger" data-id=<?= $category["id"] ?>><span class="delete-link"></span></td>
             </tr>
