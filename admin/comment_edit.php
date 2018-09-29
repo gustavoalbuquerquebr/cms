@@ -5,14 +5,7 @@ require_once make_url("includes/functions/admin/comment_edit.php");
 
 !is_logged() && redirect_to_login() && exit;
 
-// if no comment is send in the request, redirect to dashboard page
 empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
-
-// handle request from edit links at "manage comments" page
-if (!empty($_GET)) {
-  $id = $_GET["id"];
-  $comment = fetch_comment_db($id);
-}
 
 // handle submition from this page form
 if (!empty($_POST)) {
@@ -20,24 +13,24 @@ if (!empty($_POST)) {
   $result = update_comment_db();
 
   if ($result[0] === "success") {
-    $success_message = "Comment updated!";
-    $comment = $_POST;
+    $success_message = "<strong>Success:</strong> Comment updated.";
 
   } else {
     $db_update_error = $result[1];
-    $error_message = generate_errormessage_variable($db_update_error) . " Try again!";
-    $comment = $_POST;
+    $error_message = generate_errormessage_variable($db_update_error);
   }
 }
 
-// HTML output
-$post_link = generate_postlink_html($comment["post"]);
+// HTML/JS output
+$id = $_POST["id"] ?? $_GET["id"];
+$comment = !empty($_POST) ? $_POST : fetch_comment_db($id);
+$post_link = generate_postlink_variable($comment["post"]);
 $self = $_SERVER["PHP_SELF"];
-$id = $comment["id"];
 $post = $comment["post"];
 $title = h($comment["title"]);
 $author = h($comment["author"]);
 $body = h($comment["body"]);
+$script_link = make_url("assets/js/admin/comment_edit.js", true);
 
 ?>
 
@@ -63,7 +56,7 @@ $body = h($comment["body"]);
       </div>
     <?php endif; ?>
 
-    <a href="<?= $post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
+    <a href="<?= $post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post &raquo;</a>
 
     <form method="post" action="<?= $self; ?>">
       <div class="form-group d-none">
@@ -93,5 +86,7 @@ $body = h($comment["body"]);
     </form>
     
   </main>
+
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

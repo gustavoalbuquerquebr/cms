@@ -52,6 +52,8 @@ $script_link = make_url("assets/js/admin/users.js", true);
 
     <h1 class="mb-4">Manage users</h1>
 
+    <section id="alerts"></section>
+
     <a href="<?= $create_user_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create user</a>
 
     <div class="table-responsive">
@@ -85,6 +87,6 @@ $script_link = make_url("assets/js/admin/users.js", true);
     let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= $script_link; ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

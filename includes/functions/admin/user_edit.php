@@ -56,17 +56,11 @@ function update_user_db() {
   mysqli_close($db_connection);
 
   return ["success", $id];
-}   
-
-
-function redirect_url_newuserpage($user_id) {
-  $url = make_url("author.php?id=", true) . $user_id;
-  header("Location: $url");
 }
 
 
-function generate_errormessage_variable($db_insertion_error) {
-  switch ($db_insertion_error){
+function generate_errormessage_variable($db_update_error) {
+  switch ($db_update_error){
     case 1: $message = "Username and password must be at least 8 characters long.";
     break;
     case 2: $message = "Username already exists.";
@@ -75,7 +69,7 @@ function generate_errormessage_variable($db_insertion_error) {
     break;
   }
 
-  return $message . " Try again!";
+  return "<strong>Error:</strong> " . $message . " Try again!";
 }
 
 

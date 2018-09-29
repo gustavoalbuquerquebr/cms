@@ -14,7 +14,7 @@ if (!empty($_POST)) {
     
   // if creation unsuccessful, render page with error alert
     $db_insertion_error = $result[1];
-    $error_message = generate_errormessage_variable($db_insertion_error) . " Try again!";
+    $error_message = generate_errormessage_variable($db_insertion_error);
 }
 
 $categories = fetch_categories_db();

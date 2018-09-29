@@ -39,9 +39,6 @@ function update_post_db() {
 
   mysqli_close($db_connection);
 
-  $url = make_url("admin/post_edit.php?id=", true) . $id;
-  header("Location: $url");
-
   return ["success"];
 }
 
@@ -52,7 +49,7 @@ function redirect_url_dashboard() {
 }
 
 
-function generate_errormessage_html($error) {
+function generate_errormessage_variable($error) {
   switch ($error) {
     case 1:
     $message = "Neither one of the fields can be left blank.";
@@ -62,5 +59,5 @@ function generate_errormessage_html($error) {
     break;
   }
 
-  return $message;
+  return "<strong>Error:</strong> " . $message . " Try again!";
 }

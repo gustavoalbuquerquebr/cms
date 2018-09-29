@@ -7,21 +7,20 @@ require_once make_url("includes/functions/admin/post_edit.php");
 
 empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 
-if(!empty($_GET)) {
-  $post = fetch_post_db();
-}
-
 if (!empty($_POST)){
   $result = update_post_db();
 
-  if($result[0] === "error") {
+  if($result[0] === "success") {
+    $success_message = "<strong>Success:</strong> Post updated.";
+
+  }  else {
     $db_update_error = $result[1];
-    $error_message = generate_errormessage_html($db_update_error) . " Try again";
-    $post = $_POST;
-  } 
+    $error_message = generate_errormessage_variable($db_update_error);
+  }
 }
 
 // HTML output
+$post = empty($_POST) ? fetch_post_db() : $_POST;
 $id = $_GET["id"] ?? $post["id"];
 $view_post_link = make_url("post.php?id=", true) . $id;
 $self = $_SERVER["PHP_SELF"];
@@ -45,14 +44,14 @@ $body = $post["body"];
 
   <h1 class="mb-4">Edit post</h1>
 
-    <?php if (isset($db_update_error)): ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <?= $error_message; ?>
-    <button type="button" data-dismiss="alert" class="close">&times;</button>
-    </div>
+    <?php if (!empty($_POST)): ?>
+      <div class="alert alert-dismissible fade show <?= ($db_update_error) ? "alert-danger" : "alert-success"; ?>" role="alert">
+        <?= isset($db_update_error) ? $error_message : $success_message; ?>
+      <button type="button" data-dismiss="alert" class="close">&times;</button>
+      </div>
     <?php endif; ?>
 
-    <a href="<?= $view_post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post</a>
+    <a href="<?= $view_post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post &raquo;</a>
 
     <form method="post" action="<?= $self; ?>">
       <input type="number" name="id" value="<?= $id; ?>" class="d-none">

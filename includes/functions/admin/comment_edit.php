@@ -35,17 +35,10 @@ function update_comment_db() {
   } else {
     return ["error", 2];
   }
-
 }
 
 
-function redirect_url_postpage() {
-  $url = make_url("post.php?id=", true) . $_POST["post"];
-  header("Location: $url");
-}
-
-
-function generate_postlink_html($post) {
+function generate_postlink_variable($post) {
   return make_url("post.php?id=", true) . $post;
 }
 
@@ -65,5 +58,5 @@ function generate_errormessage_variable($error) {
     break;
   }
 
-  return $message;
+  return "<strong>Error:</strong> " . $message . " Try again!";
 }

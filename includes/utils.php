@@ -71,3 +71,10 @@ function redirect_to_login() {
     $url = make_url("admin/login.php", true);
     header("Location: " . $url);
 }
+
+
+// SCRIPTS
+
+function add_script($script_link) {
+  return "<script src=\"$script_link\"></script>";
+}

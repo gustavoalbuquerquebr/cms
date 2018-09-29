@@ -64,19 +64,21 @@ function redirect_url_newuserpage($user_id) {
 
 function generate_errormessage_variable($db_insertion_error) {
   switch ($db_insertion_error){
-    case 1: return "Username and password must have between 8 and 25 characters.";
+    case 1: $message = "Username and password must have between 8 and 25 characters.";
     break;
-    case 2: return "Username already exists.";
+    case 2: $message = "Username already exists.";
     break;
-    case 3: return "Database error.";
+    case 3: $message = "Database error.";
     break;
   }
+
+  return "<strong>Error:</strong> " . $message . " Try again!";
 }
 
 
 function generate_successmessage_variable($new_user_id, $new_user_name) {
   $link = make_url("author.php?id=", true) . $new_user_id;
-  $message = "User <a href=\"$link\" class=\"alert-link\">$new_user_name</a> created!";
+  $message = "<strong>Success:</strong> User <span class=\"font-italic\">$new_user_name</span> created.";
 
   return $message;
 }

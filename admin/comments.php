@@ -49,6 +49,8 @@ $script_link = make_url("assets/js/admin/comments.js", true);
 
     <h1 class="mb-4">Manage comments</h1>
 
+    <section id="alert"></section>
+
     <table class="table table-hover" style="width:100%; text-align:center;">
       <thead class="thead-dark">
         <tr>
@@ -79,6 +81,6 @@ $script_link = make_url("assets/js/admin/comments.js", true);
     let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= $script_link ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

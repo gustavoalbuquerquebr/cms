@@ -5,7 +5,9 @@ require_once make_url("includes/functions/contact.php");
 
 !empty($_POST) && insert_contact_db() && exit;
 
-// JS output
+// HTML/JS output
+$spinner_gif = make_url("assets/images/spinner.gif", true);
+$self = $_SERVER["PHP_SELF"];
 $script_link = make_url("assets/js/contact.js", true);
 
 ?>
@@ -20,7 +22,7 @@ $script_link = make_url("assets/js/contact.js", true);
       <h1 class="mb-4">Contact</h1>
 
       <div id="messageOutput" class="mb-4">
-        <img src="<?= make_url("assets/images/spinner.gif", true); ?>" width="50" height="50" class="d-none mx-auto">
+        <img src="<?= $spinner_gif; ?>" width="50" height="50" class="d-none mx-auto">
       </div>
 
       <div class="alert alert-dismissible show fade d-none" role="alert">
@@ -47,10 +49,10 @@ $script_link = make_url("assets/js/contact.js", true);
   </main>
 
   <script>
-    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let self = "<?= $self ?>";
     let emailContact = "<?= PROJECT_EMAIL; ?>";
   </script>
 
-  <script src="<?= $script_link ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

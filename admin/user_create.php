@@ -9,22 +9,18 @@ require_once make_url("includes/functions/admin/user_create.php");
 if (!empty($_POST)) {
 
   $result = insert_user_db();
-    
-  // // if user creation was successful, redirect to new user page
-  // $result[0] === "success" && redirect_url_newuserpage($result[1]) && exit;
 
   if($result[0] === "success") {
-    $db_insertion_success = true;
     $new_user_id = $result[1];
     $new_user_name = $_POST["username"];
     $success_message = generate_successmessage_variable($new_user_id, $new_user_name);
-    // don't populate form if previous insertion was successful
+    // don't repopulate form if previous insertion was successful
     $_POST = [];
-
+    
   } else {
     // if user creation wasn't successful, render this page with error warning
     $db_insertion_error = $result[1];
-    $error_message = generate_errormessage_variable($db_insertion_error) . " Try again!";
+    $error_message = generate_errormessage_variable($db_insertion_error);
   }
 }
 
@@ -57,17 +53,11 @@ $script_link = make_url("assets/js/admin/user_create.js", true);
 
       <h1 class="mb-4">User create</h1>
 
-      <?php if (isset($db_insertion_error)): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?= $error_message; ?>
-          <button type="button" data-dismiss="alert" class="close">&times;</button>
-        </div>
-      <?php endif; ?>
-
-      <?php if (isset($db_insertion_success)): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <?= $success_message; ?>
-          <button type="button" data-dismiss="alert" class="close">&times;</button>
+      <!-- Can't use $_POST to verification below, because maybe it was cleared above to avoid repopulate form -->
+      <?php if (isset($success_message) || isset($error_message)): ?>
+        <div class="alert alert-dismissible fade show <?= isset($db_insertion_error) ? "alert-danger" : "alert-success"; ?>" role="alert">
+        <?= isset($db_insertion_error) ? $error_message : $success_message; ?>
+        <button type="button" data-dismiss="alert" class="close">&times;</button>
         </div>
       <?php endif; ?>
 
@@ -95,6 +85,6 @@ $script_link = make_url("assets/js/admin/user_create.js", true);
     let eyeSlash = "<?= $eye_slash_icon; ?>";
   </script>
 
-  <script src="<?= $script_link; ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

@@ -19,9 +19,9 @@ $comments = fetch_comments_db($current_post);
 
 // HTML/JS output
 $title = h($post["title"]);
-$category_link = generate_categorylink_html($post["category_id"]);
+$category_link = generate_categorylink_variable($post["category_id"]);
 $category = h($post["category_name"]);
-$author_link = generate_authorlink_html($post["author_id"]);
+$author_link = generate_authorlink_variable($post["author_id"]);
 $author =  h($post["author_name"]);
 $date = $post["date"];
 $body = convert_nl2ptag_html(h($post["body"]));
@@ -86,6 +86,6 @@ $script_link = make_url("assets/js/post.js", true);
     let current_post = <?= $current_post; ?>;
   </script>
 
-  <script src="<?= $script_link; ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

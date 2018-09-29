@@ -12,16 +12,17 @@ empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
 if (!empty($_POST)) {
 
   $result = update_user_db();
-    
-  // if user update was successful, redirect to new user page
-  $result[0] === "success" && redirect_url_newuserpage($result[1]) && exit;
-  
-  // if user update wasn't successful, render this page with error warning
-  $db_insertion_error = $result[1];
+
+    if ($result[0] === "success") {
+    $success_message = "<strong>Success:</strong> User updated.";
+
+  } else {
+    $db_update_error = $result[1];
+    $error_message = generate_errormessage_variable($db_update_error);
+  }
 }
 
 // HTML/JS output
-$error_message = isset($db_insertion_error) ? generate_errormessage_variable($db_insertion_error) : "";
 $user_id = $_GET["id"] ?? $_POST["id"];
 $user_username = $_GET["username"] ?? $_POST["username"];
 $dashboard_link = make_url("admin/", true);
@@ -50,10 +51,10 @@ $eye_icon_slash = make_url("assets/images/eye-slash.svg", true);
 
       <h1 class="mb-4">Edit user</h1>
 
-      <?php if (isset($db_insertion_error)): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?= $error_message; ?>
-          <button type="button" data-dismiss="alert" class="close">&times;</button>
+      <?php if (!empty($_POST)): ?>
+        <div class="alert alert-dismissible fade show <?= ($db_update_error) ? "alert-danger" : "alert-success"; ?>" role="alert">
+          <?= isset($db_update_error) ? $error_message : $success_message; ?>
+        <button type="button" data-dismiss="alert" class="close">&times;</button>
         </div>
       <?php endif; ?>
 
@@ -85,6 +86,6 @@ $eye_icon_slash = make_url("assets/images/eye-slash.svg", true);
     let eyeSlash = "<?= $eye_iconslash; ?>";
   </script>
 
-  <script src="<?= $script_link; ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

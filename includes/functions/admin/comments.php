@@ -13,7 +13,7 @@ function delete_comment_db() {
   // closing database connection
   mysqli_close($db_connection);
 
-  exit();
+  exit($result);
 }
 
 function fetch_comments_db() {

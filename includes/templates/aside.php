@@ -6,6 +6,7 @@ $contact_page_link = make_url("contact.php", true);
 
 ?>
 
+
 <aside class="col-md-4">
 
   <section class="ml-auto border p-3">  

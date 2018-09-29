@@ -15,7 +15,6 @@
 - Post draft
 - Approve comments
 - 404 page and redirect when page isn't solicited with rigth request
-- Font Awesome
 - Installation process
 - Post images
 - Contact send email

@@ -68,7 +68,7 @@ function generate_errormessage_variable($error) {
     break;
   }
 
-  return $message;
+  return "<strong>Error:</strong> " . $message . " Try again!";
 }
 
 

@@ -117,12 +117,12 @@ function convert_nl2ptag_html($post) {
 }
 
 
-function generate_categorylink_html($category_id) {
+function generate_categorylink_variable($category_id) {
   return make_url("category.php?id=" . $category_id, true);
 }
 
 
-function generate_authorlink_html($author) {
+function generate_authorlink_variable($author) {
   return make_url("author.php?id=", true) . $author;
 }
 

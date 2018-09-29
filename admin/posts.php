@@ -51,6 +51,8 @@ $script_link = make_url("assets/js/admin/posts.js", true);
 
     <h1 class="mb-4">Manage posts</h1>
 
+    <section id="alerts"></section>
+
     <a href="<?= $create_post_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
 
     <div class="table-responsive">
@@ -84,6 +86,6 @@ $script_link = make_url("assets/js/admin/posts.js", true);
     let self = "<?= $self; ?>";
   </script>
 
-  <script src="<?= $script_link; ?>"></script>
+  <?= add_script($script_link); ?>
 
 <?php includes_footer(); ?>

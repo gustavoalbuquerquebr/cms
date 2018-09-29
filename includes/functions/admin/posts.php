@@ -14,7 +14,7 @@ function delete_post_db() {
     // closing database connection
     mysqli_close($db_connection);
 
-    exit();
+    exit($result);
   }
 }
 
