@@ -4,16 +4,18 @@
 
 - Manage categories page
 - Don't accept duplicate categorie names
-- Category page
 - Pages page
+- Session limit time
 - Add email column user
 - Archive pages (posts by date)
 - post/user/author/category pages to show name at url instead of id number
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users
 - Enable javascript form validation
-- Post draft
+- Post draft and recycle bin
+- Nested comments
 - Approve comments
+- Tags
 - 404 page and redirect when page isn't solicited with rigth request
 - Installation process
 - Post images

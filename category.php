@@ -1,38 +1,38 @@
 <?php
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
-require_once make_url("includes/functions/author.php");
+require_once make_url("includes/functions/category.php");
 
 empty($_GET) && redirect_url_homepage() && exit;
 
-$author = $_GET["id"];
+$category_id = $_GET["id"];
 
 // fetch username to display at page title
-$author_username = fetch_authorusername_db($author);
+$category_name = fetch_categoryname_db($category_id);
 
 // if user doesn't exist, redirect to homepage
-!$author_username && redirect_url_homepage() && exit;
+!$category_name && redirect_url_homepage() && exit;
 
-$page_title = $author_username . "'s posts";
+$page_title = ucwords($category_name);
 
 // navigation variables
 $current_page = $_GET["page"] ?? 1;
 
 // how many posts there are in the database
-$posts_total = count_posts_db($author);
+$categories_total = count_posts_db($category_id);
 
 // how many navigation pages are needed
-$pages_total = ceil($posts_total / POSTS_PER_PAGE);
+$pages_total = ceil($categories_total / POSTS_PER_PAGE);
 
 // query offset
 $query_offset = $current_page * POSTS_PER_PAGE - POSTS_PER_PAGE;
 
 // fetch posts for current page
-$posts = fetch_posts_db($author, POSTS_PER_PAGE, $query_offset);
+$posts = fetch_posts_db($category_id, POSTS_PER_PAGE, $query_offset);
 
 // HTML output
-$prevlink = generate_prevlink_variable($author, $current_page);
-$nextlink = generate_nextlink_variable($author, $current_page);
+$prevlink = generate_prevlink_variable($category_id, $current_page);
+$nextlink = generate_nextlink_variable($category_id, $current_page);
 $disable_prevlink = disable_prevlink_variable($current_page);
 $disable_nextlink = disable_nextlink_variable($current_page, $pages_total);
 
@@ -47,7 +47,7 @@ $disable_nextlink = disable_nextlink_variable($current_page, $pages_total);
       <section class="col-md-8">
 
       <!-- If there isn't posts output "No post found" -->
-      <?php if (!$posts_total): ?>
+      <?php if (!$categories_total): ?>
         <h1 class="mb-5">No posts found.</h1>
       <?php else: ?>
         <!-- if there is posts, iterate and output them -->

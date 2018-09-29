@@ -5,11 +5,11 @@ function redirect_url_homepage() {
   header("Location: $url");
 }
 
-function count_posts_db($author) {
+function count_posts_db($category_id) {
   
   $db_connection = new_db_connection();
 
-  $query = "SELECT COUNT(id) FROM posts WHERE author = \"$author\"";
+  $query = "SELECT COUNT(id) FROM posts WHERE category = \"$category_id\"";
 
   $result = mysqli_query($db_connection, $query);
   $posts_total = mysqli_fetch_row($result)[0];
@@ -21,7 +21,7 @@ function count_posts_db($author) {
 }
 
 
-function fetch_posts_db($author, $posts_per_page, $query_offset) {
+function fetch_posts_db($category_id, $posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
@@ -34,7 +34,7 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
             ON posts.author = users.id
             INNER JOIN categories
             ON posts.category = categories.id
-            WHERE posts.author = \"$author\"
+            WHERE posts.category = \"$category_id\"
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page
             OFFSET $query_offset";
@@ -49,13 +49,13 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
 }
 
 
-function generate_nextlink_variable($author, $current_page) {
-  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page + 1);
+function generate_nextlink_variable($category_id, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $category_id . "&page=" . ($current_page + 1);
 }
 
 
-function generate_prevlink_variable($author, $current_page) {
-  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page - 1);
+function generate_prevlink_variable($category_id, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $category_id . "&page=" . ($current_page - 1);
 }
 
 
@@ -89,19 +89,19 @@ function generate_blogexcerpt_html($post) {
 }
 
 
-function fetch_authorusername_db($author) {
+function fetch_categoryname_db($category_id) {
   $db_connection = new_db_connection();
 
-  $query = "SELECT username FROM users WHERE id = \"$author\"";
+  $query = "SELECT `name` FROM categories WHERE id = \"$category_id\"";
 
   $result = mysqli_query($db_connection, $query);
 
-  $username = mysqli_fetch_assoc($result)["username"];
+  $category_name = mysqli_fetch_assoc($result)["name"];
 
   mysqli_free_result($result);
   mysqli_close($db_connection);
 
-  return $username;
+  return $category_name;
 }
 
 
