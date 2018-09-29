@@ -11,7 +11,7 @@ if (!empty($_POST)){
   $result = update_post_db();
 
   if($result[0] === "success") {
-    $success_message = "<strong>Success:</strong> Post updated.";
+    $success_message = "<strong>Success:</strong> Post was updated.";
 
   }  else {
     $db_update_error = $result[1];
@@ -22,6 +22,7 @@ if (!empty($_POST)){
 // HTML output
 $post = empty($_POST) ? fetch_post_db() : $_POST;
 $id = $_GET["id"] ?? $post["id"];
+$output_id = "<strong>ID: </strong> $id";
 $view_post_link = make_url("post.php?id=", true) . $id;
 $self = $_SERVER["PHP_SELF"];
 $title = h($post["title"]);
@@ -54,7 +55,14 @@ $body = $post["body"];
     <a href="<?= $view_post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post &raquo;</a>
 
     <form method="post" action="<?= $self; ?>">
-      <input type="number" name="id" value="<?= $id; ?>" class="d-none">
+      <!-- not form inputs, are used only for display -->
+      <div class="form-group">
+        <p class="form-control disabled-input"> <?= $output_id; ?> </p>
+      </div>
+      <!-- display none, are used only to send data with form submission -->
+      <div class="form-group d-none">
+        <input name="id" type="number" value="<?= $id; ?>" class="form-control">
+      </div>
       <div class="form-group">
         <input name="title" type="text" value="<?= $title; ?>" class="form-control">
       </div>

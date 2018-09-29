@@ -11,7 +11,7 @@ $author_page_link = is_logged() ? make_url("author.php?id=", true) . $_SESSION["
 $manage_posts_link = make_url("admin/posts.php", true);
 $manage_comments_link = make_url("admin/comments.php", true);
 $manage_users_link = make_url("admin/users.php", true);
-$logout_link = make_url("admin/logout.php", true);
+$logout_link = make_url("admin/logout.php?redirect=homepage", true);
 $login_link = make_url("admin/login.php", true);
 
 ?>

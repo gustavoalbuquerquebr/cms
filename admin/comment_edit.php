@@ -13,7 +13,7 @@ if (!empty($_POST)) {
   $result = update_comment_db();
 
   if ($result[0] === "success") {
-    $success_message = "<strong>Success:</strong> Comment updated.";
+    $success_message = "<strong>Success:</strong> Comment was updated.";
 
   } else {
     $db_update_error = $result[1];
@@ -29,6 +29,11 @@ $self = $_SERVER["PHP_SELF"];
 $post = $comment["post"];
 $title = h($comment["title"]);
 $author = h($comment["author"]);
+$date = $comment["date"];
+$output_id = "<strong>ID: </strong>$id";
+$output_post = "<strong>Post: </strong> $post";
+$output_author = "<strong>Author: </strong>$author";
+$output_date = "<strong>Date: </strong>$date";
 $body = h($comment["body"]);
 $script_link = make_url("assets/js/admin/comment_edit.js", true);
 
@@ -59,26 +64,36 @@ $script_link = make_url("assets/js/admin/comment_edit.js", true);
     <a href="<?= $post_link; ?>" class="btn btn-outline-primary mb-4" target="_blank">View post &raquo;</a>
 
     <form method="post" action="<?= $self; ?>">
+      <!-- not form inputs, are used only for display -->
+      <div class="form-group">
+        <p class="form-control disabled-input"> <?= $output_id; ?> </p>
+      </div>
+      <div class="form-group">
+        <p class="form-control disabled-input"> <?= $output_date; ?> </p>
+      </div>
+      <div class="form-group">
+        <p class="form-control disabled-input"> <?= $output_post; ?> </p>
+      </div>
+      <div class="form-group">
+        <p class="form-control disabled-input"> <?= $output_author; ?> </p>
+      </div>
+      <!-- display none, are used only to send data with form submission -->
       <div class="form-group d-none">
         <input name="id" type="text" value="<?= $id; ?>" class="form-control">
       </div>
       <div class="form-group d-none">
-        <input name="post" type="number" value="<?= $post; ?>" class="form-control">
+        <input name="date" type="text" value="<?= $date; ?>" class="form-control">
       </div>
-      <!-- two title form-group, one display and the other submit -->
-      <div class="form-group">
-        <input type="text" value="<?= $title; ?>" class="form-control" disabled>
+      <div class="form-group d-none">
+        <input name="post" type="number" value="<?= $post; ?>" class="form-control">
       </div>
       <div class="form-group d-none">
         <input name="title" type="text" value="<?= $title; ?>" class="form-control">
       </div>
-      <!-- two author form-group, one display and the other submit -->
-      <div class="form-group">
-        <input type="text" value="<?= $author; ?>" class="form-control" disabled>
-      </div>
       <div class="form-group d-none">
         <input name="author" type="text" value="<?= $author; ?>" class="form-control">
       </div>
+      <!--  -->
       <div class="form-group">
         <textarea name="body" cols="30" rows="10" class="form-control"><?= $body; ?></textarea>
       </div>

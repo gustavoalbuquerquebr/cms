@@ -12,7 +12,7 @@ function generateAlert(status) {
     message = `<strong>Success:</strong> User <span class="font-italic"> ${user_name} </span> was deleted.`;
     style = "alert-success";
   } else {
-    message = `<strong>Error:</strong> User <span class="font-italic"> ${user_name} </span> was not deleted. Try again!`;
+    message = `<strong>Error:</strong> User <span class="font-italic"> ${user_name} </span> wasn't deleted. Try again!`;
     style = "alert-danger";
   }
 

@@ -26,12 +26,6 @@ function verify_iscurrentpage_url($menu_item) {
 }
 
 
-// function fetch_username_db($session_user) {
-
-
-// }
-
-
 function generate_pagetitle_html($page_title) {
   return (!empty($page_title)) ? PROJECT_NAME . " - $page_title" : PROJECT_NAME;
 }
@@ -39,6 +33,12 @@ function generate_pagetitle_html($page_title) {
 
 function generate_globalcsslink_html() {
   return make_url("assets/css/global.css", true);
+}
+
+
+function logout() {
+  $url = make_url("admin/logout.php?redirect=dashboard", true);
+  header("Location: $url");
 }
 
 
@@ -52,5 +52,7 @@ function fetch_loggedusername_db() {
 
   $username = mysqli_fetch_assoc($result)["username"];
 
-  return $username ?? "user deleted!";
+  !$username && logout() && exit;
+
+  return $username;
 }

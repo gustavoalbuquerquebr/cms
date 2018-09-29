@@ -78,7 +78,7 @@ function generate_errormessage_variable($db_insertion_error) {
 
 function generate_successmessage_variable($new_user_id, $new_user_name) {
   $link = make_url("author.php?id=", true) . $new_user_id;
-  $message = "<strong>Success:</strong> User <span class=\"font-italic\">$new_user_name</span> created.";
+  $message = "<strong>Success:</strong> User <span class=\"font-italic\">$new_user_name</span> was created.";
 
   return $message;
 }

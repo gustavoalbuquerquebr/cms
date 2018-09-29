@@ -145,3 +145,7 @@ aside > section {
   padding-right: 1rem;
   margin-right: 1rem;
 }
+
+.disabled-input {
+  background: #eee;
+}

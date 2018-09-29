@@ -14,7 +14,7 @@ if (!empty($_POST)) {
   $result = update_user_db();
 
     if ($result[0] === "success") {
-    $success_message = "<strong>Success:</strong> User updated.";
+    $success_message = "<strong>Success:</strong> User was updated.";
 
   } else {
     $db_update_error = $result[1];
@@ -24,6 +24,7 @@ if (!empty($_POST)) {
 
 // HTML/JS output
 $user_id = $_GET["id"] ?? $_POST["id"];
+$output_id = "<strong>ID: </strong> $user_id";
 $user_username = $_GET["username"] ?? $_POST["username"];
 $dashboard_link = make_url("admin/", true);
 $users_link =  make_url("admin/users.php", true);
@@ -59,6 +60,11 @@ $eye_icon_slash = make_url("assets/images/eye-slash.svg", true);
       <?php endif; ?>
 
       <form action="<?= $self; ?>" method="post">
+          <!-- not form inputs, are used only for display -->
+          <div class="form-group">
+            <p class="form-control disabled-input"> <?= $output_id; ?> </p>
+          </div>
+          <!-- display none, are used only to send data with form submission -->
           <div class="form-group d-none">
             <input type="number" name="id" placeholder="id" class="form-control" value="<?= $user_id; ?>">
           </div>
