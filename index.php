@@ -44,7 +44,7 @@ $disable_nextlink = disable_nextlink_variable($current_page, $pages_total);
               <h1><?= h($post["title"]); ?></h1>
                 <h6 class="small">
                   <a href="<?= generate_categorylink_html($post["category_id"]); ?>" class="badge badge-primary mr-1 category_badge"><?= h($post["category_name"]); ?></a>
-                  <a href="<?= generate_authorlink_html($post["author_id"]); ?>" class="font-weight-bold"><?= h($post["author_name"]); ?></a>
+                  <a href="<?= generate_userlink_html($post["user_id"]); ?>" class="font-weight-bold"><?= h($post["user_name"]); ?></a>
                   <span> - <?= $post["date"]; ?></span>
                 </h6>
               <p><?= h(generate_blogexcerpt_html($post["body"])); ?></p>

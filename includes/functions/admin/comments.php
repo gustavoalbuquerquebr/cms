@@ -17,7 +17,7 @@ function fetch_comments_db() {
   $db_connection = new_db_connection();
 
   $query = "SELECT comments.id, comments.post,
-            comments.author, comments.body,
+            comments.user, comments.body,
             posts.title as post_title FROM comments 
             JOIN posts ON comments.post = posts.id
             ORDER BY comments.id DESC";

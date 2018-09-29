@@ -8,7 +8,7 @@ function insert_comment_db() {
   $user = mysqli_real_escape_string($db_connection, $_POST["user"]);
   $comment = mysqli_real_escape_string($db_connection, $_POST["comment"]);
 
-  $query = "INSERT INTO comments (post, author, body) VALUES (\"$post\", \"$user\", \"$comment\")";
+  $query = "INSERT INTO comments (post, user, body) VALUES (\"$post\", \"$user\", \"$comment\")";
   $result = mysqli_query($db_connection, $query);
 
   mysqli_close($db_connection);
@@ -29,13 +29,13 @@ function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+  $query = "SELECT posts.id, posts.date, posts.user as user_id,
             posts.category as category_id, posts.title,
-            posts.body, users.username as author_name,
+            posts.body, users.username as user_name,
             categories.name as category_name
             FROM posts
             JOIN users
-            ON posts.author = users.id
+            ON posts.user = users.id
             JOIN categories
             ON posts.category = categories.id
             WHERE posts.id = \"$current_post\"";
@@ -122,8 +122,8 @@ function generate_categorylink_variable($category_id) {
 }
 
 
-function generate_authorlink_variable($author) {
-  return make_url("author.php?id=", true) . $author;
+function generate_userlink_variable($user) {
+  return make_url("user.php?id=", true) . $user;
 }
 
 

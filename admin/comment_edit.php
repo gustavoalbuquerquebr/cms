@@ -28,11 +28,11 @@ $post_link = generate_postlink_variable($comment["post"]);
 $self = $_SERVER["PHP_SELF"];
 $post = $comment["post"];
 $title = h($comment["title"]);
-$author = h($comment["author"]);
+$user = h($comment["user"]);
 $date = $comment["date"];
 $output_id = "<strong>ID: </strong>$id";
 $output_post = "<strong>Post: </strong> $post";
-$output_author = "<strong>Author: </strong>$author";
+$output_user = "<strong>user: </strong>$user";
 $output_date = "<strong>Date: </strong>$date";
 $body = h($comment["body"]);
 $script_link = make_url("assets/js/admin/comment_edit.js", true);
@@ -75,7 +75,7 @@ $script_link = make_url("assets/js/admin/comment_edit.js", true);
         <p class="form-control disabled-input"> <?= $output_post; ?> </p>
       </div>
       <div class="form-group">
-        <p class="form-control disabled-input"> <?= $output_author; ?> </p>
+        <p class="form-control disabled-input"> <?= $output_user; ?> </p>
       </div>
       <!-- display none, are used only to send data with form submission -->
       <div class="form-group d-none">
@@ -91,7 +91,7 @@ $script_link = make_url("assets/js/admin/comment_edit.js", true);
         <input name="title" type="text" value="<?= $title; ?>" class="form-control">
       </div>
       <div class="form-group d-none">
-        <input name="author" type="text" value="<?= $author; ?>" class="form-control">
+        <input name="user" type="text" value="<?= $user; ?>" class="form-control">
       </div>
       <!--  -->
       <div class="form-group">

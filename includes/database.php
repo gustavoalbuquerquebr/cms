@@ -10,7 +10,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // $posts = "CREATE TABLE posts(
 //   id INT PRIMARY KEY AUTO_INCREMENT,
 //   `date` TIMESTAMP DEFAULT NOW(),
-//   author INT NOT NULL,
+//   user INT NOT NULL,
 //   category INT,
 //   title VARCHAR(50) NOT NULL,
 //   body TEXT NOT NULL
@@ -27,7 +27,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // $comments = "CREATE TABLE comments(
 //   id INT PRIMARY KEY AUTO_INCREMENT,
 //   `date` TIMESTAMP DEFAULT NOW(),
-//   author VARCHAR(25) NOT NULL,
+//   user VARCHAR(25) NOT NULL,
 //   post INT NOT NULL,
 //   body TEXT NOT NULL,
 //   moderated BOOLEAN DEFAULT 0
@@ -45,7 +45,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // ADD FOREIGN KEY (category)
 // REFERENCES categories(id)";
 // $posts3 = "ALTER TABLE posts
-// ADD FOREIGN KEY (author)
+// ADD FOREIGN KEY (user)
 // REFERENCES users(id)";
 
 // // CONTACT TABLE
@@ -87,17 +87,17 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 
 // POSTS
 // for ($i = 1; $i < 30; $i++) {
-//   $author = mt_rand(1, 10);
+//   $user = mt_rand(1, 10);
 //   $category = mt_rand(1, 5);
-//   $query = "INSERT INTO posts (id, author, category, title, body) 
-//   VALUES ($i, \"$author\", \"$category\", \"This is title $i\", \"$lorem\")";
+//   $query = "INSERT INTO posts (id, user, category, title, body) 
+//   VALUES ($i, \"$user\", \"$category\", \"This is title $i\", \"$lorem\")";
 //   mysqli_query($db_connection, $query);
 // }
 
 // COMMENTS
 // for ($i = 1; $i < 50; $i++) {
 //   $post = mt_rand(1, 29);
-//   $query = "INSERT INTO comments (id, author, post, body) VALUES ($i, \"author\", \"$post\", \"$lorem2\")";
+//   $query = "INSERT INTO comments (id, user, post, body) VALUES ($i, \"user\", \"$post\", \"$lorem2\")";
 //   mysqli_query($db_connection, $query);
 // }
 

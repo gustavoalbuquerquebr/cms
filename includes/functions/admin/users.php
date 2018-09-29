@@ -41,15 +41,15 @@ function generate_editlink_html($user) {
 function count_postsbyuser_db() {
   $db_connection = new_db_connection();
 
-  $query = "SELECT author, COUNT(id) as total
-            FROM posts GROUP BY author";
+  $query = "SELECT user, COUNT(id) as total
+            FROM posts GROUP BY user";
 
   $result = mysqli_query($db_connection, $query);
 
   $total_posts_by_user = [];
 
   while($row = mysqli_fetch_assoc($result)) {
-    $total_posts_by_user[$row["author"]] = $row["total"];
+    $total_posts_by_user[$row["user"]] = $row["total"];
   }
 
   mysqli_free_result($result);
@@ -59,6 +59,6 @@ function count_postsbyuser_db() {
 }
 
 
-function generate_authorlink_html($id) {
-  return make_url("author.php?id=", true) . $id;
+function generate_userlink_html($id) {
+  return make_url("user.php?id=", true) . $id;
 }

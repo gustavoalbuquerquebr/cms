@@ -73,7 +73,7 @@ $script_link = make_url("assets/js/admin/comments.js", true);
           <tr>
             <td><?= $comment["id"] ?></td>
             <td><a href="<?= generate_postlink_html($comment["post"]); ?>"><?= $comment["post_title"]; ?></a></td>
-            <td><?= h($comment["author"]); ?></td>
+            <td><?= h($comment["user"]); ?></td>
             <td><?= h($comment["body"]); ?></td>
             <td data-id=<?= $comment["id"] ?>><a href="<?= generate_editlink_html($comment["id"]); ?>" class="edit-link"></a></td>
             <td class="text-danger" data-id=<?= $comment["id"] ?>><span class="delete-link"></span></td>

@@ -5,11 +5,11 @@ function redirect_url_homepage() {
   header("Location: $url");
 }
 
-function count_posts_db($author) {
+function count_posts_db($user) {
   
   $db_connection = new_db_connection();
 
-  $query = "SELECT COUNT(id) FROM posts WHERE author = \"$author\"";
+  $query = "SELECT COUNT(id) FROM posts WHERE user = \"$user\"";
 
   $result = mysqli_query($db_connection, $query);
   $posts_total = mysqli_fetch_row($result)[0];
@@ -21,20 +21,20 @@ function count_posts_db($author) {
 }
 
 
-function fetch_posts_db($author, $posts_per_page, $query_offset) {
+function fetch_posts_db($user, $posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+  $query = "SELECT posts.id, posts.date, posts.user as user_id,
             posts.category as category_id, posts.title,
-            posts.body, users.username as author_name,
+            posts.body, users.username as user_name,
             categories.name as category_name
             FROM posts
             JOIN users
-            ON posts.author = users.id
+            ON posts.user = users.id
             JOIN categories
             ON posts.category = categories.id
-            WHERE posts.author = \"$author\"
+            WHERE posts.user = \"$user\"
             ORDER BY posts.id DESC
             LIMIT  $posts_per_page
             OFFSET $query_offset";
@@ -49,13 +49,13 @@ function fetch_posts_db($author, $posts_per_page, $query_offset) {
 }
 
 
-function generate_nextlink_variable($author, $current_page) {
-  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page + 1);
+function generate_nextlink_variable($user, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $user . "&page=" . ($current_page + 1);
 }
 
 
-function generate_prevlink_variable($author, $current_page) {
-  return "$_SERVER[PHP_SELF]?id=" . $author . "&page=" . ($current_page - 1);
+function generate_prevlink_variable($user, $current_page) {
+  return "$_SERVER[PHP_SELF]?id=" . $user . "&page=" . ($current_page - 1);
 }
 
 
@@ -89,10 +89,10 @@ function generate_blogexcerpt_html($post) {
 }
 
 
-function fetch_authorusername_db($author) {
+function fetch_userusername_db($user) {
   $db_connection = new_db_connection();
 
-  $query = "SELECT username FROM users WHERE id = \"$author\"";
+  $query = "SELECT username FROM users WHERE id = \"$user\"";
 
   $result = mysqli_query($db_connection, $query);
 
@@ -110,6 +110,6 @@ function generate_categorylink_html($category_id) {
 }
 
 
-function generate_authorlink_html($author) {
-  return make_url("author.php?id=", true) . $author;
+function generate_userlink_html($user) {
+  return make_url("user.php?id=", true) . $user;
 }

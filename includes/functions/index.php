@@ -20,13 +20,13 @@ function fetch_posts_db($posts_per_page, $query_offset) {
 
   $db_connection = new_db_connection();
 
-  $query = "SELECT posts.id, posts.date, posts.author as author_id,
+  $query = "SELECT posts.id, posts.date, posts.user as user_id,
             posts.category as category_id, posts.title,
-            posts.body, users.username as author_name,
+            posts.body, users.username as user_name,
             categories.name as category_name
             FROM posts
             JOIN users
-            ON posts.author = users.id
+            ON posts.user = users.id
             JOIN categories
             ON posts.category = categories.id
             ORDER BY posts.id DESC
@@ -88,6 +88,6 @@ function generate_categorylink_html($category_id) {
 }
 
 
-function generate_authorlink_html($author) {
-  return make_url("author.php?id=", true) . $author;
+function generate_userlink_html($user) {
+  return make_url("user.php?id=", true) . $user;
 }

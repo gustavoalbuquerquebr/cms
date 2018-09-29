@@ -67,7 +67,7 @@ function update_user_db() {
 
 function generate_errormessage_variable($db_update_error) {
   switch ($db_update_error){
-    case 1: $message = "Username and password must be at least 8 characters long.";
+    case 1: $message = "Username and password must have between 8 and 25 characters.";
     break;
     case 2: $message = "Username already exists.";
     break;

@@ -34,7 +34,7 @@ function insert_post_db() {
     return ["error", 1];
   }
 
-  $query = "INSERT INTO posts (author, category, title, body)
+  $query = "INSERT INTO posts (user, category, title, body)
             VALUES (\"$user\", \"$category\", \"$title\", \"$body\")";
 
   $result = mysqli_query($db_connection, $query);

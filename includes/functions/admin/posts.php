@@ -24,9 +24,9 @@ function fetch_posts_db() {
 
   // fetch posts
   $query = "SELECT posts.id, posts.date, posts.title,
-            posts.author AS author_id, users.username AS author_name
+            posts.user AS user_id, users.username AS user_name
             FROM posts
-            JOIN users ON posts.author = users.id
+            JOIN users ON posts.user = users.id
             ORDER BY id DESC";
   $result = mysqli_query($db_connection, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -43,8 +43,8 @@ function generate_editlink_html($id) {
 }
 
 
-function generate_authorpage_html($author_id) {
-  return make_url("author.php?id=", true) . $author_id;
+function generate_userpage_html($user_id) {
+  return make_url("user.php?id=", true) . $user_id;
 }
 
 

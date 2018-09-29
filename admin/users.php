@@ -74,7 +74,7 @@ $total_posts_by_user = count_postsbyuser_db();
             <tr>
               <td><?= $user["id"] ?></td>
               <!-- <td><?= $user["username"] ?></td> -->
-              <td><a href="<?= generate_authorlink_html($user["id"]); ?>"><?= $user["username"]; ?></a></td>
+              <td><a href="<?= generate_userlink_html($user["id"]); ?>"><?= $user["username"]; ?></a></td>
               <td><?= $user["password"] ?></td>
               <td><?= $total_posts_by_user[$user["id"]] ?? 0 ?></td>
               <td><a href="<?= generate_editlink_html($user); ?>" class="edit-link"></a></td>

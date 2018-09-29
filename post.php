@@ -21,8 +21,8 @@ $comments = fetch_comments_db($current_post);
 $title = h($post["title"]);
 $category_link = generate_categorylink_variable($post["category_id"]);
 $category = h($post["category_name"]);
-$author_link = generate_authorlink_variable($post["author_id"]);
-$author =  h($post["author_name"]);
+$user_link = generate_userlink_variable($post["user_id"]);
+$user =  h($post["user_name"]);
 $date = $post["date"];
 $body = convert_nl2ptag_html(h($post["body"]));
 $prev_post = make_url("post.php?id=", true) . getid_prevpost_db($posts_id, $current_position);
@@ -41,7 +41,7 @@ $script_link = make_url("assets/js/post.js", true);
       <h1><?= $title; ?></h1>
       <h6 class="small">
         <a href="<?= $category_link; ?>" class="badge badge-primary mr-1 category_badge"><?= $category; ?></a>
-        <a href="<?= $author_link; ?>" class="font-weight-bold"><?= $author; ?></a>
+        <a href="<?= $user_link; ?>" class="font-weight-bold"><?= $user; ?></a>
         <span> - <?= $date; ?></span>
       </h6>
       <p><?= $body; ?></p>
@@ -69,7 +69,7 @@ $script_link = make_url("assets/js/post.js", true);
           <?php foreach ($comments as $comment): ?>
             <div class="comment mb-4 border-left border-primary pl-2">
               <h6>
-                <strong><?= h($comment["author"]); ?></strong>
+                <strong><?= h($comment["user"]); ?></strong>
                 <span class="text-muted"><?= verify_ifmoderated_db($comment["moderated"]); ?></span>
                 - <?= $comment["date"] ?>
               </h6>
