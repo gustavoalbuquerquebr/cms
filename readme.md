@@ -2,7 +2,6 @@
 
 ### TODO
 
-- Pages page
 - Session limit time
 - Add email column user
 - Archive pages (posts by date)
@@ -10,6 +9,7 @@
 - Manage pages navigation and bulk delete
 - Generate lorem ipsum posts/comments/users
 - Enable javascript form validation
+- Custom pages page
 - Post draft and recycle bin
 - Nested comments
 - Approve comments

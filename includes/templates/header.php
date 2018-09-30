@@ -8,6 +8,7 @@ require_once make_url("includes/functions/templates/header.php");
 $homepage_link = make_url(" ", true);
 $dashboard_link = make_url("admin/index.php", true);
 $user_page_link = is_logged() ? make_url("user.php?id=", true) . $_SESSION["logged_user"] : "";
+$manage_pages_link = make_url("admin/pages.php", true);
 $manage_posts_link = make_url("admin/posts.php", true);
 $manage_comments_link = make_url("admin/comments.php", true);
 $manage_users_link = make_url("admin/users.php", true);
@@ -65,6 +66,7 @@ $login_link = make_url("admin/login.php", true);
                 <a href="<?= $user_page_link; ?>" class="dropdown-item"><?= fetch_loggedusername_db(); ?></a>
                 <div class="dropdown-divider"></div>
                 <a href="<?= $dashboard_link; ?>" class="dropdown-item font-weight-bold">Dashboard</a>
+                <a href="<?= $manage_pages_link; ?>" class="dropdown-item pl-5">Pages</a>
                 <a href="<?= $manage_posts_link; ?>" class="dropdown-item pl-5">Posts</a>
                 <a href="<?= $manage_comments_link; ?>" class="dropdown-item pl-5">Comments</a>
                 <a href="<?= $manage_users_link; ?>" class="dropdown-item pl-5">Users</a>

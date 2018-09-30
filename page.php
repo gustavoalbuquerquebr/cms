@@ -9,6 +9,8 @@ $current_page = $_GET["id"];
 
 $page = fetch_page_db($current_page);
 
+!$page && redirect_url_homepage() && exit;
+
 // HTML/JS output
 $title = h($page["title"]);
 $user_link = generate_userlink_variable($page["user_id"]);

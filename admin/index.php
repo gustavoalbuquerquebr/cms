@@ -5,6 +5,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 !is_logged() && redirect_to_login() && exit;
 
 // HTML output
+$pages_link = make_url("admin/pages.php", true);
+$page_create_link = make_url("admin/page_create.php", true);
 $posts_link = make_url("admin/posts.php", true);
 $post_create_link = make_url("admin/post_create.php", true);
 $comments_link = make_url("admin/comments.php", true);
@@ -21,7 +23,12 @@ $category_create_link = make_url("admin/category_create.php", true);
   <main class="container mb-5">
     <h1 class="mb-4">Dashboard</h1>
 
-    <div class="row justify-content-between">
+    <div class="row">
+      <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
+        <a class="list-group-item bg-dark text-white font-weight-bold">Pages</a>
+        <a href="<?= $pages_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
+        <a href="<?= $page_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
+      </ul>
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
         <a class="list-group-item bg-dark text-white font-weight-bold">Posts</a>
         <a href="<?= $posts_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>

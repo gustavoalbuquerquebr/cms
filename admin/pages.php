@@ -1,24 +1,24 @@
 <?php
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
-require_once make_url("includes/functions/admin/posts.php");
+require_once make_url("includes/functions/admin/pages.php");
 
 !is_logged() && redirect_to_login() && exit;
 
-!empty($_POST) && delete_post_db();
+!empty($_POST) && delete_page_db();
 
-$posts = fetch_posts_db();
+$pages = fetch_pages_db();
 
 // HTML/JS output
 $dashboard_link = make_url("admin/", true);
-$create_post_link = make_url("admin/post_create.php", true);
+$create_page_link = make_url("admin/page_create.php", true);
 $self = $_SERVER["PHP_SELF"];
-$script_link = make_url("assets/js/admin/posts.js", true);
+$script_link = make_url("assets/js/admin/pages.js", true);
 
 ?>
 
 
-<?php includes_header("Manage posts"); ?>
+<?php includes_header("Manage pages"); ?>
 
   <div id="deleteModal" class="modal" role="dialog">
     <div class="modal-dialog" role="document">
@@ -30,7 +30,7 @@ $script_link = make_url("assets/js/admin/posts.js", true);
           </button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete this post?</p>
+          <p>Are you sure you want to delete this page?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -45,15 +45,15 @@ $script_link = make_url("assets/js/admin/posts.js", true);
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= $dashboard_link; ?>">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Posts</li>
+        <li class="breadcrumb-item active" aria-current="page">Pages</li>
       </ol>
     </nav>
 
-    <h1 class="mb-4">Manage posts</h1>
+    <h1 class="mb-4">Manage pages</h1>
 
     <section id="alerts"></section>
 
-    <a href="<?= $create_post_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create post</a>
+    <a href="<?= $create_page_link; ?>" class="btn btn-primary mb-4 create-page-link-white">Create page</a>
 
     <div class="table-responsive">
         <table class="table table-hover" style="width:100%; text-align:center;">
@@ -66,14 +66,14 @@ $script_link = make_url("assets/js/admin/posts.js", true);
             <th>(delete)</th>
           </thead>
           <tbody>
-            <?php foreach ($posts as $post): ?>
+            <?php foreach ($pages as $page): ?>
               <tr>
-                <td><?= $post["id"]; ?></td>
-                <td><?= $post["date"]; ?></td>
-                <td><a href="<?= generate_userpage_html($post["user_id"]); ?>"><?= h($post["user_name"]); ?></a></td>
-                <td><a href="<?= generate_postpage_html($post["id"]); ?>"><?= h($post["title"]); ?></a></td>
-                <td><a href="<?= generate_editlink_html($post["id"]); ?>"  class="edit-link"></a></td>
-                <td class="text-danger" data-id="<?= $post["id"]; ?>"><span class="delete-link"></span></td>
+                <td><?= $page["id"]; ?></td>
+                <td><?= $page["date"]; ?></td>
+                <td><a href="<?= generate_userpage_html($page["user_id"]); ?>"><?= h($page["user_name"]); ?></a></td>
+                <td><a href="<?= generate_pagepage_html($page["id"]); ?>"><?= h($page["title"]); ?></a></td>
+                <td><a href="<?= generate_editlink_html($page["id"]); ?>"  class="edit-link"></a></td>
+                <td class="text-danger" data-id="<?= $page["id"]; ?>"><span class="delete-link"></span></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
