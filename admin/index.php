@@ -25,28 +25,28 @@ $category_create_link = make_url("admin/category_create.php", true);
 
     <div class="row">
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
-        <a class="list-group-item bg-dark text-white font-weight-bold">Pages</a>
+        <a class="list-group-item bg-dark text-white font-weight-bold dashboard-categories-title-card">Categories</a>
+        <a href="<?= $categories_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
+        <a href="<?= $category_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
+      </ul>
+        <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
+          <a class="list-group-item list-group-item-action bg-dark text-white font-weight-bold dashboard-comments-title-card">Comments</a>
+          <a href="<?= $comments_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
+        </ul>
+      <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
+        <a class="list-group-item bg-dark text-white font-weight-bold dashboard-pages-title-card">Pages</a>
         <a href="<?= $pages_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
         <a href="<?= $page_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
       </ul>
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
-        <a class="list-group-item bg-dark text-white font-weight-bold">Posts</a>
+        <a class="list-group-item bg-dark text-white font-weight-bold dashboard-posts-title-card">Posts</a>
         <a href="<?= $posts_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
         <a href="<?= $post_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
       </ul>
       <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
-        <a class="list-group-item list-group-item-action bg-dark text-white font-weight-bold">Comments</a>
-        <a href="<?= $comments_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
-      </ul>
-      <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
-        <a class="list-group-item bg-dark text-white font-weight-bold">Users</a>
+        <a class="list-group-item bg-dark text-white font-weight-bold dashboard-users-title-card">Users</a>
         <a href="<?= $users_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
         <a href="<?= $user_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
-      </ul>
-      <ul class="list-group mb-5 px-3 col-md-6 col-lg-4 dashboard-list">
-        <a class="list-group-item bg-dark text-white font-weight-bold">Categories</a>
-        <a href="<?= $categories_link; ?>" class="list-group-item list-group-item-action manage-page-link">Manage</a>
-        <a href="<?= $category_create_link; ?>" class="list-group-item list-group-item-action create-page-link-blue">Create</a>
       </ul>
     </div>
   </main>

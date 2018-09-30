@@ -146,6 +146,46 @@ aside > section {
   margin-right: 1rem;
 }
 
+.dashboard-pages-title-card::before {
+  content: "";
+  background: url(../images/pages.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.dashboard-posts-title-card::before {
+  content: "";
+  background: url(../images/posts.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.dashboard-comments-title-card::before {
+  content: "";
+  background: url(../images/comments.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.dashboard-users-title-card::before {
+  content: "";
+  background: url(../images/users.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.dashboard-categories-title-card::before {
+  content: "";
+  background: url(../images/categories.svg);
+  background-repeat: no-repeat;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
 .disabled-input {
   background: #eee;
 }
