@@ -29,6 +29,7 @@ $prev_post = make_url("post.php?id=", true) . getid_prevpost_db($posts_id, $curr
 $prevbtn_class = disable_prevpost_html($current_position);
 $next_post = make_url("post.php?id=", true) . getid_nextpost_db($posts_id, $current_position);
 $nextbtn_class = disable_nextpost_html($posts_id, $current_position);
+$self = $_SERVER["PHP_SELF"];
 $script_link = make_url("assets/js/post.js", true);
 
 ?>
@@ -82,7 +83,7 @@ $script_link = make_url("assets/js/post.js", true);
   </main>
 
   <script>
-    let self = "<?= $_SERVER["PHP_SELF"]; ?>";
+    let self = "<?= $self; ?>";
     let current_post = <?= $current_post; ?>;
   </script>
 

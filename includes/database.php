@@ -12,7 +12,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 //   `date` TIMESTAMP DEFAULT NOW(),
 //   user INT NOT NULL,
 //   category INT,
-//   title VARCHAR(50) NOT NULL,
+//   title VARCHAR(100) NOT NULL,
 //   body TEXT NOT NULL
 // )";
   
@@ -51,11 +51,23 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // // CONTACT TABLE
 // $contact = "CREATE TABLE contact(
 //   id INT PRIMARY KEY AUTO_INCREMENT,
+//    date TIMESTAMP DEFAULT NOW(),
 //   `name` VARCHAR(50),
 //   `email` VARCHAR(50),
 //   `message` VARCHAR(255)
 // )";
 
+
+// PAGE PAGE
+// $page = "CREATE TABLE pages(
+//   id INT PRIMARY KEY AUTO_INCREMENT,
+//   `date` TIMESTAMP DEFAULT NOW(),
+//   aside BOOLEAN NOT NULL DEFAULT 1,
+//   nav BOOLEAN NOT NULL DEFAULT 1,
+//   user INT NOT NULL,
+//   title VARCHAR(100) NOT NULL,
+//   body TEXT NOT NULL
+// )";
 
 // mysqli_query($db_connection, $posts);
 // mysqli_query($db_connection, $users);
@@ -64,6 +76,7 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 // mysqli_query($db_connection, $posts2);
 // mysqli_query($db_connection, $posts3);
 // mysqli_query($db_connection, $contact);
+// mysqli_query($db_connection, $page);
 
 // USERS
 // for ($i = 0; $i < 20; $i++) {
@@ -100,6 +113,13 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
 //   $query = "INSERT INTO comments (id, user, post, body) VALUES ($i, \"user\", \"$post\", \"$lorem2\")";
 //   mysqli_query($db_connection, $query);
 // }
+
+// $page1 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, laudantium quae provident voluptas aliquam consequuntur distinctio quibusdam. Quasi ad repellendus veniam consequuntur velit inventore error dolorum, rem ipsum laboriosam est delectus officia, recusandae porro vero soluta dolorem? Quis, quo sequi laudantium numquam et mollitia eaque, pariatur, error porro fugiat non! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium ipsam quas, quidem mollitia laudantium vel sed omnis expedita quia eos quis sequi repellendus distinctio minima numquam harum vitae quae ipsa placeat quam consectetur doloremque. Eveniet rem, vitae, reprehenderit in porro asperiores perspiciatis at quod quos sunt quam numquam temporibus ratione?";
+
+
+  // $query = "INSERT INTO pages (user, title, body) VALUES (1, 'Contact Page', '\"$page1\"')";
+  // mysqli_query($db_connection, $query);
+
 
 // close connection
 mysqli_close($db_connection);
