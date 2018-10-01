@@ -26,7 +26,6 @@ $body = $_POST["body"] ?? "";
 $nav = !empty($_POST) ? (isset($_POST["nav"]) ? "checked" : "") : "checked";
 $aside = !empty($_POST) ? (isset($_POST["aside"]) ? "checked" : "") : "checked";
 
-print_r($_POST);
 ?>
 
 

@@ -17,6 +17,9 @@ define("POSTS_PER_PAGE", 5);
 // approximate length of blog post excerpt at the homepage
 define("CHAR_PER_EXCERPT", 400);
 
+// after how many seconds of inactivity a user will be automatically log out
+define("LOGOUT_AUTOMATICALLY_AFTER", 180);
+
 
 // stylesheets, fonts and scripts
 define("STYLESHEET_BOOTSTRAP", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");

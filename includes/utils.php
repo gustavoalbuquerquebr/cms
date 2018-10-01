@@ -64,7 +64,25 @@ function make_url($path, $client_side = false) {
 
 function is_logged() {
   !isset($_SESSION) && session_start();
-  return isset($_SESSION["logged_user"]);
+
+  if(isset($_SESSION["logged_user"])) {
+
+    // if session has not expire, update last_active and return true
+    if (($_SESSION["last_active"] + LOGOUT_AUTOMATICALLY_AFTER) > time()) {
+      $_SESSION["last_active"] = time();
+      return true;
+
+      // if session has expired, logout
+    } else {
+      $url = make_url("admin/logout.php?redirect=dashboard", true);
+      header("Location: $url");
+    }
+  } else {
+    // if session doesn't exist
+    return false;
+  }
+
+  // return isset($_SESSION["logged_user"]);
 }
 
 function redirect_to_login() {

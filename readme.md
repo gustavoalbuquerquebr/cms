@@ -64,5 +64,5 @@
 
 - Function naming convention: `action_what_where`, example: `delete_post_db`;
 - Use mysqli_real_escape_string() before all database insertions and updates;
-- Use h() to render user input at HTML;
+- Use htmlspecialchars() to render user input at HTML;
 - Use urlencode() to make sure paremeters don't break urls;
