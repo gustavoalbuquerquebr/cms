@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/category.php");
 
-empty($_GET) && redirect_url_homepage() && exit;
+empty($_GET) && redirect_to("") && exit;
 
 $category_id = $_GET["id"];
 
@@ -11,7 +11,7 @@ $category_id = $_GET["id"];
 $category_name = fetch_categoryname_db($category_id);
 
 // if user doesn't exist, redirect to homepage
-!$category_name && redirect_url_homepage() && exit;
+!$category_name && redirect_to("") && exit;
 
 $page_title = ucwords($category_name);
 

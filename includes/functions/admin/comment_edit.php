@@ -43,12 +43,6 @@ function generate_postlink_variable($post) {
 }
 
 
-function redirect_url_dashboard() {
-  $url = make_url("admin", true);
-  header("Location: $url");
-}
-
-
 function generate_errormessage_variable($error) {
   
   switch ($error) {

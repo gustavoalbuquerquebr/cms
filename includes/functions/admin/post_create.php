@@ -52,12 +52,6 @@ function insert_post_db() {
 }
 
 
-function redirect_url_newpostpage($new_post_id) {
-    $url = make_url("post.php?id=", true) . $new_post_id;
-    header("Location: $url");
-}
-
-
 function generate_errormessage_variable($error) {
   switch ($error) {
     case 1:

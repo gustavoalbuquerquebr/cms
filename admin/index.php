@@ -2,7 +2,7 @@
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 
-!is_logged() && redirect_to_login() && exit;
+!is_logged() && redirect_to("admin/login.php") && exit;
 
 // HTML output
 $pages_link = make_url("admin/pages.php", true);

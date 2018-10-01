@@ -5,11 +5,13 @@ require_once make_url("includes/functions/post.php");
 
 !empty($_POST) && insert_comment_db();
 
-empty($_GET) && redirect_url_homepage() && exit;
+empty($_GET) && redirect_to("") && exit;
 
 $current_post = $_GET["id"];
 
 $post = fetch_post_db($current_post);
+
+empty($post) && redirect_to("") && exit;
 
 $posts_id = fetch_postsid_db();
 

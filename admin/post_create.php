@@ -3,14 +3,14 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/post_create.php");
 
-!is_logged() && redirect_to_login() && exit;
+!is_logged() && redirect_to("admin/login.php") && exit;
 
 // handle post creation
 if (!empty($_POST)) {
   $result = insert_post_db();
 
   // if creation successful, redirect to new post
-  $result[0] === "success" && redirect_url_newpostpage($result[1]) && exit;
+  $result[0] === "success" && redirect_to("post.php?id=" . $result[1]) && exit;
     
   // if creation unsuccessful, render page with error alert
     $db_insertion_error = $result[1];

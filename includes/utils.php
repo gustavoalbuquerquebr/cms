@@ -74,8 +74,7 @@ function is_logged() {
 
       // if session has expired, logout
     } else {
-      $url = make_url("admin/logout.php?redirect=dashboard", true);
-      header("Location: $url");
+      redirect_to("admin/logout.php?redirect=dashboard");
     }
   } else {
     // if session doesn't exist
@@ -85,14 +84,15 @@ function is_logged() {
   // return isset($_SESSION["logged_user"]);
 }
 
-function redirect_to_login() {
-    $url = make_url("admin/login.php", true);
-    header("Location: " . $url);
-}
-
 
 // SCRIPTS
 
 function add_script($script_link) {
   return "<script src=\"$script_link\"></script>";
+}
+
+
+function redirect_to($path) {
+  $url = make_url($path, true);
+  header("Location: $url");
 }

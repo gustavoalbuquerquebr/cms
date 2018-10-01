@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/user.php");
 
-empty($_GET) && redirect_url_homepage() && exit;
+empty($_GET) && redirect_to("") && exit;
 
 $user = $_GET["id"];
 
@@ -11,7 +11,7 @@ $user = $_GET["id"];
 $user_username = fetch_userusername_db($user);
 
 // if user doesn't exist, redirect to homepage
-!$user_username && redirect_url_homepage() && exit;
+!$user_username && redirect_to("") && exit;
 
 $page_title = $user_username . "'s posts";
 

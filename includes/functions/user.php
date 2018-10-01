@@ -1,10 +1,5 @@
 <?php
 
-function redirect_url_homepage() {
-  $url = make_url("", true);
-  header("Location: $url");
-}
-
 function count_posts_db($user) {
   
   $db_connection = new_db_connection();

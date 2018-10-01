@@ -3,13 +3,13 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/page.php");
 
-empty($_GET) && redirect_url_homepage() && exit;
+empty($_GET) && redirect_to("") && exit;
 
 $current_page = $_GET["id"];
 
 $page = fetch_page_db($current_page);
 
-!$page && redirect_url_homepage() && exit;
+!$page && redirect_to("") && exit;
 
 // HTML/JS output
 $title = h($page["title"]);

@@ -3,9 +3,9 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/user_edit.php");
 
-!is_logged() && redirect_to_login() && exit;
+!is_logged() && redirect_to("admin/login.php") && exit;
 
-empty($_GET) && empty($_POST) && redirect_url_dashboard() && exit;
+empty($_GET) && empty($_POST) && redirect_to("admin/login.php") && exit;
 
 
 // handle the submit of the form in this page

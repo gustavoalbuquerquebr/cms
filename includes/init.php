@@ -18,7 +18,7 @@ define("POSTS_PER_PAGE", 5);
 define("CHAR_PER_EXCERPT", 400);
 
 // after how many seconds of inactivity a user will be automatically log out
-define("LOGOUT_AUTOMATICALLY_AFTER", 180);
+define("LOGOUT_AUTOMATICALLY_AFTER", 1800);
 
 
 // stylesheets, fonts and scripts

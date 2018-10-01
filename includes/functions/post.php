@@ -19,12 +19,6 @@ function insert_comment_db() {
 }
 
 
-function redirect_url_homepage() {
-  $url = make_url("", true);
-  header("Location: $url");
-}
-
-
 function fetch_post_db($current_post) {
 
   $db_connection = new_db_connection();

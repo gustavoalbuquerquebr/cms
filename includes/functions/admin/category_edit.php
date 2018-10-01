@@ -69,9 +69,3 @@ function generate_errormessage_variable($db_update_error) {
 
   return "<strong>Error:</strong> " . $message . " Try again!";
 }
-
-
-function redirect_url_dashboard() {
-  $url = make_url("admin", true);
-  header("Location: $url");
-}

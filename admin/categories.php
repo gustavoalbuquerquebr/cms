@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/admin/categories.php");
 
-!is_logged() && redirect_to_login() && exit;
+!is_logged() && redirect_to("admin/login.php") && exit;
 
 !empty($_POST) && delete_category_db();
 

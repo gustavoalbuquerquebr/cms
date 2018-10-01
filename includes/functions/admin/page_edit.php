@@ -46,12 +46,6 @@ function update_page_db() {
 }
 
 
-function redirect_url_dashboard() {
-  $url = make_url("admin", true);
-  header("Location: $url");
-}
-
-
 function generate_errormessage_variable($error) {
   switch ($error) {
     case 1:

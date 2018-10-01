@@ -36,12 +36,6 @@ function generate_globalcsslink_html() {
 }
 
 
-function logout() {
-  $url = make_url("admin/logout.php?redirect=dashboard", true);
-  header("Location: $url");
-}
-
-
 function fetch_loggedusername_db() {
 
   $db_connection = new_db_connection();
@@ -52,7 +46,7 @@ function fetch_loggedusername_db() {
 
   $username = mysqli_fetch_assoc($result)["username"];
 
-  !$username && logout() && exit;
+  !$username && redirect_to("admin/logout.php?redirect=dashboard") && exit;
 
   return $username;
 }

@@ -28,6 +28,6 @@ function verify_auth_db() {
     session_start();
     $_SESSION["logged_user"] = $user["id"];
     $_SESSION["last_active"] = time();
-    header("Location: index.php");
+    redirect_to("admin/index.php");
   }
 }

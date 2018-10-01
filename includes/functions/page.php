@@ -1,11 +1,5 @@
 <?php
 
-function redirect_url_homepage() {
-  $url = make_url("", true);
-  header("Location: $url");
-}
-
-
 function fetch_page_db($current_page) {
 
   $db_connection = new_db_connection();

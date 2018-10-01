@@ -34,12 +34,6 @@ function insert_page_db() {
 }
 
 
-function redirect_url_newpagepage($new_page_id) {
-    $url = make_url("page.php?id=", true) . $new_page_id;
-    header("Location: $url");
-}
-
-
 function generate_errormessage_variable($error) {
   switch ($error) {
     case 1:
