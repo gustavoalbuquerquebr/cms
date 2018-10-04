@@ -9,8 +9,7 @@ function fetch_users_db() {
 
   $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $users;
 }
@@ -56,7 +55,7 @@ function insert_user_db() {
 
   $new_post_id = mysqli_insert_id($db_connection);
 
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return ["success", $new_post_id];
 }

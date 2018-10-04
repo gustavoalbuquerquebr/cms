@@ -9,8 +9,7 @@ function fetch_users_db() {
 
   $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $users;
 }
@@ -59,7 +58,7 @@ function update_user_db() {
     return ["error", 3];
   }
 
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return ["success", $id];
 }

@@ -121,5 +121,4 @@ $db_connection = mysqli_connect("localhost", "gustavo", "123", "cms");
   // mysqli_query($db_connection, $query);
 
 
-// close connection
 mysqli_close($db_connection);

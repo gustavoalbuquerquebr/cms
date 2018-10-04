@@ -10,8 +10,7 @@ function fetch_comment_db($id) {
 
   $comment = mysqli_fetch_assoc($result);
 
-  // mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $comment;
 }
@@ -29,12 +28,11 @@ function update_comment_db() {
 
   $query = "UPDATE comments SET body = \"$body\", moderated = 1 WHERE id = \"$id\"";
 
-  if (mysqli_query($db_connection, $query)) {
-    mysqli_close($db_connection);
-    return ["success"];
-  } else {
-    return ["error", 2];
-  }
+  $result = mysqli_query($db_connection, $query);
+
+  close_db_connection($db_connection, $result);
+
+  return $result ? ["success"] : ["error", 2];
 }
 
 

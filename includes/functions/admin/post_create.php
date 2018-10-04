@@ -12,8 +12,7 @@ function fetch_categories_db() {
 
   $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $categories;
 }
@@ -45,8 +44,7 @@ function insert_post_db() {
 
   $new_post_id = mysqli_insert_id($db_connection);
 
-  mysqli_free_result($query);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return ["success", $new_post_id];
 }

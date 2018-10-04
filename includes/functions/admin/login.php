@@ -13,8 +13,7 @@ function verify_auth_db() {
 
   $user = mysqli_fetch_all($result, MYSQLI_ASSOC)[0] ?? "";
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
   
   if (empty($user)) {
     

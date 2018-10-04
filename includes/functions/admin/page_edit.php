@@ -9,8 +9,7 @@ function fetch_page_db() {
   $result = mysqli_query($db_connection, $query);
   $page = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $page;
 }
@@ -40,7 +39,7 @@ function update_page_db() {
     return ["error", 2];
   }
 
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return ["success"];
 }

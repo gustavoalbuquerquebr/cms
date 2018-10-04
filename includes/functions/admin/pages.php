@@ -11,8 +11,7 @@ function delete_page_db() {
     $query = "DELETE FROM pages where id = \"$id\"";
     $result = mysqli_query($db_connection, $query);
 
-    // closing database connection
-    mysqli_close($db_connection);
+    close_db_connection($db_connection, $result);
 
     exit($result);
   }
@@ -29,9 +28,7 @@ function fetch_pages_db() {
   $result = mysqli_query($db_connection, $query);
   $pages = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  // closing
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $pages;
 }

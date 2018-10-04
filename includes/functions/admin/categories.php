@@ -10,8 +10,7 @@ function delete_category_db() {
   $query = "DELETE FROM categories where id = \"$id\"";
   $result = mysqli_query($db_connection, $query);
 
-  // closing database connection
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   exit($result);
 }
@@ -25,9 +24,7 @@ function fetch_categories_db() {
   $result = mysqli_query($db_connection, $query);
   $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  // closing
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $categories;
 }
@@ -47,8 +44,7 @@ function count_postsbycategory_db() {
     $total_posts_by_category[$row["category"]] = $row["total"];
   }
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $total_posts_by_category;
 }

@@ -10,8 +10,7 @@ function delete_user_db() {
   $query = "DELETE FROM users where id = \"$id\"";
   $result = mysqli_query($db_connection, $query);
 
-  // closing database connection
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   exit($result);
 }
@@ -25,9 +24,7 @@ function fetch_users_db() {
   $result = mysqli_query($db_connection, $query);
   $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  // closing
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $users;
 }
@@ -52,8 +49,7 @@ function count_postsbyuser_db() {
     $total_posts_by_user[$row["user"]] = $row["total"];
   }
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $total_posts_by_user;
 }

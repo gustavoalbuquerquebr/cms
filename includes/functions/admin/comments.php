@@ -8,7 +8,7 @@ function delete_comment_db() {
   $query = "DELETE FROM comments where id = \"$id\"";
   $result = mysqli_query($db_connection, $query);
 
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   exit($result);
 }
@@ -24,8 +24,7 @@ function fetch_comments_db() {
   $result = mysqli_query($db_connection, $query);
   $comments = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $comments;
 }

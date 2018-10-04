@@ -34,6 +34,12 @@ function new_db_connection() {
 }
 
 
+function close_db_connection($db_connection, $result) {
+  gettype($result) === "object" && mysqli_free_result($result);
+  mysqli_close($db_connection);
+}
+
+
 // URL
 
 // $_SERVER['DOCUMENT_ROOT'] returns the document root directory

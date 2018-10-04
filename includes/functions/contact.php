@@ -18,7 +18,7 @@ function insert_contact_db() {
               VALUES (\"$name\", \"$email\", \"$message\")";
     $result = mysqli_query($db_connection, $query);
 
-    mysqli_close($db_connection);
+    close_db_connection($db_connection, $result);
 
     // echo to javascript/ajax as this.responseText
     echo $result ? "success" : "request_error";

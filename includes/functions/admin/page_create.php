@@ -27,8 +27,7 @@ function insert_page_db() {
 
   $new_page_id = mysqli_insert_id($db_connection);
 
-  mysqli_free_result($query);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return ["success", $new_page_id];
 }

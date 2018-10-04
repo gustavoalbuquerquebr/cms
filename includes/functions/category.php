@@ -9,8 +9,7 @@ function count_posts_db($category_id) {
   $result = mysqli_query($db_connection, $query);
   $posts_total = mysqli_fetch_row($result)[0];
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $posts_total;
 }
@@ -37,8 +36,7 @@ function fetch_posts_db($category_id, $posts_per_page, $query_offset) {
   $result = mysqli_query($db_connection, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $posts;
 }
@@ -93,8 +91,7 @@ function fetch_categoryname_db($category_id) {
 
   $category_name = mysqli_fetch_assoc($result)["name"];
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $category_name;
 }

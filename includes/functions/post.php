@@ -11,7 +11,7 @@ function insert_comment_db() {
   $query = "INSERT INTO comments (post, user, body) VALUES (\"$post\", \"$user\", \"$comment\")";
   $result = mysqli_query($db_connection, $query);
 
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   echo "success";
 
@@ -37,8 +37,7 @@ function fetch_post_db($current_post) {
   $result = mysqli_query($db_connection, $query);
   $post = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $post;
 }
@@ -57,8 +56,7 @@ function fetch_postsid_db() {
     $posts_id[] = $row[0];
   }
   
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $posts_id;
 }
@@ -99,8 +97,7 @@ function fetch_comments_db($current_post) {
   $result = mysqli_query($db_connection, $query);
   $comments = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-  mysqli_free_result($result);
-  mysqli_close($db_connection);
+  close_db_connection($db_connection, $result);
 
   return $comments;
 }

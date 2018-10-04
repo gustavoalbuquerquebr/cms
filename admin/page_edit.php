@@ -31,7 +31,6 @@ $body = $page["body"];
 $nav = isset($page["nav"]) ? ($page["nav"] ? "checked" : "") : "";
 $aside = isset($page["aside"]) ? ($page["aside"] ? "checked" : "") : "";
 
-print_r($page);
 ?>
 
 
