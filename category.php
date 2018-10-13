@@ -57,7 +57,7 @@ $disable_nextlink = disable_nextlink_variable($current_page, $pages_total);
             <h6 class="small">
               <a href="<?= generate_categorylink_html($post["category_id"]); ?>" class="badge badge-primary mr-1 category_badge"><?= h($post["category_name"]); ?></a>
               <a href="<?= generate_userlink_html($post["user_id"]); ?>" class="font-weight-bold"><?= h($post["user_name"]); ?></a>
-              <span> - <?= $post["date"]; ?></span>
+              <span> - <?= instantiate_date($post["date"], "d/m/Y"); ?></span>
             </h6>
             <p><?= h(generate_blogexcerpt_html($post["body"])); ?></p>
             <p class=""><a href="<?= generate_postlink_html($post["id"]); ?>">Read More &raquo;</a></p>

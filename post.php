@@ -25,7 +25,7 @@ $category_link = generate_categorylink_variable($post["category_id"]);
 $category = h($post["category_name"]);
 $user_link = generate_userlink_variable($post["user_id"]);
 $user =  h($post["user_name"]);
-$date = $post["date"];
+$date = instantiate_date($post["date"], "d/m/Y");
 $body = convert_nl2ptag_html(h($post["body"]));
 $prev_post = make_url("post.php?id=", true) . getid_prevpost_db($posts_id, $current_position);
 $prevbtn_class = disable_prevpost_html($current_position);
@@ -74,7 +74,7 @@ $script_link = make_url("assets/js/post.js", true);
               <h6>
                 <strong><?= h($comment["user"]); ?></strong>
                 <span class="text-muted"><?= verify_ifmoderated_db($comment["moderated"]); ?></span>
-                - <?= $comment["date"] ?>
+                - <?= instantiate_date($comment["date"], "d/m/Y H:m"); ?>
               </h6>
               <p><?= h($comment["body"]); ?></p>
             </div>

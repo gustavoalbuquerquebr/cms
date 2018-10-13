@@ -1,7 +1,7 @@
 <?php
 
 // HTML output
-$copyright_notice = "&copy; " . date("Y") . " " . PROJECT_NAME . ". All rights reserved.";
+$copyright_notice = "&copy; " . instantiate_date("", "Y") . " " . PROJECT_NAME . ". All rights reserved.";
 
 ?>
 

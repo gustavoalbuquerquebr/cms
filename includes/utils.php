@@ -102,3 +102,11 @@ function redirect_to($path) {
   $url = make_url($path, true);
   header("Location: $url");
 }
+
+
+// DATE
+
+function instantiate_date($date, $format) {
+  $datetime = new DateTime($date);
+  return $datetime->format($format);
+}

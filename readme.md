@@ -2,7 +2,6 @@
 
 ### TODO
 
-- db_disconnect()
 - Add email column user
 - Archive pages (posts by date)
 - post/user/user/category pages to show name at url instead of id number
