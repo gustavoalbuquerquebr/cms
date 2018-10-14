@@ -3,7 +3,6 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
 require_once make_url("includes/functions/install.php");
 
-// if cms is already installed (passed db connection test), redirect to index
 test_db_connection() && redirect_to("");
 
 if (!empty($_POST)) {
@@ -12,13 +11,15 @@ if (!empty($_POST)) {
   logout();
 
   $install = install_cms_db();
-  
-  $install[0] === "success" && redirect_to("") && exit;
+
+  if ($install[0] === "success") {
+    redirect_to("");
+    exit;
+  }
 
   if ($install[0] === "error") {
     $error = $install[1];
   }
-
 }
 
 ?>
@@ -37,6 +38,7 @@ if (!empty($_POST)) {
   <link rel="stylesheet" href="<?= generate_globalcsslink_html(); ?>">
 </head>
 <body>
+
   <main class="container mt-5">
 
     <div class="wrapper-w50 wrapper-md-w100 mx-auto">
@@ -45,7 +47,7 @@ if (!empty($_POST)) {
 
       <?php if (isset($error)): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <?= $error; ?>
+          <span><?= $error; ?></span>
           <button class="close" type="button" data-dismiss="alert"><span>&times;</span></button>
         </div>
       <?php endif; ?>
@@ -67,5 +69,5 @@ if (!empty($_POST)) {
     </div>
 
   </main>
-</body>
-</html>
+
+  <?php includes_footer(); ?>

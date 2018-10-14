@@ -25,6 +25,24 @@ function includes_footer() {
 // DATABASE
 
 function test_db_connection() {
+  
+  // if DB_NAME is a empty string, test will fail
+  if (DB_NAME === "") {
+    return false;
+  }
+
+  // if DB_NAME exists, but there's no tables, test will fail
+  $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
+  $db_name = DB_NAME;
+  $query = "SELECT COUNT(*) as count FROM information_schema.tables WHERE table_schema = '$db_name'";
+  $result = mysqli_query($db_connection, $query);
+  $tables = (int) $result->fetch_array()[0];
+  close_db_connection($db_connection, $query);
+  if ($tables === 0) {
+    return false;
+  }
+
+  // if DB_NAME connects, test will pass
   try {
     mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     return true;
@@ -64,7 +82,7 @@ function make_url($path, $client_side = false) {
   }
 
   if ($client_side) {
-    return "/" . PROJECT_FOLDER_NAME . "/" . $path;
+    return "/" . PROJECT_PATH . "/" . $path;
   } else {
     return ROOT . "/" . $path;
   }

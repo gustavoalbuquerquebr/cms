@@ -14,9 +14,8 @@ date_default_timezone_set("America/Sao_Paulo");
 
 
 // PROJECT CONFIG CONSTANTS
-
 define("PROJECT_NAME", "CMS");
-define("PROJECT_FOLDER_NAME", "cms");
+define("PROJECT_PATH", "cms");
 define("PROJECT_EMAIL", "cms@email.com");
 
 // how many posts are shown at homepage for each navigation page
@@ -40,16 +39,16 @@ define("SCRIPT_BOOTSTRAP", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/j
 
 // DATABASE CONSTANTS
 define("DB_HOST", "localhost");
-define("DB_USER", "gustavo");
-define("DB_PASS", "123");
+define("DB_USER", "root");
+define("DB_PASS", "");
 define("DB_NAME", "cms");
 
 
 // UTILITY FUNCTIONS
-require_once $_SERVER["DOCUMENT_ROOT"] . "/" . PROJECT_FOLDER_NAME . "/includes/utils.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/" . PROJECT_PATH . "/includes/utils.php";
 
 
 // when in any other page than install, test db connection and if it fails, redirect to install
-if ($_SERVER["PHP_SELF"] !== "/" . PROJECT_FOLDER_NAME . "/install.php") {
+if ($_SERVER["PHP_SELF"] !== "/" . PROJECT_PATH . "/install.php") {
   !test_db_connection() && redirect_to("install.php");
 }

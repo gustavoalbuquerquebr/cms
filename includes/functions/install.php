@@ -2,7 +2,7 @@
 
 function create_tables_db() {
   
-  $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  $db_connection = new_db_connection();
 
   // POSTS
   $posts = "CREATE TABLE posts(
@@ -76,6 +76,8 @@ function create_tables_db() {
   mysqli_query($db_connection, $page);
 
   mysqli_close($db_connection);
+
+  return true;
 }
 
 
@@ -85,7 +87,7 @@ function populate_tables_db() {
 
   $lorem2 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, laudantium quae provident voluptas aliquam consequuntur distinctio quibusdam. Quasi ad repellendus veniam consequuntur velit inventore error dolorum, rem ipsum laboriosam est delectus officia, recusandae porro vero soluta dolorem?";
 
-  $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  $db_connection = new_db_connection();
 
   // USERS
   // starts at two, because the user created at installation is the id number 1
@@ -142,9 +144,7 @@ function fetch_users_db() {
 
 function check_duplicateusername_db($username) {
 
-  $db_connection = new_db_connection();
-
-  $users = fetch_users_db($db_connection);
+  $users = fetch_users_db();
 
   foreach ($users as $user) {
     if ($user["username"] === $username) return true;
@@ -157,7 +157,7 @@ function check_duplicateusername_db($username) {
 function insert_user_db() {
   
   $db_connection = new_db_connection();
-  
+
   $username = mysqli_real_escape_string($db_connection, $_POST["username"]);
   $password = mysqli_real_escape_string($db_connection, $_POST["password"]);
   $password_hashed = password_hash($password, PASSWORD_DEFAULT);
@@ -177,9 +177,7 @@ function insert_user_db() {
 
   $result = mysqli_query($db_connection, $query);
 
-  // if ($result === false) {
-  //   return ["error", 3];
-  // }
+  close_db_connection($db_connection, $result);
 
   return ["success"];
 }
@@ -187,21 +185,12 @@ function insert_user_db() {
 
 function install_cms_db() {
 
-  $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-
-  $query = "CREATE DATABASE cms";
-
   try {
-    mysqli_query($db_connection, $query);
+    mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
   } catch (mysqli_sql_exception $e) {
     return ["error", $e->getMessage()];
   }
-
-  // NOTE: code for when implement custom database name
-  // $init = file_get_contents(make_url("includes/init.php"));
-  // $init = str_replace('"DB_NAME", "cms"', "\"DB_NAME\", \"{$_POST["dbname"]}\"", $init);
-  // file_put_contents("includes/init.php", $init);
-  // $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, $_POST["dbname"]);
 
   create_tables_db();
 
@@ -211,14 +200,21 @@ function install_cms_db() {
   
     if ($user_insertion[0] === "error") {
   
+      // if there's a error, empty the database
       $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-      $query = "DROP DATABASE cms";
-      mysqli_query($db_connection, $query);
+      $query = "DROP DATABASE " . DB_NAME;
+      $result = mysqli_query($db_connection, $query);
+      $query = "CREATE DATABASE " . DB_NAME;
+      $result = mysqli_query($db_connection, $query);
+
+      close_db_connection($db_connection, $result);
   
       return ["error", $user_insertion[1]];
     }
   
-  mysqli_close($db_connection);
+  // $init = file_get_contents(make_url("includes/init.php"));
+  // $init = preg_replace('/"DB_HOST", "\w*"/', "\"DB_HOST\", \"{$_POST["dbhost"]}\"", $init);
+  // file_put_contents("includes/init.php", $init);
 
   return ["success"];
 }
