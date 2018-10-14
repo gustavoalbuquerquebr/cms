@@ -69,7 +69,7 @@ $script_link = make_url("assets/js/admin/posts.js", true);
             <?php foreach ($posts as $post): ?>
               <tr>
                 <td><?= $post["id"]; ?></td>
-                <td><?= $post["date"]; ?></td>
+                <td><?= instantiate_date($post["date"]); ?></td>
                 <td><a href="<?= generate_userpage_html($post["user_id"]); ?>"><?= h($post["user_name"]); ?></a></td>
                 <td><a href="<?= generate_postpage_html($post["id"]); ?>"><?= h($post["title"]); ?></a></td>
                 <td><a href="<?= generate_editlink_html($post["id"]); ?>"  class="edit-link"></a></td>

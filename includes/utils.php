@@ -24,10 +24,15 @@ function includes_footer() {
 
 // DATABASE
 
-define("DB_HOST", "localhost");
-define("DB_USER", "gustavo");
-define("DB_PASS", "123");
-define("DB_NAME", "cms");
+function test_db_connection() {
+  try {
+    mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    return true;
+    
+  } catch (mysqli_sql_exception $e) {
+    return false;
+  }
+}
 
 function new_db_connection() {
   return mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -90,6 +95,27 @@ function is_logged() {
   // return isset($_SESSION["logged_user"]);
 }
 
+function logout() {
+  !isset($_SESSION) && session_start();
+  session_destroy();
+}
+
+
+// STYLESHEETS
+
+function generate_globalcsslink_html() {
+  return make_url("assets/css/global.css", true);
+}
+
+function custom_stylesheet($stylesheet) {
+  if (!empty($stylesheet)) {
+    return '<link rel="stylesheet" href="'
+            . make_url("assets/css/", true)
+            . $stylesheet
+            . ".css" . '">';
+  }
+}
+
 
 // SCRIPTS
 
@@ -106,7 +132,7 @@ function redirect_to($path) {
 
 // DATE
 
-function instantiate_date($date, $format) {
+function instantiate_date($date, $format = "Y-m-d H:i:s") {
   $datetime = new DateTime($date);
   return $datetime->format($format);
 }

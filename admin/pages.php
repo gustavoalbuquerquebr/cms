@@ -69,7 +69,7 @@ $script_link = make_url("assets/js/admin/pages.js", true);
             <?php foreach ($pages as $page): ?>
               <tr>
                 <td><?= $page["id"]; ?></td>
-                <td><?= $page["date"]; ?></td>
+                <td><?= instantiate_date($page["date"]); ?></td>
                 <td><a href="<?= generate_userpage_html($page["user_id"]); ?>"><?= h($page["user_name"]); ?></a></td>
                 <td><a href="<?= generate_pagepage_html($page["id"]); ?>"><?= h($page["title"]); ?></a></td>
                 <td><a href="<?= generate_editlink_html($page["id"]); ?>"  class="edit-link"></a></td>

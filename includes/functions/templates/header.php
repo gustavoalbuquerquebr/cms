@@ -1,15 +1,5 @@
 <?php
 
-function custom_stylesheet($stylesheet) {
-  if (!empty($stylesheet)) {
-    return '<link rel="stylesheet" href="'
-            . make_url("assets/css/", true)
-            . $stylesheet
-            . ".css" . '">';
-  }
-}
-
-
 function verify_iscurrentpage_url($menu_item) {
 
   if ($_SERVER["PHP_SELF"] === "/cms/index.php") {
@@ -28,11 +18,6 @@ function verify_iscurrentpage_url($menu_item) {
 
 function generate_pagetitle_html($page_title) {
   return (!empty($page_title)) ? PROJECT_NAME . " - $page_title" : PROJECT_NAME;
-}
-
-
-function generate_globalcsslink_html() {
-  return make_url("assets/css/global.css", true);
 }
 
 

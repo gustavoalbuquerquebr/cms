@@ -1,8 +1,16 @@
 <?php
 
+
+
 // in case of output buffering isn't enabled by default
 // ob_end_flush() it's called automatically at the end of the script
 ob_start();
+
+// mysqli will throw exceptions when there's a error
+// to catch use "catch (mysqli_sql_exception $e)"
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+date_default_timezone_set("America/Sao_Paulo");
 
 
 // PROJECT CONFIG CONSTANTS
@@ -30,5 +38,18 @@ define("SCRIPT_POPPER", "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3
 define("SCRIPT_BOOTSTRAP", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js");
 
 
+// DATABASE CONSTANTS
+define("DB_HOST", "localhost");
+define("DB_USER", "gustavo");
+define("DB_PASS", "123");
+define("DB_NAME", "cms");
+
+
 // UTILITY FUNCTIONS
-require_once $_SERVER["DOCUMENT_ROOT"] . "/" . PROJECT_FOLDER_NAME . "/includes/utils.php"; 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/" . PROJECT_FOLDER_NAME . "/includes/utils.php";
+
+
+// when in any other page than install, test db connection and if it fails, redirect to install
+if ($_SERVER["PHP_SELF"] !== "/" . PROJECT_FOLDER_NAME . "/install.php") {
+  !test_db_connection() && redirect_to("install.php");
+}

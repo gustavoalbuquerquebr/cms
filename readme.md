@@ -1,5 +1,19 @@
 # CMS Project
 
+Basic Content Management System for blogs written in vanilla PHP using procedural style. Works with MySQL and MariaDB through the mysqli extension. Styled with Bootstrap 4. Require PHP 7+.
+
+### FEATURES
+
+- Posts
+- Pages
+- Comments (one level deep)
+- Category page
+- Author page
+- Contact page
+- Admin area to manage posts, pages, comments, categories and users
+
+---
+
 ### TODO
 
 - Add email column user
@@ -14,7 +28,7 @@
 - Approve comments
 - Tags
 - 404 page and redirect when page isn't solicited with rigth request
-- Installation process
+- Allow custom database name and project name on installation
 - Post images
 - Contact send email
 - HTML/text editor
