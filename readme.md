@@ -16,12 +16,12 @@ Basic Content Management System for blogs written in vanilla PHP using procedura
 
 ### INSTALLATION
 
-1 - Create a database and a user with read and write privileges.
-2 - Copy files to your server.
-3 - Open "includes/init.php" and edit the constants DB_HOST, DB_USER, DB_PASS, DB_NAME, filling in your database info.
-4 - If you copied the files to the root of your webserver, leave PROJECT_PATH blank, otherwise specify the path.
-5 - Optionally, modify other configurations like PROJECT_NAME and PROJECT_EMAIL. Save and close "includes/init.php".
-6 - Open in a browser and insert the username and password that will be used to access the admin are of your site and click on the install button.
+1. Create a database and a user with read and write privileges.
+2. Copy files to your server.
+3. Open "includes/init.php" and edit the constants DB_HOST, DB_USER, DB_PASS, DB_NAME, filling in your database info.
+4. If you copied the files to the root of your webserver, leave PROJECT_PATH blank, otherwise specify the path.
+5. Optionally, modify other configurations like PROJECT_NAME and PROJECT_EMAIL. Save and close "includes/init.php".
+6. Open in a browser and insert the username and password that will be used to access the admin are of your site and click on the install button.
 
 ---
 

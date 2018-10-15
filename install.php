@@ -91,10 +91,6 @@ if (!empty($_POST)) {
         <div class="form-group">
           <input type="text" name="name" placeholder="Name" class="form-control">
         </div>
-        <!-- <div class="form-group">
-          <input type="text" name="path" placeholder="Path" class="form-control">
-          <small class="form-text text-muted">If the CMS files were uploaded to the root of your webserver, leave the field above blank</small>
-        </div> -->
         <div class="form-group">
           <input type="text" name="email" placeholder="Email" class="form-control">
         </div>

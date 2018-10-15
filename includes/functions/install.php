@@ -169,7 +169,7 @@ function insert_user_db() {
   
   // cannot insert if username already exists
   if (check_duplicateusername_db($username)) {
-    return ["error", "Username already exists"];
+    return ["error", ["Username already exists"]];
   }
 
   $query = "INSERT INTO users (username, `password`)
@@ -186,11 +186,11 @@ function insert_user_db() {
 function empty_database_db() {
 
   // $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"]);
 
-  $query = "DROP DATABASE " . DB_NAME;
+  $query = "DROP DATABASE " . $_POST["dbname"];
   $result = mysqli_query($db_connection, $query);
-  $query = "CREATE DATABASE " . DB_NAME;
+  $query = "CREATE DATABASE " . $_POST["dbname"];
   $result = mysqli_query($db_connection, $query);
 
   close_db_connection($db_connection, $result);
@@ -240,13 +240,6 @@ function edit_constants_initfile() {
   $name_replacement = '("PROJECT_NAME", "' . addcslashes($name, '"') . '")';
   $file = preg_replace($name_pattern, $name_replacement, $file);
 
-  // $path = $_POST["path"];
-  // $path_chars = '[\w\h-.\/\\\]';
-  // $path_pattern = '/\("PROJECT_PATH", "' . $path_chars . '*"\)/';
-  // $path_replacement = '("PROJECT_PATH", "' . addcslashes($path, '"') . '")';
-  // $file = preg_replace($path_pattern, $path_replacement, $file);
-
-
   $email = $_POST["email"];
   $email_chars = '[\w.@]';
   $email_pattern = '/\("PROJECT_EMAIL", "' . $email_chars . '*"\)/';
@@ -256,21 +249,6 @@ function edit_constants_initfile() {
   file_put_contents($init_path, $file);
 
 }
-
-
-function get_abspath_postrequest() {
-
-  $path = $_POST["path"];
-
-  if (substr($path, 0, 1) === "/" || substr($path, 0, 1) === "\\") {
-    $path = substr($path, 1);
-  }
-
-  $absolutePath = $_SERVER["DOCUMENT_ROOT"] . "/" . $path;
-
-  return $absolutePath;
-}
-
 
 function validate_variables_postrequest() {
 
@@ -292,12 +270,8 @@ function validate_variables_postrequest() {
     $errors[] = "Site name can't be left blank";
   }
   
-    if (!empty($_POST["name"]) && !filter_input(INPUT_POST, "name", FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[\w\h\'\"!@#$%&*()+-.,;:?\/\\\|]*/"]])) {
-      $errors[] = "Invalid character(s) at site name field.";
-    }
-  
-  if (!file_exists(get_abspath_postrequest())) {
-    $errors[] = "The specified path doesn't exist in your server";
+  if (!empty($_POST["name"]) && !filter_input(INPUT_POST, "name", FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[\w\h\'\"!@#$%&*()+-.,;:?\/\\\|]*/"]])) {
+    $errors[] = "Invalid character(s) at site name field.";
   }
   
   if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
