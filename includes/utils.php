@@ -31,7 +31,7 @@ function test_db_connection() {
     return false;
   }
 
-  // if DB_NAME exists, but there's no tables, test will fail
+  // if DB_NAME exists, but contains no tables, test will fail
   $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
   $db_name = DB_NAME;
   $query = "SELECT COUNT(*) as count FROM information_schema.tables WHERE table_schema = '$db_name'";
@@ -42,7 +42,7 @@ function test_db_connection() {
     return false;
   }
 
-  // if DB_NAME connects, test will pass
+  // only if DB_NAME connects, test will pass
   try {
     mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     return true;
@@ -70,7 +70,7 @@ function close_db_connection($db_connection, $result) {
 // for client side code (css, js, redirects...),
 // don't use this superglobal, instead start links with / to indicate the root
 
-define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/cms");
+define("MY_ROOT", $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"]);
 
 function make_url($path, $client_side = false) {
   
@@ -82,9 +82,9 @@ function make_url($path, $client_side = false) {
   }
 
   if ($client_side) {
-    return "/" . PROJECT_PATH . "/" . $path;
+    return $_SERVER["HTTP_MY_ROOT"] . $path;
   } else {
-    return ROOT . "/" . $path;
+    return MY_ROOT . "/" . $path;
   }
 }
 

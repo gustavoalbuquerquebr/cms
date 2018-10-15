@@ -2,7 +2,8 @@
 
 function create_tables_db() {
   
-  $db_connection = new_db_connection();
+  // $db_connection = new_db_connection();
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
 
   // POSTS
   $posts = "CREATE TABLE posts(
@@ -87,7 +88,8 @@ function populate_tables_db() {
 
   $lorem2 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, laudantium quae provident voluptas aliquam consequuntur distinctio quibusdam. Quasi ad repellendus veniam consequuntur velit inventore error dolorum, rem ipsum laboriosam est delectus officia, recusandae porro vero soluta dolorem?";
 
-  $db_connection = new_db_connection();
+  // $db_connection = new_db_connection();
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
 
   // USERS
   // starts at two, because the user created at installation is the id number 1
@@ -128,7 +130,8 @@ function populate_tables_db() {
 
 function fetch_users_db() {
 
-  $db_connection = new_db_connection();
+  // $db_connection = new_db_connection();
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
 
   $query = "SELECT id, username FROM users";
 
@@ -156,16 +159,13 @@ function check_duplicateusername_db($username) {
 
 function insert_user_db() {
   
-  $db_connection = new_db_connection();
+  // $db_connection = new_db_connection();
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
 
   $username = mysqli_real_escape_string($db_connection, $_POST["username"]);
   $password = mysqli_real_escape_string($db_connection, $_POST["password"]);
   $password_hashed = password_hash($password, PASSWORD_DEFAULT);
-  
-  // username and password validation
-  if (strlen($username) < 8 || strlen($username) > 25 || strlen($password) < 8 || strlen($password) > 25) {
-    return ["error", "Username and password must have between 8 and 25 characters."];
-  }
+
   
   // cannot insert if username already exists
   if (check_duplicateusername_db($username)) {
@@ -183,13 +183,152 @@ function insert_user_db() {
 }
 
 
+function empty_database_db() {
+
+  // $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
+  $db_connection = mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
+
+  $query = "DROP DATABASE " . DB_NAME;
+  $result = mysqli_query($db_connection, $query);
+  $query = "CREATE DATABASE " . DB_NAME;
+  $result = mysqli_query($db_connection, $query);
+
+  close_db_connection($db_connection, $result);
+}
+
+
+function edit_constants_initfile() {
+
+  $init_path = make_url("includes/init.php");
+  $init_size = filesize($init_path);
+  $file = file_get_contents($init_path, $init_size);
+
+  // \h (horizontal white space) is used instead of \s (any white space)
+  // otherwise replacement could affect more than one line
+
+  // addcslashes will escape double quotes
+  // NOTE: can't escape backslash
+
+  $dbhost = $_POST["dbhost"];
+  $dbhost_chars = '[\w.:]';
+  $dbhost_pattern = '/\("DB_HOST", "' . $dbhost_chars . '*"\)/';
+  $dbhost_replacement = '("DB_HOST", "' . addcslashes($dbhost, '"') . '")';
+  $file = preg_replace($dbhost_pattern, $dbhost_replacement, $file);
+
+  $dbuser = $_POST["dbuser"];
+  $dbuser_chars = '[\w\h\@#&*+-.\/\\\|]';
+  $dbuser_pattern = '/\("DB_USER", "' . $dbuser_chars . '*"\)/';
+  $dbuser_replacement = '("DB_USER", "' . addcslashes($dbuser, '"') . '")';
+  $file = preg_replace($dbuser_pattern, $dbuser_replacement, $file);
+
+  $dbpass = $_POST["dbpass"];
+  $dbpass_chars = '[\w\h\'"!@#$%&*()+-.,;:?\/\\\|]';
+  $dbpass_pattern = '/\("DB_PASS", "' . $dbpass_chars . '*"\)/';
+  $dbpass_replacement = '("DB_PASS", "' . addcslashes($dbpass, '"') . '")';
+  $file = preg_replace($dbpass_pattern, $dbpass_replacement, $file);
+
+  $dbname = $_POST["dbname"];
+  $dbname_chars = '[\w\h\"!@#&*+-.\/\\\|]';
+  $dbname_pattern = '/\("DB_NAME", "' . $dbname_chars . '*"\)/';
+  $dbname_replacement = '("DB_NAME", "' . addcslashes($dbname, '"') . '")';
+  $file = preg_replace($dbname_pattern, $dbname_replacement, $file);
+
+
+  $name = $_POST["name"];
+  $name_chars = '[\w\h\'"!@#$%&*()+-.,;:?\/\\\|]';
+  $name_pattern = '/\("PROJECT_NAME", "' . $name_chars . '*"\)/';
+  $name_replacement = '("PROJECT_NAME", "' . addcslashes($name, '"') . '")';
+  $file = preg_replace($name_pattern, $name_replacement, $file);
+
+  // $path = $_POST["path"];
+  // $path_chars = '[\w\h-.\/\\\]';
+  // $path_pattern = '/\("PROJECT_PATH", "' . $path_chars . '*"\)/';
+  // $path_replacement = '("PROJECT_PATH", "' . addcslashes($path, '"') . '")';
+  // $file = preg_replace($path_pattern, $path_replacement, $file);
+
+
+  $email = $_POST["email"];
+  $email_chars = '[\w.@]';
+  $email_pattern = '/\("PROJECT_EMAIL", "' . $email_chars . '*"\)/';
+  $email_replacement = '("PROJECT_EMAIL", "' . addcslashes($email, '"') . '")';
+  $file = preg_replace($email_pattern, $email_replacement, $file);
+
+  file_put_contents($init_path, $file);
+
+}
+
+
+function get_abspath_postrequest() {
+
+  $path = $_POST["path"];
+
+  if (substr($path, 0, 1) === "/" || substr($path, 0, 1) === "\\") {
+    $path = substr($path, 1);
+  }
+
+  $absolutePath = $_SERVER["DOCUMENT_ROOT"] . "/" . $path;
+
+  return $absolutePath;
+}
+
+
+function validate_variables_postrequest() {
+
+  $errors = [];
+
+  if (empty($_POST["dbhost"])) {
+    $errors[] = "Database host can't be left blank";
+  }
+
+  if (empty($_POST["dbuser"])) {
+    $errors[] = "Database user can't be left blank";
+  }
+
+  if (empty($_POST["dbname"])) {
+    $errors[] = "Database name can't be left blank";
+  }
+  
+  if (empty($_POST["name"])) {
+    $errors[] = "Site name can't be left blank";
+  }
+  
+    if (!empty($_POST["name"]) && !filter_input(INPUT_POST, "name", FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[\w\h\'\"!@#$%&*()+-.,;:?\/\\\|]*/"]])) {
+      $errors[] = "Invalid character(s) at site name field.";
+    }
+  
+  if (!file_exists(get_abspath_postrequest())) {
+    $errors[] = "The specified path doesn't exist in your server";
+  }
+  
+  if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Invalid email";
+  }
+
+  if (empty($_POST["username"])) {
+    $errors[] = "Username can't be left blank";
+  }
+  
+  if (empty($_POST["password"])) {
+    $errors[] = "Password can't be left blank";
+  }
+
+  return empty($errors) ? ["success"] : ["error", $errors];
+}
+
+
 function install_cms_db() {
 
   try {
-    mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    mysqli_connect($_POST["dbhost"], $_POST["dbuser"], $_POST["dbpass"], $_POST["dbname"]);
 
   } catch (mysqli_sql_exception $e) {
-    return ["error", $e->getMessage()];
+    return ["error", [$e->getMessage()]];
+  }
+
+  $validation = validate_variables_postrequest();
+
+  if ($validation[0] === "error") {
+    return ["error", $validation[1]];
   }
 
   create_tables_db();
@@ -198,23 +337,14 @@ function install_cms_db() {
 
   $user_insertion = insert_user_db();
   
-    if ($user_insertion[0] === "error") {
-  
-      // if there's a error, empty the database
-      $db_connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-      $query = "DROP DATABASE " . DB_NAME;
-      $result = mysqli_query($db_connection, $query);
-      $query = "CREATE DATABASE " . DB_NAME;
-      $result = mysqli_query($db_connection, $query);
+  if ($user_insertion[0] === "error") {
 
-      close_db_connection($db_connection, $result);
+    empty_database_db();
+
+    return ["error", $user_insertion[1]];
+  }
   
-      return ["error", $user_insertion[1]];
-    }
-  
-  // $init = file_get_contents(make_url("includes/init.php"));
-  // $init = preg_replace('/"DB_HOST", "\w*"/', "\"DB_HOST\", \"{$_POST["dbhost"]}\"", $init);
-  // file_put_contents("includes/init.php", $init);
+  edit_constants_initfile();
 
   return ["success"];
 }

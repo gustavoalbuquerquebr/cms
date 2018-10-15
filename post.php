@@ -1,6 +1,10 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+$init_path = $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
+
+!file_exists($init_path) && header("Location: install.php");
+
+require_once $init_path;
 require_once make_url("includes/functions/post.php");
 
 !empty($_POST) && insert_comment_db();
@@ -74,7 +78,7 @@ $script_link = make_url("assets/js/post.js", true);
               <h6>
                 <strong><?= h($comment["user"]); ?></strong>
                 <span class="text-muted"><?= verify_ifmoderated_db($comment["moderated"]); ?></span>
-                - <?= instantiate_date($comment["date"], "d/m/Y H:m"); ?>
+                - <?= instantiate_date($comment["date"], "d/m/Y H:i"); ?>
               </h6>
               <p><?= h($comment["body"]); ?></p>
             </div>

@@ -39,7 +39,7 @@ Basic Content Management System for blogs written in vanilla PHP using procedura
 - Approve comments
 - Tags
 - 404 page and redirect when page isn't solicited with rigth request
-- Installation without file edit
+- Reset and unnistall
 - Post images
 - Contact send email
 - HTML/text editor
@@ -56,7 +56,7 @@ Basic Content Management System for blogs written in vanilla PHP using procedura
 
 ```php
   <?php
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
   ?>
 
   <?php includes_header("page title", "custom stylesheet"); ?>

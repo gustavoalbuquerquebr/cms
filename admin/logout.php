@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
 
 $redirect = $_GET["redirect"] ?? "homepage";
 

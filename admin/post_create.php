@@ -1,6 +1,10 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+$init_path = $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
+
+!file_exists($init_path) && header("Location: ../install.php");
+
+require_once $init_path;
 require_once make_url("includes/functions/admin/post_create.php");
 
 !is_logged() && redirect_to("admin/login.php") && exit;

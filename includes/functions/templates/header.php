@@ -2,13 +2,13 @@
 
 function verify_iscurrentpage_url($menu_item) {
 
-  if ($_SERVER["PHP_SELF"] === "/cms/index.php") {
+  if ($_SERVER["PHP_SELF"] === $_SERVER["HTTP_MY_ROOT"] . "index.php") {
     $current_page = "home";
 
-  } elseif ($_SERVER["PHP_SELF"] === "/cms/contact.php") {
+  } elseif ($_SERVER["PHP_SELF"] === $_SERVER["HTTP_MY_ROOT"] . "contact.php") {
     $current_page = "contact";
 
-  } elseif (strpos($_SERVER["PHP_SELF"], "/cms/admin/") === 0) {
+  } elseif (strpos($_SERVER["PHP_SELF"], $_SERVER["HTTP_MY_ROOT"] . "admin/") === 0) {
     $current_page = "admin";
   }
 

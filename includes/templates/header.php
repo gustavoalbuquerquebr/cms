@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
 require_once make_url("includes/functions/templates/header.php");
 
 

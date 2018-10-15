@@ -1,6 +1,10 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/cms/" . "includes/init.php";
+$init_path = $_SERVER["DOCUMENT_ROOT"] . $_SERVER["HTTP_MY_ROOT"] . "includes/init.php";
+
+!file_exists($init_path) && header("Location: ../install.php");
+
+require_once $init_path;
 require_once make_url("includes/functions/admin/login.php");
 
 !empty($_POST) && verify_auth_db();
