@@ -12,9 +12,9 @@ date_default_timezone_set("America/Sao_Paulo");
 
 
 // PROJECT CONFIG CONSTANTS
-define("PROJECT_NAME", "");
+define("PROJECT_NAME", "Spoon Knife");
 // define("PROJECT_PATH", "/cms/");
-define("PROJECT_EMAIL", "");
+define("PROJECT_EMAIL", "eet61982@nbzmr.com");
 
 // how many posts are shown at homepage for each navigation page
 define("POSTS_PER_PAGE", 5);
@@ -36,10 +36,10 @@ define("SCRIPT_BOOTSTRAP", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/j
 
 
 // DATABASE CONSTANTS
-define("DB_HOST", "");
-define("DB_USER", "");
-define("DB_PASS", "");
-define("DB_NAME", "");
+define("DB_HOST", "localhost");
+define("DB_USER", "gustavo");
+define("DB_PASS", "123");
+define("DB_NAME", "cms");
 
 
 // UTILITY FUNCTIONS
